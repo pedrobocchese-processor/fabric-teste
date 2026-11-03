@@ -1,7 +1,0 @@
-fabric-teste
-├── README.md
-└── fabric
-    ├── notebooks
-    ├── pipelines
-    ├── lakehouses
-    └── semantic-models
