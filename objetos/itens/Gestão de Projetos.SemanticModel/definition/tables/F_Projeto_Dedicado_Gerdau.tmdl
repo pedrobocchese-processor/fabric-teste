@@ -1,0 +1,309 @@
+table F_Projeto_Dedicado_Gerdau
+	lineageTag: 76b20f90-5c5e-4dc7-874d-5ec30c7701dc
+
+	column Codigo
+		formatString: 0
+		lineageTag: 3108bb40-680f-44be-a145-29f8236edee7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Codigo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoContrato
+		formatString: 0
+		lineageTag: f1de6dc9-db10-4634-bb66-588a11a9813f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CodigoContrato]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescricaoContrato
+		lineageTag: 0e42e1fc-76e0-4537-bd94-8928aabb0c4b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DescricaoContrato]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoGrupo
+		formatString: 0
+		lineageTag: b6f68551-4802-4419-a9c8-86a97a3f1fa7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [CodigoGrupo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoAtividade
+		formatString: 0
+		lineageTag: e6446244-5f5b-48fe-8672-7ca7c54b3ca4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [CodigoAtividade]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoProfissional
+		formatString: 0
+		lineageTag: 8c30323b-447a-45b4-adc5-bb3560f5f972
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CodigoProfissional]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio
+		formatString: General Date
+		lineageTag: 9d9aab76-fa60-469b-aed8-677c339991f2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Inicio]
+
+		variation Variation
+			isDefault
+			relationship: 98cb8050-8434-42ba-96db-f874dcf3cee4
+			defaultHierarchy: LocalDateTable_ba9892f8-04b5-4ed2-bc44-edb1de75920c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fim
+		formatString: General Date
+		lineageTag: a0274347-485b-40ae-a15e-074db028f216
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Fim]
+
+		variation Variation
+			isDefault
+			relationship: 07b05d18-dfa8-4b49-94bd-7e1a0903c8c3
+			defaultHierarchy: LocalDateTable_5a92d402-f049-447a-a1be-6dacbcdfddc5.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tempo
+		formatString: Long Time
+		lineageTag: 64de6847-c420-4695-85f0-f1e1ddf119ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Tempo]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Horas
+		lineageTag: 184353a0-dcd5-4cff-9bb4-a8a10bf4c439
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Horas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DescricaoGrupo
+		lineageTag: 9cf3e66e-493d-4f81-9627-36caa5674fe9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DescricaoGrupo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescricaoAtividade
+		lineageTag: 7a66944f-acde-49d8-9e04-3f2962de24b1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DescricaoAtividade]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeProfissional
+		lineageTag: f758a492-ef79-4f4a-8bb0-d29ed085f3f0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NomeProfissional]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		lineageTag: d589b2c1-430f-449b-bd39-3920c5ae30dd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Email]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observacao
+		lineageTag: 40054f14-7d9b-4365-9dee-858d65c4aa9d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Observacao]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataInc
+		formatString: dd/mm/yyyy
+		lineageTag: e4e3c333-aa25-4523-8237-48cb9a892634
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DataInc]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Cliente
+		lineageTag: b5e4db13-2650-4dc7-9b16-96934f3f55fc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Cliente]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo
+		lineageTag: 926fb66b-5a51-4fa9-a2ca-c2940702e105
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Grupo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Funcao
+		lineageTag: f822d66a-4ae2-4335-94db-7360aa0a95c1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Funcao]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno
+		lineageTag: 15eb4ec6-b346-4c47-bf43-bd9395db24be
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Turno]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Projeto_Dedicado_Gerdau = calculated
+		mode: import
+		source = ```
+				
+				VAR DiasUteis =
+				    FILTER (
+				        ADDCOLUMNS (
+				            CALENDAR (DATE (2025, 1, 1), DATE (2025, 12, 31)),
+				            "DiaSemana", WEEKDAY ([Date], 2),
+				            "Mes", MONTH ([Date])
+				        ),
+				        [DiaSemana] <= 5
+				    )
+				
+				VAR DiasIndexados =
+				    ADDCOLUMNS (
+				        DiasUteis,
+				        "IdxDia",
+				            RANKX (DiasUteis, [Date],, ASC, DENSE)
+				    )
+				
+				VAR LinhasComTurnos =
+				    ADDCOLUMNS (
+				        GENERATE (
+				            DiasIndexados,
+				            DATATABLE ("Turno", STRING, { { "Manhã" }, { "Tarde" } })
+				        ),
+				        "Codigo",
+				            35730 + ( [IdxDia] - 1 ) * 2 + IF ( [Turno] = "Tarde", 1, 0 ),
+				        "CodigoContrato", 7022,
+				        "DescricaoContrato", "7022 - Contrato de Consultoria",
+				        "CodigoGrupo", 152,
+				        "CodigoAtividade", BLANK(),
+				        "CodigoProfissional",
+				            IF ([Mes] <= 7, 2998, 3474),
+				        "NomeProfissional",
+				            IF ([Mes] <= 7, "Mario Ronca de Paula", "Bruna Luzia Santos Wehrmann"),
+				        "Email",
+				            IF ([Mes] <= 7, "mario.paula@gotobiz.com.br", "bruna.wehrmann@processor.com.br"),
+				        "Inicio",
+				            IF ([Turno] = "Manhã",
+				                [Date] + TIME (8, 0, 0),
+				                [Date] + TIME (13, 0, 0)
+				            ),
+				        "Fim",
+				            IF ([Turno] = "Manhã",
+				                [Date] + TIME (12, 0, 0),
+				                [Date] + TIME (17, 0, 0)
+				            ),
+				        "Horas", 4,
+				        "Tempo", TIME (4, 0, 0),
+				        "DescricaoGrupo", "Projeto Dedicado",
+				        "DescricaoAtividade", "Atendimento Projeto Dedicado",
+				        "Observacao", "Atendimento projeto dedicado Gerdau",
+				        "DataInc", [Date] + TIME (8, 0, 0),
+				        "Cliente", "GERDAU ACOS LONGOS S.A.",
+				        "Grupo", "Gerdau",
+				        "Funcao",
+				            IF (
+				                [Mes] <= 7,
+				                "Consultor Técnico - Pl",
+				                "Analista de Processos e Sistemas - Jr"
+				            )
+				    )
+				
+				-- Adiciona índice de turno para cada profissional/mês
+				VAR LinhasIndexadas =
+				    ADDCOLUMNS (
+				        LinhasComTurnos,
+				        "IdxTurno",
+				            RANKX (
+				                FILTER (
+				                    LinhasComTurnos,
+				                    [Mes] = EARLIER ([Mes])
+				                        && [NomeProfissional] = EARLIER ([NomeProfissional])
+				                ),
+				                [Date] & [Turno],
+				                ,
+				                ASC,
+				                DENSE
+				            )
+				    )
+				
+				-- Limita para 160h/mês (ou 40 turnos = 4h cada)
+				VAR LinhasLimitadas =
+				    FILTER (
+				        LinhasIndexadas,
+				        [IdxTurno] <= 40
+				    )
+				
+				RETURN
+				    SELECTCOLUMNS (
+				        LinhasLimitadas,
+				        "Codigo", [Codigo],
+				        "CodigoContrato", [CodigoContrato],
+				        "DescricaoContrato", [DescricaoContrato],
+				        "CodigoGrupo", [CodigoGrupo],
+				        "CodigoAtividade", [CodigoAtividade],
+				        "CodigoProfissional", [CodigoProfissional],
+				        "NomeProfissional", [NomeProfissional],
+				        "Funcao", [Funcao],
+				        "Email", [Email],
+				        "Inicio", [Inicio],
+				        "Fim", [Fim],
+				        "Tempo", [Tempo],
+				        "Horas", [Horas],
+				        "DescricaoGrupo", [DescricaoGrupo],
+				        "DescricaoAtividade", [DescricaoAtividade],
+				        "Observacao", [Observacao],
+				        "DataInc", [DataInc],
+				        "Cliente", [Cliente],
+				        "Grupo", [Grupo],
+				        "Turno", [Turno]
+				    )
+				
+				```
+
+	annotation PBI_Id = 0bdaa86b8d3b4d8a94527142e477fdf8
+

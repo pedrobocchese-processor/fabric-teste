@@ -1,0 +1,270 @@
+table GP_Riscos
+	lineageTag: 52ae6e21-900c-4ec3-a261-15a1e2f5e1ce
+
+	column RelatorioID
+		dataType: int64
+		formatString: 0
+		lineageTag: ed7c7bc7-1e9d-4e8d-a629-14ba889294c6
+		summarizeBy: none
+		sourceColumn: RelatorioID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: ee2f0fd8-c203-45b9-8da0-0731ed2c6c5d
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d22a84d-ee24-4cae-be0e-bebb9666f21d
+		summarizeBy: sum
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situacao
+		dataType: string
+		lineageTag: b09f9374-b601-4fb3-98eb-a6a922fd8803
+		summarizeBy: none
+		sourceColumn: Situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Risco
+		dataType: string
+		lineageTag: 41ba650e-aec9-4d95-a6ec-aabb6a08e6fd
+		summarizeBy: none
+		sourceColumn: Risco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mitigacao
+		dataType: string
+		lineageTag: 8b14e11f-ef3a-437a-a661-a4bdac295467
+		summarizeBy: none
+		sourceColumn: Mitigacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanoContingencia
+		dataType: string
+		lineageTag: d03861e3-bad2-4280-9882-630f3f3fbbd4
+		summarizeBy: none
+		sourceColumn: PlanoContingencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Responsavel
+		dataType: string
+		lineageTag: 9d633371-367d-4c95-a77d-1398c515aa8e
+		summarizeBy: none
+		sourceColumn: Responsavel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Título
+		dataType: string
+		lineageTag: 060fab9f-6a52-4721-a1c6-c4cc5f532cdd
+		summarizeBy: none
+		sourceColumn: Título
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pressione Delete para excluir o ícone.'
+		dataType: string
+		lineageTag: 3e5b11ec-3300-43fd-b26e-760f7288c74c
+		summarizeBy: none
+		sourceColumn: Pressione Delete para excluir o ícone.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID de Ativo de Conformidade'
+		dataType: string
+		lineageTag: 55fc0e7e-0f0c-44fe-9464-277b25f8cb38
+		summarizeBy: none
+		sourceColumn: ID de Ativo de Conformidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 18287fe4-c9e9-4394-8128-c0526b7b296d
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Conteúdo'
+		dataType: string
+		lineageTag: 1cfd050d-1ea0-4b1e-84bc-e68b2f130818
+		summarizeBy: none
+		sourceColumn: Tipo de Conteúdo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modificado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 33225663-4016-4c57-bc32-98542cec76c1
+		summarizeBy: none
+		sourceColumn: Modificado
+
+		variation Variação
+			isDefault
+			relationship: 05885bdb-7013-4298-b6ba-2f8324eab680
+			defaultHierarchy: LocalDateTable_c6e40d87-2cbe-4573-b1b6-5c24f8a21d30.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7c7e3ea7-0abb-496f-b137-b38212ea770c
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variação
+			isDefault
+			relationship: 51b37e4d-b1a8-4d68-ac04-623a72a883c5
+			defaultHierarchy: LocalDateTable_e36f2a9a-0ae7-4421-b44e-f6cfdcaec3dc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Criado por'
+		dataType: string
+		lineageTag: e2eb3c9c-7836-40b0-8dc2-5d62178cad33
+		summarizeBy: none
+		sourceColumn: Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modificado por'
+		dataType: string
+		lineageTag: 5372ab6f-c447-46fd-83e3-f3a64e526470
+		summarizeBy: none
+		sourceColumn: Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versão
+		dataType: string
+		lineageTag: 0494d13a-a155-4e1c-90f4-0ca3f54a989e
+		summarizeBy: none
+		sourceColumn: Versão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anexos
+		dataType: string
+		lineageTag: f0db1802-139e-4c8f-9fbd-688eae46f2b5
+		summarizeBy: none
+		sourceColumn: Anexos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Editar
+		dataType: string
+		lineageTag: ba6f75ab-6f7f-4ed6-9978-ce967fed9ae1
+		summarizeBy: none
+		sourceColumn: Editar
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 7aa17a02-7367-4776-97de-5b2c28ea6a4f
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Itens Filhos'
+		dataType: string
+		lineageTag: a570546a-e450-4dda-84ba-4ac1e9787fc9
+		summarizeBy: none
+		sourceColumn: Contagem de Itens Filhos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Elementos Filho da Pasta'
+		dataType: string
+		lineageTag: f236d180-8a19-440c-81f5-4007a5f972e1
+		summarizeBy: none
+		sourceColumn: Contagem de Elementos Filho da Pasta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Configuração do rótulo'
+		dataType: string
+		lineageTag: 440db7e0-6036-4034-9877-c98418669646
+		summarizeBy: none
+		sourceColumn: Configuração do rótulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção'
+		dataType: string
+		lineageTag: def3944e-9d2d-4efa-9a12-d39dedaeda3b
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção Aplicado'
+		dataType: string
+		lineageTag: 40b113d0-5b6e-4dc9-8201-b40e4f68ed51
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção Aplicado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo aplicado por'
+		dataType: string
+		lineageTag: 09d31252-58ac-4c7c-aa10-a5b92449e5ac
+		summarizeBy: none
+		sourceColumn: Rótulo aplicado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'O item é um Registro'
+		dataType: string
+		lineageTag: 2d00c60d-a3ab-41e3-8e85-a3c6d64279de
+		summarizeBy: none
+		sourceColumn: O item é um Registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Criado por'
+		dataType: string
+		lineageTag: 939cfa3c-6f20-4328-bc3f-483a0488ff71
+		summarizeBy: none
+		sourceColumn: Aplicativo Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Modificado por'
+		dataType: string
+		lineageTag: da815f01-c022-4a6a-beaf-248c66ee927c
+		summarizeBy: none
+		sourceColumn: Aplicativo Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GP_Riscos = m
+		mode: import
+		source =
+				let
+				  Origem = SharePoint.Tables("https://processor1.sharepoint.com/sites/msteams_9a0616_085088", [Implementation = "2.0", ViewMode = "All"]),
+				  #"Navegação 1" = Origem{[Id = "1d0fdc54-da64-4d38-a505-2056e2339f25"]}[Items],
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Navegação 1", {{"RelatorioID", Int64.Type}, {"Ordem", Int64.Type}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,148 @@
+relationship a57f7b4b-7a9b-4770-ae10-c04be000621b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Atividades.DataAtividade
+	toColumn: LocalDateTable_d4906bb9-4346-49e0-baf0-0f5759892328.Date
+
+relationship 227ae2ad-5aff-458b-aca6-aaa0233801ef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Atividades.Modificado
+	toColumn: LocalDateTable_604ff034-4173-4a33-9fe9-d2b3908a2749.Date
+
+relationship d8c4a0e5-6542-4d92-949d-df7fb582efc4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Atividades.Criado
+	toColumn: LocalDateTable_68ad61d8-49ac-40d5-814a-19d0e4ca92a3.Date
+
+relationship 27c15ce4-be04-43d6-8c8c-b37dd81f0927
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Curvas.DataReferencia
+	toColumn: LocalDateTable_7da4cfbb-df71-4f4a-8366-bb9386263a7b.Date
+
+relationship 5a4db1a1-8ff5-4e90-b6b4-9e6cec1dc47f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Curvas.Modificado
+	toColumn: LocalDateTable_b8e7a241-bec7-458c-a671-d4755654abc3.Date
+
+relationship a39fd8d9-76f7-4ba6-a53b-0bf22a7d175b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Curvas.Criado
+	toColumn: LocalDateTable_58c2ba84-caf3-4a67-af7f-4cb46a406473.Date
+
+relationship 4124c906-04a2-404f-9e4e-ed61844a05c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_IndicadoresSSMA.Modificado
+	toColumn: LocalDateTable_1608dab5-c6b7-49f4-9fae-5532c4221f06.Date
+
+relationship 839894dc-6092-4e0f-8b92-3aa3d636c7c8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_IndicadoresSSMA.Criado
+	toColumn: LocalDateTable_50729e30-36ae-4e9c-8097-4c45a52a0533.Date
+
+relationship 0b68c3f7-1d3d-4c48-87d0-5c82440c24dc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_MateriaisAtrasados.Modificado
+	toColumn: LocalDateTable_529406f8-dc6b-42da-ab30-43086d1b2517.Date
+
+relationship 423a9cdf-7369-477c-bc4f-6d8a013aec3e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_MateriaisAtrasados.Criado
+	toColumn: LocalDateTable_6b70c8ed-070d-42ef-b125-3265b1d59ab2.Date
+
+relationship 284c7f11-edc7-461a-baba-817472860025
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Pendencias.DataAtualizacao
+	toColumn: LocalDateTable_d05b4a1d-d30f-4091-a921-c3763c665c27.Date
+
+relationship 8cbc8c62-a84c-41e3-bb79-1f5deb9f1e31
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Pendencias.Modificado
+	toColumn: LocalDateTable_061c095b-2fac-4c4e-9d27-ccbb7350aa77.Date
+
+relationship f346785f-09c6-42e6-aab7-50c72ce7eb42
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Pendencias.Criado
+	toColumn: LocalDateTable_6713cb10-880b-4272-8dbe-16f516d28407.Date
+
+relationship 9311c491-a4ca-4f85-8102-3b6530413a34
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Relatorios.DataRelatorio
+	toColumn: LocalDateTable_7159a401-8e5b-4626-8ad6-c18d790f293a.Date
+
+relationship e1b238ff-71a2-4569-9b6c-29e9a9153708
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Relatorios.DataGeracao
+	toColumn: LocalDateTable_c983829a-aed3-4b1a-a1be-86376a88d405.Date
+
+relationship dc7c429b-3615-49ca-83f2-2cfad65010f1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Relatorios.Modificado
+	toColumn: LocalDateTable_61fd25a5-b040-41b2-a2bd-c230b1336c37.Date
+
+relationship bf31453d-0cf0-4d49-83b7-7df377850a29
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Relatorios.Criado
+	toColumn: LocalDateTable_01805943-f90f-4097-af9a-34d23dc58614.Date
+
+relationship 05885bdb-7013-4298-b6ba-2f8324eab680
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Riscos.Modificado
+	toColumn: LocalDateTable_c6e40d87-2cbe-4573-b1b6-5c24f8a21d30.Date
+
+relationship 51b37e4d-b1a8-4d68-ac04-623a72a883c5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_Riscos.Criado
+	toColumn: LocalDateTable_e36f2a9a-0ae7-4421-b44e-f6cfdcaec3dc.Date
+
+relationship 03b13196-e0e4-4564-a2f5-f9bfab871e35
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_ServicosExternos.DataSaida
+	toColumn: LocalDateTable_55ff4f8d-116b-4dcb-b064-ca0d566c2011.Date
+
+relationship 6cb9eeaa-5b9d-4948-b52c-9ec65be4d344
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_ServicosExternos.DataNecessidadeRetorno
+	toColumn: LocalDateTable_ae6e9fae-fe4f-4d79-8b26-acdbced669d0.Date
+
+relationship 29dee8c5-6a23-4a05-af9e-cd214fe693e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_ServicosExternos.DataDiligenciamento
+	toColumn: LocalDateTable_8ed39249-2ebd-4610-a7ef-8fd7114452da.Date
+
+relationship 675c0a96-aa25-4d19-8ffe-6839bbe71205
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_ServicosExternos.Modificado
+	toColumn: LocalDateTable_eef99b84-348b-409f-bf9e-0526c515d36d.Date
+
+relationship 3f27b5fd-187a-463f-801b-57a828152702
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GP_ServicosExternos.Criado
+	toColumn: LocalDateTable_3e73db89-b12e-4d00-9037-99185e5a7e0c.Date
+
+relationship c0a57155-c42a-fcdd-07dc-a1c4a1850319
+	fromColumn: GP_Pendencias.RelatorioID
+	toColumn: GP_Relatorios.ID
+
+relationship 10881b6a-7e08-b345-405a-5d5784ded73a
+	fromColumn: GP_Curvas.RelatorioID
+	toColumn: GP_Relatorios.ID
+
+relationship d9b3587b-fa32-e493-1ce6-b54c72ec7941
+	fromColumn: GP_Riscos.RelatorioID
+	toColumn: GP_Relatorios.ID
+
+relationship 4409640a-89eb-6352-ca50-c62b631e478a
+	fromColumn: GP_ServicosExternos.RelatorioID
+	toColumn: GP_Relatorios.ID
+
+relationship 3ed5e5f8-f3d8-df34-e351-1417f711cf10
+	fromColumn: GP_IndicadoresSSMA.RelatorioID
+	toColumn: GP_Relatorios.ID
+
+relationship 23cbcfc7-6450-9070-dc5f-c9cba611b7bb
+	fromColumn: GP_MateriaisAtrasados.RelatorioID
+	toColumn: GP_Relatorios.ID
+
+relationship 5ec0c85e-a3cf-4419-8267-086d0c005c0c
+	fromColumn: GP_Atividades.RelatorioID
+	toColumn: GP_Relatorios.ID
+

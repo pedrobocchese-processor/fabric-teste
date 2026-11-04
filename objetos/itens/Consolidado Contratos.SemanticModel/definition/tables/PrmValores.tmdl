@@ -1,0 +1,58 @@
+table PrmValores
+	lineageTag: 5080ae15-5167-44bc-bb1d-baf766bdb409
+
+	column Parâmetro
+		lineageTag: 2addb599-3012-46cc-af39-6cc337b473cd
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Campos'
+		isHidden
+		lineageTag: 343d37e5-e882-4aab-9d0c-13c9249dfd07
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: b31c6af1-49d7-4ce9-9d73-1cd72e748ce1
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PrmValores = calculated
+		mode: import
+		source =
+				{
+				    ("Contratos", NAMEOF([Qtd. Contratos Ativos]), 0),
+				    ("Ligações", NAMEOF('*Medidas'[Tot_Ligacoes]), 1),
+				    ("Visitas", NAMEOF('*Medidas'[Tot_Visitas]), 2),
+				    ("Sentiment Score", NAMEOF('*Medidas'[Media Sentiment Score]), 3),
+				    ("Classificação Score", NAMEOF('*Medidas'[Classificacao Score]), 4),
+				    ("Riscos", NAMEOF('*Medidas'[Total de Riscos]), 5),
+				    ("Oportunidades venda", NAMEOF('*Medidas'[Total de Oportunidade venda]), 6),
+				    ("Oportunidades/CX", NAMEOF('*Medidas'[Total de Oportunidades/CX]), 7),
+				    ("Usuários Ativos LC", NAMEOF('*Medidas'[Total Usuarios Ativos LiveCloud]), 8),
+				    ("Acessos LC", NAMEOF('*Medidas'[Total Acessos LiveCloud]),9),
+				    ("Page Views LC", NAMEOF('*Medidas'[Total Page Views LiveCloud]), 10),
+				    ("Grupos LC", NAMEOF('*Medidas'[Total Grupos LiveCloud]), 11)
+				}
+
+	annotation PBI_Id = 0c392abd8f55431ebcbe4187c0705137
+

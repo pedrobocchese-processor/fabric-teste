@@ -1,0 +1,122 @@
+table Pedidos
+	lineageTag: 66854842-242b-4dcc-88dc-76e1c4c3bb6a
+
+	measure 'Valor Contrato' = CALCULATE(SUM(Pedidos[Valor do pedido]), ALL(dCalendario),USERELATIONSHIP(Pedidos[ID do contrato], Contratos[ID do contrato]))
+		lineageTag: 355a57d2-de4e-48c6-b6ef-eec5d7f5ae95
+
+		formatStringDefinition = [Formato Pt-BR]
+
+	column 'ID do pedido'
+		dataType: int64
+		formatString: 0
+		lineageTag: 294f5c2e-0b18-4e84-85b4-1e0b42ec62b2
+		summarizeBy: sum
+		sourceColumn: ID do pedido
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data do pedido'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 63d0dffc-a74e-4939-8944-09f88e98096f
+		summarizeBy: none
+		sourceColumn: Data do pedido
+
+		variation Variation
+			isDefault
+			relationship: 7b8535f8-f3e1-4b56-bbc5-829fbb856fa5
+			defaultHierarchy: LocalDateTable_57457932-4e3a-40b4-8f7b-16e9d8bcf44f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a65f6f31-a006-4529-9481-219663c81b1a
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: 877ebc6c-809c-4e33-89aa-b2282465cf9d
+			defaultHierarchy: LocalDateTable_b63c6a23-f347-46fb-8219-075459c1f39e.'Date Hierarchy'
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valor do pedido'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 80ab199f-9ada-48eb-8e7a-ab663b27b998
+		summarizeBy: sum
+		sourceColumn: Valor do pedido
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do contrato'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e81e22b-3e91-44b6-99d7-0bd2ee9dd929
+		summarizeBy: sum
+		sourceColumn: ID do contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID da empresa Processor'
+		dataType: int64
+		formatString: 0
+		lineageTag: e7639a35-f0cf-4c66-8f9f-39c09e816d52
+		summarizeBy: sum
+		sourceColumn: ID da empresa Processor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do cliente'
+		dataType: int64
+		formatString: 0
+		lineageTag: ef3f8573-3e3c-4ab9-9dec-702f1957a47a
+		summarizeBy: none
+		sourceColumn: ID do cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do vendedor'
+		dataType: int64
+		formatString: 0
+		lineageTag: 98a11bef-b33b-4a17-bc06-da2f342d9680
+		summarizeBy: sum
+		sourceColumn: ID do vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do status'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ae1a38a-d1e1-4c17-b1b4-290e8a7929d8
+		summarizeBy: sum
+		sourceColumn: ID do status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID da proposta'
+		dataType: int64
+		formatString: 0
+		lineageTag: c7701b0d-1c99-4e8e-a529-fadc0a845ccc
+		summarizeBy: sum
+		sourceColumn: ID da proposta
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Pedidos-d0afd4d2-0936-464e-b57b-6e921e1dfd80 = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "Processor", [Query="SELECT * #(lf)from [sipm].[vw_BI_Pedidos_v1]", CommandTimeout=#duration(0, 4, 0, 0)])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

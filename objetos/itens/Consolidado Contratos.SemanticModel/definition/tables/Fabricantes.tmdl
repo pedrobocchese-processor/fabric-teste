@@ -1,0 +1,76 @@
+table Fabricantes
+	lineageTag: a1bb18f9-ad00-41c4-8141-34f31fd7b058
+
+	column 'Id Fabricante'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cb0cb82-7e75-440c-a629-1bed98cab6b3
+		summarizeBy: none
+		sourceColumn: Id Fabricante
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome
+		dataType: string
+		lineageTag: 704e71c9-6e6e-4d8f-a9d6-2fff343d8c2b
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Id Pilar'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6344e565-92e0-4610-983e-2c13bffc92ed
+		summarizeBy: sum
+		sourceColumn: Id Pilar
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cod Tipo'
+		dataType: string
+		lineageTag: ddf2db34-59d3-4c32-9def-114f29cc04b9
+		summarizeBy: none
+		sourceColumn: Cod Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: b2585e16-e886-4707-8d16-87c46e110ce4
+		summarizeBy: none
+		sourceColumn: Tipo
+		sortByColumn: 'Cod Tipo'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço MS' = IF( Fabricantes[Id Fabricante] IN {176,173,41,165},"c/ MS","s/ MS")
+		lineageTag: 8c8d7062-fa93-4091-9e10-e73f102a9071
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fabricantes-e5f8d74c-b7a1-4022-9892-666bc8b39dff = m
+		mode: import
+		queryGroup: Dimensoes
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "processor", [Query="SELECT * from Fabricantes", CommandTimeout=#duration(0, 4, 0, 0)]),
+				    #"Colunas Renomeadas" = Table.RenameColumns(Fonte,{{"Fab_Codigo_Fabricante", "Id Fabricante"}, {"Fab_Nome_Fabricante", "Nome"}, {"Fab_Ativo", "Status"}, {"Fab_Codigo_Pilar", "Id Pilar"}, {"Fab_CodTipo", "Cod Tipo"}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Colunas Renomeadas",{"Id Fabricante", "Nome", "Id Pilar", "Cod Tipo"}),
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Outras Colunas Removidas", "Cod Tipo", "Cod Tipo - Copiar"),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Coluna Duplicada",{{"Cod Tipo - Copiar", "Tipo"}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas1",{{"Cod Tipo", type text}, {"Tipo", type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado","1","IP",Replacer.ReplaceText,{"Tipo"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","2","IPI",Replacer.ReplaceText,{"Tipo"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","3","Serviço",Replacer.ReplaceText,{"Tipo"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","4","Distribuição",Replacer.ReplaceText,{"Tipo"})
+				in
+				    #"Valor Substituído3"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

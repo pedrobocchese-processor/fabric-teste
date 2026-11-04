@@ -1,0 +1,48 @@
+table PrmColunas
+	lineageTag: e8b4077c-f625-4871-9e4c-cf540f89ede1
+
+	column Parâmetro
+		lineageTag: 1385da63-9ddc-4ba0-abca-7e0b9588e7c0
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'prmColunas Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'prmColunas Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'prmColunas Campos'
+		isHidden
+		lineageTag: 577f5657-8337-4bf0-99ea-2d454a0a05d6
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'prmColunas Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'prmColunas Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: f548019c-52c2-4287-b0e3-879ecc847ee5
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PrmColunas = calculated
+		mode: import
+		source =
+				{
+				    ("Ano", NAMEOF('dCalendario'[Ano]), 0),
+				    ("Mes Completo", NAMEOF('dCalendario'[Mes Completo]), 1)
+				}
+
+	annotation PBI_Id = 46ffdffd89f5493ab7f5aeac90f6a2be
+

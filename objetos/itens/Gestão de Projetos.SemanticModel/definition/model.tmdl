@@ -1,0 +1,78 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["D_Calendario","D_Atualizacao","D_Funcionarios","D_Empresas","D_Areas","D_Cargos","F_Viw_Contratos_Alocacao","F_View_ServiceOps_Contrato_Atividade_Apontamentos","F_LancamentoHora","D_Contratos_Status","D_Contratos","D_Clientes","D_Clientes_Grupos","F_Projeto_Dedicado"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table D_Calendario
+ref table DateTableTemplate_2e996764-6fb0-4c5a-bc94-325e338a0dbc
+ref table LocalDateTable_a31146f1-36e8-4c03-8001-9cb58fb299aa
+ref table D_Atualizacao
+ref table LocalDateTable_40b8d74f-7613-4eaa-af1a-f04248dba154
+ref table LocalDateTable_cdc9b2f6-e165-453d-8400-3015a1c599df
+ref table LocalDateTable_e246224a-3302-47f2-a0e6-1aa98da5335e
+ref table Medidas
+ref table D_Funcionarios
+ref table LocalDateTable_480aadfe-1587-40ff-8e2b-765c6b53b42e
+ref table LocalDateTable_f02ef4c6-ad81-435f-a8bf-e1320b24feba
+ref table D_Empresas
+ref table D_Areas
+ref table D_Cargos
+ref table F_Viw_Contratos_Alocacao
+ref table LocalDateTable_bccc3601-916d-469a-90c7-6c22e608d804
+ref table LocalDateTable_d7b42b11-4638-4942-96c8-7d2fc5605b02
+ref table F_View_ServiceOps_Contrato_Atividade_Apontamentos
+ref table LocalDateTable_ce3fcf49-dd1f-4065-8ad9-b082414388da
+ref table LocalDateTable_f482e95d-58bf-4ba0-bba4-3e7acbf6d7e1
+ref table F_LancamentoHora
+ref table D_Contratos_Status
+ref table LocalDateTable_89d1d6d1-644d-4129-8512-cabd2153d9d0
+ref table LocalDateTable_453a8d0d-2d3b-4dc6-aa1f-e39fff7d4cf6
+ref table LocalDateTable_32ee2baa-b8b5-413b-9294-fff93adc1000
+ref table D_Contratos
+ref table LocalDateTable_1576bdce-1619-434b-a8ce-0edc854c1f3b
+ref table LocalDateTable_33fe309f-67ff-47ea-82f7-60d4c9f0adb4
+ref table LocalDateTable_6b30ab17-d230-4dc3-b0a3-96b82e054bcd
+ref table LocalDateTable_fa1fea19-f721-4f85-ba52-c7592d94db1c
+ref table LocalDateTable_2328e162-0cec-40c4-a955-0da610525298
+ref table LocalDateTable_510d2ae3-5e80-4873-ac11-d865d241ad62
+ref table LocalDateTable_763e5784-05b3-487b-8db4-d9a11a4b79d0
+ref table LocalDateTable_afebc82d-6a23-4f25-b77b-8e029fc1cae1
+ref table LocalDateTable_ca92128a-1efa-4023-8b67-51baa32843e3
+ref table LocalDateTable_590692d4-dbb3-4196-bb4f-b55da1e5f9da
+ref table LocalDateTable_e10b7df6-f8f5-46a4-9bbe-7d17baa93e91
+ref table LocalDateTable_77b7d6cf-66f9-4b5e-a085-3280950e4dcf
+ref table LocalDateTable_b3076717-6bcd-48fd-8b5a-7daeff460d9a
+ref table D_Clientes
+ref table LocalDateTable_d19dc248-3090-4abe-b096-b0812348c6aa
+ref table LocalDateTable_92f1a48a-3360-4753-8bb4-822e55b15049
+ref table LocalDateTable_7f7bb7ac-ce71-44a4-a0f3-37f43e71bc95
+ref table LocalDateTable_aeca72f1-9688-4314-acbb-faaa0fe0f9a1
+ref table LocalDateTable_30f89654-5f48-453b-9195-bd7868717238
+ref table LocalDateTable_ce69572b-bd7d-4953-b65c-014662f65d4e
+ref table LocalDateTable_12ef87a6-72fc-4aee-81ae-b45b436d4ab4
+ref table D_Clientes_Grupos
+ref table LocalDateTable_cd0b2220-d5f0-4fbd-b606-41ede77501b1
+ref table LocalDateTable_3990f19b-6d0a-49c9-ae2d-9b8e363eb5bb
+ref table LocalDateTable_285c3baf-cedd-4965-9d83-7c414a6226b6
+ref table F_Projeto_Dedicado_Car_House
+ref table F_Projeto_Dedicado_Gerdau
+ref table LocalDateTable_6b8783de-a86f-4815-af31-ff9697601fdf
+ref table F_Projeto_Dedicado
+ref table LocalDateTable_fe1caf80-bd35-4c0a-a6cf-7a71e525fb44
+ref table LocalDateTable_8501ba04-e0f5-41c3-88d3-a0f9b5745ed8
+ref table LocalDateTable_8ee99ba7-a1e9-439e-b3ee-c2dde0dad240
+ref table LocalDateTable_e1a5c108-8403-4e57-b318-4b3d2b5301e1
+ref table LocalDateTable_d6d6b10d-6142-4b32-96da-d4bb97bc577a
+ref table LocalDateTable_ba9892f8-04b5-4ed2-bc44-edb1de75920c
+ref table LocalDateTable_5a92d402-f049-447a-a1be-6dacbcdfddc5
+ref table LocalDateTable_e11b0bb7-41ef-4368-9426-9eaa3ccd2b7e
+
+ref cultureInfo pt-BR
+

@@ -1,0 +1,72 @@
+table Visitas
+	lineageTag: a002d04d-50db-4447-b148-2e72137d3053
+
+	column ECR
+		dataType: string
+		lineageTag: 3f33be62-f5e6-4bdb-9782-8497f63c6a9f
+		summarizeBy: none
+		sourceColumn: ECR
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID Grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: a992e8e9-3b70-464d-b6cb-15b694eb1f0b
+		summarizeBy: none
+		sourceColumn: ID Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Visitas
+		dataType: int64
+		formatString: 0
+		lineageTag: 410a9570-2f56-4c09-98a0-4da662045125
+		summarizeBy: sum
+		sourceColumn: Visitas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0a99d0ab-2b06-4c14-87d8-c14e29bb0819
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'ID Empresa'
+		dataType: string
+		lineageTag: cb1a017b-fd47-4081-9039-a1718d6045be
+		summarizeBy: none
+		sourceColumn: ID Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID Usuario'
+		dataType: int64
+		formatString: 0
+		lineageTag: 24a78e29-5b16-4f35-b189-bc83724c8d1a
+		summarizeBy: none
+		sourceColumn: ID Usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Visitas = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "Processor", [Query="SELECT CodigoECR, Grupo, Visitas, DataInc, Empresa,CodigoUser#(lf)FROM Viw_PerformanceECR_Visitas;#(lf)", CommandTimeout=#duration(0, 4, 0, 0)]),
+				    #"Colunas Renomeadas" = Table.RenameColumns(Fonte,{{"CodigoECR", "ECR"}, {"DataInc", "Data"}, {"CodigoUser", "ID Usuario"}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"ECR", type text}, {"Empresa", type text}, {"Data", type date}}),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Tipo Alterado",{{"Grupo", "ID Grupo"}, {"Empresa", "ID Empresa"}})
+				in
+				    #"Colunas Renomeadas1"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

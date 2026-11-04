@@ -1,0 +1,232 @@
+table F_View_ServiceOps_Contrato_Atividade_Apontamentos
+	lineageTag: 17c1098c-8713-4305-bacc-00a3e3985d78
+
+	column Codigo
+		dataType: double
+		formatString: 0
+		lineageTag: 8107d64b-1232-41e1-a16f-0f0ea2725f65
+		summarizeBy: sum
+		sourceColumn: Codigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoContrato
+		dataType: double
+		formatString: 0
+		lineageTag: a7820938-9be1-4178-a30f-d934ef20fff7
+		summarizeBy: none
+		sourceColumn: CodigoContrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescricaoContrato
+		dataType: string
+		lineageTag: 791359ac-aa1e-4f90-aad4-f9ab95a5da21
+		summarizeBy: none
+		sourceColumn: DescricaoContrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoGrupo
+		dataType: double
+		formatString: 0
+		lineageTag: 3b5403eb-36c1-4dd9-b7a1-f49a2b42bd8e
+		summarizeBy: sum
+		sourceColumn: CodigoGrupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoAtividade
+		dataType: string
+		lineageTag: 489e0a23-ac4b-488e-92ab-76937fb65c03
+		summarizeBy: none
+		sourceColumn: CodigoAtividade
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoProfissional
+		dataType: double
+		formatString: 0
+		lineageTag: edf23566-629b-4f4c-9a04-d15e8656a7cf
+		summarizeBy: none
+		sourceColumn: CodigoProfissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89872d2a-71f7-405c-a1ce-2c30c3d681df
+		summarizeBy: none
+		sourceColumn: Inicio
+
+		variation Variation
+			isDefault
+			relationship: a8ccbd49-73c0-4eb9-9698-127fd6060839
+			defaultHierarchy: LocalDateTable_ce3fcf49-dd1f-4065-8ad9-b082414388da.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fim
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e2903993-a126-4e56-aea7-eb0b3301b0e7
+		summarizeBy: none
+		sourceColumn: Fim
+
+		variation Variation
+			isDefault
+			relationship: 99583e67-ea5c-4446-9da9-cf70577a2866
+			defaultHierarchy: LocalDateTable_f482e95d-58bf-4ba0-bba4-3e7acbf6d7e1.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tempo
+		dataType: string
+		lineageTag: 00a6c8e1-c9a8-4c56-b0df-81d34f01134e
+		summarizeBy: none
+		sourceColumn: Tempo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Horas
+		dataType: double
+		lineageTag: cbe3510e-e85f-4ba5-82bd-c749dd4beb02
+		summarizeBy: none
+		sourceColumn: Horas
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DescricaoGrupo
+		dataType: string
+		lineageTag: efede91d-2dfd-4ea3-9adf-3559bd0addad
+		summarizeBy: none
+		sourceColumn: DescricaoGrupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescricaoAtividade
+		dataType: string
+		lineageTag: 8e363b01-8567-411c-b1a8-fd65343b807b
+		summarizeBy: none
+		sourceColumn: DescricaoAtividade
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeProfissional
+		dataType: string
+		lineageTag: e132fc07-f5a1-40b9-b659-daaf96c58b40
+		summarizeBy: none
+		sourceColumn: NomeProfissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 35d73d49-5fad-4f2e-a015-54a801fb8288
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observacao
+		dataType: string
+		lineageTag: 74f9d55a-d738-419f-9756-3700704dde38
+		summarizeBy: none
+		sourceColumn: Observacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataInc
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 1976c40e-d538-4034-9d8d-a67029e650a6
+		summarizeBy: none
+		sourceColumn: DataInc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column HoraDataInc
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: efe8b5e4-d341-45d4-9d8e-c36f900e0d24
+		summarizeBy: none
+		sourceColumn: HoraDataInc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column DescricaoCliente = ```
+			
+			    SWITCH (
+			        TRUE(),
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "Via Loterias S.A", "Via Loterias",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "Gerdau Acos Longos S.A.", "Gerdau",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "Gerdau Acos Longos Sa", "Gerdau",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "Renove Corretora De Seguros Limitada", "Itavema",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "Intral Sa Industria De Materiais Eletricos", "Intral",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "PRECATO CONSULTORIA S.A.", "Precato",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "RODOIL DISTRIBUIDORA DE COMBUSTIVEIS S.A.", "Rodoil",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "TRAIL INFRAESTRUTURA LTDA", "Tejofran",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "Car House", "Car House",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "PROCESSOR SOLUCOES TECNOLOGICAS PARA NEGOCIOS LTDA", "Jornada de Dados Processor",
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[Cliente] = "ANBIMA - ASSOCIACAO BRASILEIRA DAS ENTIDADES DOS MERCADOS FINANCEIRO E DE CAPITAIS", "Anbima",
+			        "Não informado"
+			    )
+			
+			```
+		lineageTag: 376d59f7-5303-4d8d-b529-9ea59a903550
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: 2e48143a-bdc8-4ae2-ba24-db81a3627d52
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo
+		dataType: string
+		lineageTag: c38e5358-1876-4c47-b42f-45dc99d1ebeb
+		summarizeBy: none
+		sourceColumn: Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Funcao
+		dataType: string
+		lineageTag: b2bb37b4-2dee-4a3e-b9f9-43e5bb6a5884
+		summarizeBy: none
+		sourceColumn: Funcao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_View_ServiceOps_Contrato_Atividade_Apontamentos = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor", [Query="SELECT vs.*#(lf)      ,cli.Cli_Razao_Social AS Cliente#(lf)      ,grp.Grp_Descricao AS Grupo  #(lf)   FROM ViewServiceOpsContratoAtividadeApontamentos vs#(lf)      INNER JOIN Contratos con ON CodigoContrato = con.con_Codigo_Contrato#(lf)      INNER JOIN Clientes cli#(tab) ON Con.con_Contratante = cli.Cli_Codigo_Cliente#(lf)      INNER JOIN Clientes_Grupos grp ON cli.Cli_Codigo_Grupo = grp.Grp_Codigo_Grupo#(lf)   WHERE YEAR(VS.DataInc) IN (YEAR(GETDATE()), YEAR(GETDATE()) - 1)#(lf)      "]),
+				    #"Linhas Filtradas" = Table.SelectRows(Fonte, each ([CodigoProfissional] <> 3195)),
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Linhas Filtradas", "DataInc", "DataInc - Copiar"),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna Duplicada",{{"DataInc", type date}, {"DataInc - Copiar", type time}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"DataInc - Copiar", "HoraDataInc"}}),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Colunas Renomeadas",{{"Cliente", Text.Proper, type text}, {"Grupo", Text.Proper, type text}, {"DescricaoContrato", Text.Proper, type text}}),
+				    #"Consulta Acrescentada" = Table.Combine({#"Colocar Cada Palavra Em Maiúscula", F_Projeto_Dedicado}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Consulta Acrescentada", each ([NomeProfissional] <> "Douglas Gaigher"))
+				in
+				    #"Linhas Filtradas1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

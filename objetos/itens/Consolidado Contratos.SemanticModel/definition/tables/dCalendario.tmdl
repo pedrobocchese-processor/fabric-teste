@@ -1,0 +1,86 @@
+table dCalendario
+	lineageTag: 7620aba7-1784-4b21-870f-d52ad17ce996
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: 7436f6fe-1247-40f3-9063-21f94e5603e1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fbcec15-b66a-49c7-bae9-96ff4525c74d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = User
+
+	column 'Mes Num'
+		formatString: 0
+		lineageTag: 98e11c5b-35f9-4c71-a94c-9d83d7017133
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mes Num]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordem
+		lineageTag: d015c8ec-f813-4e21-a186-bc4e6308b261
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ordem]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordem2
+		lineageTag: 84406c65-ba26-4d3c-9c11-41d5e46e8f4c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ordem2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 2be21823-ba43-416f-89c2-cfff09cb6994
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mes Completo'
+		lineageTag: 40cdd53e-9ccc-4d55-9768-edc52ae01cf8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes Completo]
+		sortByColumn: 'Mes Num'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCalendario-622bdcf9-567a-4236-82de-b79a53380996 = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS( CALENDAR(DATE(2022,01,01), DATE(2030,12,31)),
+				                "Ano", YEAR([Date]),
+				                "Mes Num", MONTH([Date]),
+				                "Ordem", FORMAT([Date], "yymm"),
+				                "Ordem2", FORMAT([Date], "yymmdd"),
+				                "Trimestre",QUARTER([Date])&"° Trim",
+				                "Mes Completo",FORMAT([Date],"mmm", "pt-BR"))
+				
+				```
+
+	annotation PBI_Id = f53e30acd5014027a7cc9fdf013e630b
+

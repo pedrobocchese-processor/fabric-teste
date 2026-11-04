@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ClientesdoMario"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6183db4e-b492-92f9-47cf-ed6416a219fd"
+  }
+}

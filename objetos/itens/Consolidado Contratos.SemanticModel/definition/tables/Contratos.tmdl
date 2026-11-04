@@ -1,0 +1,432 @@
+table Contratos
+	lineageTag: c3d7a86a-b347-442f-9647-32b3c1a676f6
+
+	measure 'Total Contratos Ativos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Contratos[ID do contrato]),
+			    FILTER(Contratos,Contratos[Status do contrato] = "Ativo" && Contratos[Fim da vigência] >= TODAY()))
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: 4688558f-0730-4979-8eec-012ec5127db2
+
+	measure 'Total Cliente' = DISTINCTCOUNT(Contratos[ID do cliente])
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: e638099f-8dab-4afd-a416-3e1b629fcc82
+
+	measure 'Total Clientes Inativos' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( Contratos[Id do Cliente] ),
+			    FILTER ( Contratos, Contratos[Status do contrato] = "Inativo" ),
+			    FILTER (
+			        SUMMARIZE (
+			            Contratos,
+			            Contratos[Id do Cliente],
+			            "@Count", COUNTROWS ( Contratos )
+			        ),
+			        [@Count]
+			            = CALCULATE ( COUNTROWS ( Contratos ), Contratos[Status do contrato] = "Inativo" )
+			    )
+			)
+			
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: 97380d96-410f-4858-9ea8-1096e2fe54fe
+
+	measure 'Total Clientes Ativos' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( Contratos[ID do cliente] ),
+			    FILTER ( Contratos, Contratos[Status do contrato] = "Ativo" ),
+			    FILTER (
+			        SUMMARIZE (
+			            Contratos,
+			            Contratos[ID do cliente],
+			            "@Count", COUNTROWS ( Contratos )
+			        ),
+			        [@Count]
+			            = CALCULATE ( COUNTROWS ( Contratos ), Contratos[Status do contrato] = "Ativo" )
+			    )
+			)
+			
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: 62b6d3b0-0861-4e12-acbd-eaa2b697ee2c
+
+	measure 'Total Contratos Inativos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Contratos[ID do contrato]),
+			    Contratos[Status do contrato] = "Inativo")
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: c01d2cde-25b2-4b2a-b371-a44b4a18d6ca
+
+	measure 'Contratos Novos' = ```
+			
+			CALCULATE([Total Contratos Ativos], 
+			    USERELATIONSHIP(dCalendario[Date],Contratos[Início da vigência]))
+			```
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: ca146466-b003-4878-80c8-e44d6b073ae2
+
+	measure 'Contratos Inativados / Perdidos' = ```
+			
+			CALCULATE([Total Contratos Inativos]  , 
+			                 USERELATIONSHIP(dCalendario[Date],Contratos[Data de inativação]))
+			
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: be137dd6-0f55-44a7-9b3b-76b9c2b23514
+
+	measure '% Churn Contratos' = DIVIDE([Contratos Inativados / Perdidos],[Total Contratos Ativos])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: _Medidas
+		lineageTag: ee6e44df-55a6-4add-84e1-1a39dadb1b94
+
+	column 'ID do contrato'
+		dataType: string
+		lineageTag: 22a169eb-b105-40fb-89f5-53c0f307688e
+		summarizeBy: none
+		sourceColumn: ID do contrato
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do cliente'
+		dataType: int64
+		formatString: 0
+		lineageTag: f799e2f3-06c6-46be-bbed-d12bc0a3884f
+		summarizeBy: none
+		sourceColumn: ID do cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID da empresa Processor'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e07634c-5e7c-4a48-ad6e-d99cc74380b1
+		summarizeBy: none
+		sourceColumn: ID da empresa Processor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do vendedor'
+		dataType: int64
+		formatString: 0
+		lineageTag: e2a3be26-caa4-4be7-8760-c4fe0c8f84df
+		summarizeBy: sum
+		sourceColumn: ID do vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data de início'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 054c9ac7-95dc-471d-8a72-4ad8c88ad481
+		summarizeBy: none
+		sourceColumn: Data de início
+
+		variation Variation
+			isDefault
+			relationship: e8234827-7617-4794-b127-75e8b9a9099d
+			defaultHierarchy: LocalDateTable_e6ba35bf-8259-45c5-841f-5189fed18c9d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data de renovação'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ddcc691a-309d-4f32-9921-05dca02dfbd7
+		summarizeBy: none
+		sourceColumn: Data de renovação
+
+		variation Variation
+			isDefault
+			relationship: 4c445cd5-b69d-4b7e-a5a0-fd6058876e50
+			defaultHierarchy: LocalDateTable_35875eed-f107-4039-a374-73241a9a9247.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data de revisão'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 22bdc856-c575-45c3-8f0c-ef7b64baf41a
+		summarizeBy: none
+		sourceColumn: Data de revisão
+
+		variation Variation
+			isDefault
+			relationship: 62f8994e-c2fd-4c2a-bcb6-2feb37ea6c0d
+			defaultHierarchy: LocalDateTable_80abe335-5842-4b54-a935-07fd89838bf4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data de inativação'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 10b7234d-6f0c-46fe-acf5-b1fb278a422c
+		summarizeBy: none
+		sourceColumn: Data de inativação
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data do primeiro pedido'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b3d62781-42e0-4c73-bf3c-f988716c5fda
+		summarizeBy: none
+		sourceColumn: Data do primeiro pedido
+
+		variation Variation
+			isDefault
+			relationship: e243be5d-5a83-4a00-9f2a-4b111dd5d096
+			defaultHierarchy: LocalDateTable_9e5b3c35-6739-43e5-a908-badbceb7ba67.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data do último pedido'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 902bc73e-736d-444d-9ce3-03cffa1dc5b6
+		summarizeBy: none
+		sourceColumn: Data do último pedido
+
+		variation Variation
+			isDefault
+			relationship: 3387a5b1-84d3-4960-bdbe-4b6ff949a157
+			defaultHierarchy: LocalDateTable_d5f550aa-d31e-4748-9f45-f355e78ae559.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Última data'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: fce5fd1c-e0a2-49bb-b831-c7c0f37f8494
+		summarizeBy: none
+		sourceColumn: Última data
+
+		variation Variation
+			isDefault
+			relationship: bc0a30a8-a050-48b6-a4a2-1be458311ad3
+			defaultHierarchy: LocalDateTable_00f57887-dbb7-4de9-9d06-7cfd7585ab59.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Prazo
+		dataType: int64
+		formatString: 0
+		lineageTag: 81a07f48-d5e5-4ffc-bc89-292455d4e82d
+		summarizeBy: sum
+		sourceColumn: Prazo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Início da vigência'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 43cdddcc-47e6-4eab-affb-a37dc03759d2
+		summarizeBy: none
+		sourceColumn: Início da vigência
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fim da vigência'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ccb2dd82-41da-4a15-9c26-b7c887e770de
+		summarizeBy: none
+		sourceColumn: Fim da vigência
+
+		variation Variation
+			isDefault
+			relationship: 3e9d34b8-9007-4e87-95d0-d02223110fa0
+			defaultHierarchy: LocalDateTable_479317b5-9e86-4b53-ac52-bb0b18adad77.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Status do contrato'
+		dataType: string
+		lineageTag: 58808c05-f331-469a-bd48-ae6ad10d620b
+		summarizeBy: none
+		sourceColumn: Status do contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contrato
+		dataType: string
+		lineageTag: 4aaa401d-90dd-482d-9df6-d23e058d7b92
+		summarizeBy: none
+		sourceColumn: Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do responsável'
+		dataType: int64
+		formatString: 0
+		lineageTag: ae457af3-99d6-4cf7-985f-fe748f6ecfa5
+		summarizeBy: sum
+		sourceColumn: ID do responsável
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do contrato de origem'
+		dataType: string
+		lineageTag: a23cef65-7145-4309-8462-42c9a57e7011
+		summarizeBy: none
+		sourceColumn: ID do contrato de origem
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descrição do contrato no LC'
+		dataType: string
+		lineageTag: b04af2a8-43ad-401e-a35e-e19865b2913b
+		summarizeBy: none
+		sourceColumn: Descrição do contrato no LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do fabricante'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c19c523-7812-4128-b5a1-3d29dc32324e
+		summarizeBy: none
+		sourceColumn: ID do fabricante
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Razão do status'
+		dataType: string
+		lineageTag: 4044a9af-9b22-47aa-94f0-fcb06e3e78b7
+		summarizeBy: none
+		sourceColumn: Razão do status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 4a47fc94-0609-46bb-8842-7627b93a6dd6
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de faturamento'
+		dataType: string
+		lineageTag: a2c2075b-6711-459c-83b5-c855fde7f7a4
+		summarizeBy: none
+		sourceColumn: Tipo de faturamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 04a570d3-1d25-43fd-b8d2-507daa3256b8
+		summarizeBy: none
+		sourceColumn: ID do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do pilar'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f791f12-3cfa-4ca4-ab00-dde0e082378f
+		summarizeBy: none
+		sourceColumn: ID do pilar
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendedor
+		dataType: string
+		lineageTag: be78e232-d9f9-4dbb-91e7-f4b21e9fb590
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do funcionário'
+		dataType: int64
+		formatString: 0
+		lineageTag: dc1fdb20-7762-4ccf-987d-117a340cec01
+		summarizeBy: sum
+		sourceColumn: ID do funcionário
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Problema com contratos'
+		dataType: string
+		lineageTag: 508a8aea-bb21-4384-8a2a-e31a737ab021
+		summarizeBy: none
+		sourceColumn: Problema com contratos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do tipo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 899b0b01-4c8a-455d-88d6-17b5e57e1b04
+		summarizeBy: sum
+		sourceColumn: ID do tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Contratos-1b2a526d-1228-414c-b275-378e6471f459 = m
+		mode: import
+		queryGroup: Dimensoes
+		source = ```
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "processor", [Query="SELECT * from sipm.vw_BI_Contratos_v1", CommandTimeout=#duration(0, 4, 0, 0)]),
+				    #"Personalização Adicionada" = Table.AddColumn(Fonte, "Problema com contratos", each if [Status do contrato] = "Ativo" and [Data de renovação] <> null
+				            then null
+				            else if [Status do contrato] = "Ativo" and [Data de renovação] = null and [Data de revisão] = null and [Data de inativação] = null
+				                then "Ativo e sem data de início, revisão e renovação" 
+				                else if [Status do contrato] = "Ativo" and Date.Year([Data de renovação]) = 2099
+				                    then "Ativo e com data de renovação em 2099"
+									else if Date.Year([Data de início]) = 1900
+										then "Data de início em 1900"
+										else if [Status do contrato] = "Inativo" and [Data de renovação] <> null 
+											then null
+											else if [Status do contrato] = "Inativo" and [Data de renovação] <> null and [Data de renovação] > DateTime.Date(Date.From(DateTime.LocalNow()))
+												then "Inativo com data de renovação posterior ao dia de hoje" 
+												else if [Status do contrato] = "Inativo" and [Data de renovação] = null and [Data de inativação] <> null 
+													then "Inativo e sem data de renovação"
+													else if [Status do contrato] = "Inativo" and [Data de renovação] = null and [Data de inativação] = null and [Data de revisão] <> null
+														then "Inativo sem data de renovação e inativação"
+														else null),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"Data de início", type date}, {"Data de renovação", type date}, {"Data de revisão", type date}, {"Data de inativação", type date}, {"Data do primeiro pedido", type date}, {"Data do último pedido", type date}, {"Última data", type date}, {"Início da vigência", type date}, {"Fim da vigência", type date}})
+				in
+				    #"Tipo Alterado"
+				```
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

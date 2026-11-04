@@ -1,0 +1,48 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["GP_Atividades","GP_Curvas","GP_IndicadoresSSMA","GP_MateriaisAtrasados","GP_Pendencias","GP_Relatorios","GP_Riscos","GP_ServicosExternos"]
+
+annotation PBI_ProTooling = ["WebModelingEdit"]
+
+ref table GP_Atividades
+ref table DateTableTemplate_8b676850-196b-4c33-84db-7b6474b4326d
+ref table LocalDateTable_d4906bb9-4346-49e0-baf0-0f5759892328
+ref table LocalDateTable_604ff034-4173-4a33-9fe9-d2b3908a2749
+ref table LocalDateTable_68ad61d8-49ac-40d5-814a-19d0e4ca92a3
+ref table GP_Curvas
+ref table LocalDateTable_7da4cfbb-df71-4f4a-8366-bb9386263a7b
+ref table LocalDateTable_b8e7a241-bec7-458c-a671-d4755654abc3
+ref table LocalDateTable_58c2ba84-caf3-4a67-af7f-4cb46a406473
+ref table GP_IndicadoresSSMA
+ref table LocalDateTable_1608dab5-c6b7-49f4-9fae-5532c4221f06
+ref table LocalDateTable_50729e30-36ae-4e9c-8097-4c45a52a0533
+ref table GP_MateriaisAtrasados
+ref table LocalDateTable_529406f8-dc6b-42da-ab30-43086d1b2517
+ref table LocalDateTable_6b70c8ed-070d-42ef-b125-3265b1d59ab2
+ref table GP_Pendencias
+ref table LocalDateTable_d05b4a1d-d30f-4091-a921-c3763c665c27
+ref table LocalDateTable_061c095b-2fac-4c4e-9d27-ccbb7350aa77
+ref table LocalDateTable_6713cb10-880b-4272-8dbe-16f516d28407
+ref table GP_Relatorios
+ref table LocalDateTable_7159a401-8e5b-4626-8ad6-c18d790f293a
+ref table LocalDateTable_c983829a-aed3-4b1a-a1be-86376a88d405
+ref table LocalDateTable_61fd25a5-b040-41b2-a2bd-c230b1336c37
+ref table LocalDateTable_01805943-f90f-4097-af9a-34d23dc58614
+ref table GP_Riscos
+ref table LocalDateTable_c6e40d87-2cbe-4573-b1b6-5c24f8a21d30
+ref table LocalDateTable_e36f2a9a-0ae7-4421-b44e-f6cfdcaec3dc
+ref table GP_ServicosExternos
+ref table LocalDateTable_55ff4f8d-116b-4dcb-b064-ca0d566c2011
+ref table LocalDateTable_ae6e9fae-fe4f-4d79-8b26-acdbced669d0
+ref table LocalDateTable_8ed39249-2ebd-4610-a7ef-8fd7114452da
+ref table LocalDateTable_eef99b84-348b-409f-bf9e-0526c515d36d
+ref table LocalDateTable_3e73db89-b12e-4d00-9037-99185e5a7e0c
+

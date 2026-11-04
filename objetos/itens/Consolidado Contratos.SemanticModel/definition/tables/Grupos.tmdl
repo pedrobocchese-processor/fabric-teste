@@ -1,0 +1,101 @@
+table Grupos
+	lineageTag: 516ceaf6-414f-4fac-976e-e6e6111e8487
+
+	column 'ID do grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4422fbea-aa4d-4753-9e24-1124b3c137d5
+		summarizeBy: none
+		sourceColumn: ID do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo
+		dataType: string
+		lineageTag: 67fa5aa6-734d-4dd8-a7e4-dccdb2d5ca68
+		summarizeBy: none
+		sourceColumn: Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do vendedor do grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: c4b6c066-bbd3-4ebc-a182-bb3627ddbca2
+		summarizeBy: sum
+		sourceColumn: ID do vendedor do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data da modificação do grupo'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 35154bac-1f47-44ce-934d-4bd7f6ae8381
+		summarizeBy: none
+		sourceColumn: Data da modificação do grupo
+
+		variation Variation
+			isDefault
+			relationship: a5999063-25b6-41e7-b1e3-4111f9738b39
+			defaultHierarchy: LocalDateTable_2e328b6d-7e9d-4265-be8e-c8e533a97eac.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status do grupo'
+		dataType: string
+		lineageTag: fa558f28-6eb3-4cf6-9412-0fe6d81b1aca
+		summarizeBy: none
+		sourceColumn: Status do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID da vertical do grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5417e324-1f33-46b6-aaae-7be7a7718ee7
+		summarizeBy: sum
+		sourceColumn: ID da vertical do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID da classificação do grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: e5e59fc5-0fb2-4686-9839-623e257e2a51
+		summarizeBy: sum
+		sourceColumn: ID da classificação do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Classificação do grupo'
+		dataType: string
+		lineageTag: 9949f233-606d-4127-9409-6d67ea787201
+		summarizeBy: none
+		sourceColumn: Classificação do grupo
+		sortByColumn: 'ID da classificação do grupo'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Complemento da classificação do grupo'
+		dataType: string
+		lineageTag: 0a3072d8-63a4-4a47-a492-f17edfd61ecd
+		summarizeBy: none
+		sourceColumn: Complemento da classificação do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Grupos-21b9b77a-dca4-4526-819c-b7992d9e88e7 = m
+		mode: import
+		queryGroup: Dimensoes
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "processor", [Query="SELECT * from sipm.vw_BI_Grupos_v1", CommandTimeout=#duration(0, 4, 0, 0)])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

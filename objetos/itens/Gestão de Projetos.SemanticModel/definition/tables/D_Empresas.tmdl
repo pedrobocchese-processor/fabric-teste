@@ -1,0 +1,57 @@
+table D_Empresas
+	lineageTag: 66623957-1a0e-4926-b396-6627c4ed01ca
+
+	column Emp_Codigo_Empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 1700834d-b777-411b-940b-fa5522c4f67a
+		summarizeBy: none
+		sourceColumn: Emp_Codigo_Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emp_Nome
+		dataType: string
+		lineageTag: 44b1e49f-50a2-4578-b7d9-f7fe78df82be
+		summarizeBy: none
+		sourceColumn: Emp_Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emp_Razao_Social
+		dataType: string
+		lineageTag: da564e2e-64c7-421e-8f24-6de363750116
+		summarizeBy: none
+		sourceColumn: Emp_Razao_Social
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emp_CNPJ
+		dataType: string
+		lineageTag: 9b80e658-b357-465e-8b4b-efb52ab9d699
+		summarizeBy: none
+		sourceColumn: Emp_CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emp_Status
+		dataType: int64
+		formatString: 0
+		lineageTag: b61e3a9f-b66b-40c7-85c6-d979800ba387
+		summarizeBy: none
+		sourceColumn: Emp_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Empresas = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor", [Query="SELECT E.Emp_Codigo_Empresa#(lf)#(tab)  ,E.Emp_Nome#(lf)#(tab)  ,E.Emp_Razao_Social#(lf)#(tab)  ,E.Emp_CNPJ#(lf)#(tab)  ,E.Emp_Status#(lf)#(tab)FROM Empresa E"])
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

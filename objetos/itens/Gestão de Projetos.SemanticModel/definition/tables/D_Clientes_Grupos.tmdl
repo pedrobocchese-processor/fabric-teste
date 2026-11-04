@@ -1,0 +1,214 @@
+table D_Clientes_Grupos
+	lineageTag: cf5ecd7d-db66-4358-bd4a-1bccb338bf42
+
+	column Grp_Codigo_Grupo
+		dataType: int64
+		formatString: 0
+		lineageTag: c7d4928f-9d23-4938-99a5-3c98e4cf6991
+		summarizeBy: none
+		sourceColumn: Grp_Codigo_Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Descricao
+		dataType: string
+		lineageTag: 8fa6af2d-0bf4-47c1-9244-c31bc2ba41d5
+		summarizeBy: none
+		sourceColumn: Grp_Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ven_Codigo_Vendedor
+		dataType: int64
+		formatString: 0
+		lineageTag: ba04a77f-5de9-4063-bef8-d0a5dbe965b6
+		summarizeBy: sum
+		sourceColumn: Ven_Codigo_Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Restricao_Impostos
+		dataType: string
+		lineageTag: dfc325ec-5687-412f-8751-1be3d73d50fe
+		summarizeBy: none
+		sourceColumn: Grp_Restricao_Impostos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Restricao_Pagamento
+		dataType: string
+		lineageTag: 6739a9b8-1153-4765-b7f1-1aee2ecb7105
+		summarizeBy: none
+		sourceColumn: Grp_Restricao_Pagamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Restricao_NF
+		dataType: string
+		lineageTag: ce133a39-7e3b-43e7-a355-9a9c35a6d7a8
+		summarizeBy: none
+		sourceColumn: Grp_Restricao_NF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Data_Modificacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4a33f06b-14ee-425d-a10b-040419819d79
+		summarizeBy: none
+		sourceColumn: Grp_Data_Modificacao
+
+		variation Variation
+			isDefault
+			relationship: 8744d152-1971-49cf-ae03-fda5ab19111a
+			defaultHierarchy: LocalDateTable_cd0b2220-d5f0-4fbd-b606-41ede77501b1.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Sid_Grupo
+		dataType: string
+		lineageTag: 7a18c913-8bcb-49f5-9c04-6f9b8d1e9659
+		summarizeBy: none
+		sourceColumn: Grp_Sid_Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: ad1817ec-f32e-4626-a73d-3bff062a16b9
+		summarizeBy: sum
+		sourceColumn: Grp_Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Ativo
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 06787f45-767c-421d-9f46-406f322dcfd0
+		summarizeBy: none
+		sourceColumn: Grp_Ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Codigo_Vertical
+		dataType: int64
+		formatString: 0
+		lineageTag: 18f1664d-6be8-4228-94ab-f1c6f6669431
+		summarizeBy: sum
+		sourceColumn: Grp_Codigo_Vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Mostrar_Criticidade_LC
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0b9c8397-ebcc-4830-812f-04d656f76912
+		summarizeBy: none
+		sourceColumn: Grp_Mostrar_Criticidade_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Dt_Lib_Criticidade_LC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e098a740-f2b4-4d02-98e8-5aba4a9f610e
+		summarizeBy: none
+		sourceColumn: Grp_Dt_Lib_Criticidade_LC
+
+		variation Variation
+			isDefault
+			relationship: 851c2d81-f006-4038-a439-7e6fae1fe0d0
+			defaultHierarchy: LocalDateTable_3990f19b-6d0a-49c9-ae2d-9b8e363eb5bb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Usr_Lib_Criticidade_LC
+		dataType: string
+		lineageTag: 42c2e382-793a-4220-b717-b061324b0028
+		summarizeBy: none
+		sourceColumn: Grp_Usr_Lib_Criticidade_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Nao_Aplicar_Minimo_LC
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e28e4bb0-0bdb-40c4-921e-aded0642e4bd
+		summarizeBy: none
+		sourceColumn: Grp_Nao_Aplicar_Minimo_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Dt_Lib_Nao_Aplicar_Minimo_LC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0faebbee-af65-4fc5-91b8-1d81fead3b97
+		summarizeBy: none
+		sourceColumn: Grp_Dt_Lib_Nao_Aplicar_Minimo_LC
+
+		variation Variation
+			isDefault
+			relationship: 55bd1b8e-d8eb-47c8-adc2-431d4fb237f5
+			defaultHierarchy: LocalDateTable_285c3baf-cedd-4965-9d83-7c414a6226b6.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Usr_Lib_Nao_Aplicar_Minimo_LC
+		dataType: string
+		lineageTag: a010d312-7560-48f9-85cc-7925e5201fe3
+		summarizeBy: none
+		sourceColumn: Grp_Usr_Lib_Nao_Aplicar_Minimo_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Motivo_Nao_Aplicar_Minimo_LC
+		dataType: string
+		lineageTag: b5fac267-0745-45d7-b916-1093afad8999
+		summarizeBy: none
+		sourceColumn: Grp_Motivo_Nao_Aplicar_Minimo_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Vizualiza_Fatura_Clientes
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0734d1e1-7cb0-4daf-b972-107da6442881
+		summarizeBy: none
+		sourceColumn: Grp_Vizualiza_Fatura_Clientes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Codigo_Classificacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c691ae2-254b-4c86-9b6c-b7ec9e62f894
+		summarizeBy: sum
+		sourceColumn: Grp_Codigo_Classificacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grp_Empresa_BKP
+		dataType: int64
+		formatString: 0
+		lineageTag: 3db727e7-1311-4b20-a63e-eaf1065c9573
+		summarizeBy: sum
+		sourceColumn: Grp_Empresa_BKP
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Clientes_Grupos = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor"),
+				    dbo_Clientes_Grupos = Fonte{[Schema="dbo",Item="Clientes_Grupos"]}[Data],
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(dbo_Clientes_Grupos,{{"Grp_Descricao", Text.Proper, type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Colocar Cada Palavra Em Maiúscula","itavema.com.br","Itavema",Replacer.ReplaceText,{"Grp_Descricao"})
+				in
+				    #"Valor Substituído"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

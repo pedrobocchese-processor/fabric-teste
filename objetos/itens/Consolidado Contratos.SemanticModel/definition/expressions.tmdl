@@ -1,0 +1,10 @@
+expression 'Score sentiment' = AIFunctions.Contents(){[Key = "CognitiveServices.ScoreSentimenttexttext"]}[Data]
+	lineageTag: 33f79c7b-57e0-4925-bdb4-37fd1210edb6
+
+	annotation PBI_ResultType = Function
+
+expression 'Extract key phrases' = AIFunctions.Contents(){[Key = "CognitiveServices.ExtractKeyPhrasestexttext"]}[Data]
+	lineageTag: 3b4fe237-0e79-4a5b-885b-796696795722
+
+	annotation PBI_ResultType = Function
+

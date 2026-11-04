@@ -1,0 +1,45 @@
+table 'Última Atualização'
+	lineageTag: 89ff5871-ff97-4c3b-93a4-ab856208481b
+
+	measure UltAt1 = CONCATENATE("Última Atualização: ",format(VALUES('Última Atualização'[Última Atualização]),"dd/mm/yyyy hh:mm"))
+		lineageTag: f9060702-a130-426c-8653-642dfe0491fa
+
+		changedProperty = IsHidden
+
+	column 'Última Atualização'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ad0d8565-eb77-4f27-9515-8b5e4e3a5598
+		summarizeBy: none
+		sourceColumn: Última Atualização
+
+		variation Variation
+			isDefault
+			relationship: 3d5dce65-33c7-4697-8b8e-31d7d797c87a
+			defaultHierarchy: LocalDateTable_ca64dd92-9932-4f70-9f31-6fd803f7ba72.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column UltAt = CONCATENATE("Última Atualização: ",format(VALUES('Última Atualização'[Última Atualização]),"dd/mm/yyyy hh:mm"))
+		lineageTag: 77453866-bd66-41ce-b0ac-cf3bb8c82b35
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Última Atualização-579a9325-bd3e-4b84-93ce-7c7a022700fc' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Última Atualização"}, {{DateTime.LocalNow()}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(Source, {{"Última Atualização", type datetime}}, "pt-BR")
+				in
+				    #"Changed Type with Locale"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

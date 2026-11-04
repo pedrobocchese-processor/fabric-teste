@@ -1,0 +1,295 @@
+relationship 83c59d45-bda4-49c5-958b-9c6a20cfba23
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Calendario.Data
+	toColumn: LocalDateTable_a31146f1-36e8-4c03-8001-9cb58fb299aa.Date
+
+relationship dbf14e8e-a9b5-4125-89bd-66548f54405d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Atualizacao.DataHora
+	toColumn: LocalDateTable_40b8d74f-7613-4eaa-af1a-f04248dba154.Date
+
+relationship 903e0de6-fa01-412a-becd-3fc7e2622239
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Atualizacao.Data
+	toColumn: LocalDateTable_cdc9b2f6-e165-453d-8400-3015a1c599df.Date
+
+relationship 7046991d-a167-417b-9bf9-3b72b60422e8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Atualizacao.DataHoraCerta
+	toColumn: LocalDateTable_e246224a-3302-47f2-a0e6-1aa98da5335e.Date
+
+relationship c68b600a-6223-43c0-966a-6831d34d4d81
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Funcionarios.fun_DataContratacao
+	toColumn: LocalDateTable_480aadfe-1587-40ff-8e2b-765c6b53b42e.Date
+
+relationship 9474b445-61e9-4579-9369-548196e7bcce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Funcionarios.fun_DataEfetivacao
+	toColumn: LocalDateTable_f02ef4c6-ad81-435f-a8bf-e1320b24feba.Date
+
+relationship AutoDetected_bc6ed495-ad97-4199-9e86-8e9cb4b8d105
+	fromColumn: D_Funcionarios.Emp_Nome
+	toColumn: D_Empresas.Emp_Nome
+
+relationship AutoDetected_81d03530-44e4-4da8-bfd7-bb02a2541795
+	fromColumn: D_Funcionarios.are_Descricao
+	toColumn: D_Areas.are_Descricao
+
+relationship 1a6e16b6-e8a6-4304-b7f3-839e166ad8f8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Calendario.'Início Período 15 Dias'
+	toColumn: LocalDateTable_bccc3601-916d-469a-90c7-6c22e608d804.Date
+
+relationship d046186b-c0ed-43dc-8904-6a8bbc21da7e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Calendario.'Fim Período 15 Dias'
+	toColumn: LocalDateTable_d7b42b11-4638-4942-96c8-7d2fc5605b02.Date
+
+relationship a8ccbd49-73c0-4eb9-9698-127fd6060839
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_View_ServiceOps_Contrato_Atividade_Apontamentos.Inicio
+	toColumn: LocalDateTable_ce3fcf49-dd1f-4065-8ad9-b082414388da.Date
+
+relationship 99583e67-ea5c-4446-9da9-cf70577a2866
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_View_ServiceOps_Contrato_Atividade_Apontamentos.Fim
+	toColumn: LocalDateTable_f482e95d-58bf-4ba0-bba4-3e7acbf6d7e1.Date
+
+relationship 51cd106f-3463-57fe-dfa1-13e928ff3fad
+	fromColumn: D_Funcionarios.fun_Cargo
+	toColumn: D_Cargos.car_Codigo
+
+relationship f8f36a81-2443-3b90-e049-ab1e6080d3a1
+	fromColumn: F_View_ServiceOps_Contrato_Atividade_Apontamentos.CodigoProfissional
+	toColumn: D_Funcionarios.fun_Codigo
+
+relationship 0a5fd8a9-64d8-e127-c75b-5bdc68f7b5c4
+	fromColumn: F_Viw_Contratos_Alocacao.cod_fun
+	toColumn: D_Funcionarios.fun_Codigo
+
+relationship 011ba2fa-1f55-b5ef-49cd-015e098edd83
+	fromColumn: F_Viw_Contratos_Alocacao.Data_Registro
+	toColumn: D_Calendario.Data
+
+relationship 2590162d-1b4a-a232-42a1-03476a53288e
+	fromColumn: F_View_ServiceOps_Contrato_Atividade_Apontamentos.DataInc
+	toColumn: D_Calendario.Data
+
+relationship cef4a917-0061-40d0-a23a-e5e4d668d4e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos_Status.cos_data_inicio
+	toColumn: LocalDateTable_89d1d6d1-644d-4129-8512-cabd2153d9d0.Date
+
+relationship ba0fe56c-2772-4104-8a84-9203c2418b47
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos_Status.cos_data_fim
+	toColumn: LocalDateTable_453a8d0d-2d3b-4dc6-aa1f-e39fff7d4cf6.Date
+
+relationship dbd5c8ea-596c-46df-b408-8d7c31bd8b06
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos_Status.cos_data_modificacao
+	toColumn: LocalDateTable_32ee2baa-b8b5-413b-9294-fff93adc1000.Date
+
+relationship a2769891-8be9-4708-bb8b-b136ab218790
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_Data_Inicio
+	toColumn: LocalDateTable_1576bdce-1619-434b-a8ce-0edc854c1f3b.Date
+
+relationship 3177c55b-ec61-40c9-a258-3e28765cf47a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_Data_Fim
+	toColumn: LocalDateTable_33fe309f-67ff-47ea-82f7-60d4c9f0adb4.Date
+
+relationship e5cac9ae-7792-43a7-b9f5-38412c6f63b2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_Data_Revisao
+	toColumn: LocalDateTable_6b30ab17-d230-4dc3-b0a3-96b82e054bcd.Date
+
+relationship 5c1043b9-ce82-4756-aec5-9b1d1715d617
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_LogAlteracaoData
+	toColumn: LocalDateTable_fa1fea19-f721-4f85-ba52-c7592d94db1c.Date
+
+relationship a05c8ccb-af19-4bed-8cc9-2bfc1082dbee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_UltimoStatusQa
+	toColumn: LocalDateTable_2328e162-0cec-40c4-a955-0da610525298.Date
+
+relationship 821fa7a1-8ea6-45bf-931c-1e6e067fdb26
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_DataInicioGarantia
+	toColumn: LocalDateTable_510d2ae3-5e80-4873-ac11-d865d241ad62.Date
+
+relationship cab491ed-3850-4a42-aef8-2f4a422625e0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_DataFimGarantia
+	toColumn: LocalDateTable_763e5784-05b3-487b-8db4-d9a11a4b79d0.Date
+
+relationship 4cbbc597-35bc-4fff-a1d0-7b68ddc75d6b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_DataProposta
+	toColumn: LocalDateTable_afebc82d-6a23-4f25-b77b-8e029fc1cae1.Date
+
+relationship a83adb66-b499-4eb0-a9fc-9b14107e3c4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_DateTime_Inativacao
+	toColumn: LocalDateTable_ca92128a-1efa-4023-8b67-51baa32843e3.Date
+
+relationship 370f5b42-d69c-48ef-b069-7f8e8a706925
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_ProgDataUltAtuLic
+	toColumn: LocalDateTable_590692d4-dbb3-4196-bb4f-b55da1e5f9da.Date
+
+relationship 97026efc-5305-41fb-81ab-6ee3c7b97ae7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_ProgClieImpJaValidadoDT
+	toColumn: LocalDateTable_e10b7df6-f8f5-46a4-9bbe-7d17baa93e91.Date
+
+relationship 582b162d-cf83-4fb1-849e-22d7dd0ae252
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_DataInicioVendor
+	toColumn: LocalDateTable_77b7d6cf-66f9-4b5e-a085-3280950e4dcf.Date
+
+relationship ef321acb-813f-420c-91eb-3d1d80465bab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Contratos.con_DataFimVendor
+	toColumn: LocalDateTable_b3076717-6bcd-48fd-8b5a-7daeff460d9a.Date
+
+relationship 8c9abe42-de25-4256-84ea-f8b9196d6e37
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.Cli_HoraInicio
+	toColumn: LocalDateTable_d19dc248-3090-4abe-b096-b0812348c6aa.Date
+
+relationship 0fb13c53-4af9-47a6-ab15-c1a9c81b9dfd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.Cli_HoraFim
+	toColumn: LocalDateTable_92f1a48a-3360-4753-8bb4-822e55b15049.Date
+
+relationship d755df27-dc10-45a3-aedc-1e98ff23bb1b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.Cli_IntervaloInicio
+	toColumn: LocalDateTable_7f7bb7ac-ce71-44a4-a0f3-37f43e71bc95.Date
+
+relationship b25043fa-159c-40fb-b657-556f94cc27ff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.Cli_IntervaloFim
+	toColumn: LocalDateTable_aeca72f1-9688-4314-acbb-faaa0fe0f9a1.Date
+
+relationship 2113f6d3-8497-483a-8686-d40233692aee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.Cli_LogRevisaoFiscal
+	toColumn: LocalDateTable_30f89654-5f48-453b-9195-bd7868717238.Date
+
+relationship 47a45579-eb43-492a-99d3-2a668ecd7d97
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.datamodificacao
+	toColumn: LocalDateTable_ce69572b-bd7d-4953-b65c-014662f65d4e.Date
+
+relationship f6810fbc-d0b5-417e-994e-ae6385b9d05c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.datacriacao
+	toColumn: LocalDateTable_12ef87a6-72fc-4aee-81ae-b45b436d4ab4.Date
+
+relationship 8744d152-1971-49cf-ae03-fda5ab19111a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes_Grupos.Grp_Data_Modificacao
+	toColumn: LocalDateTable_cd0b2220-d5f0-4fbd-b606-41ede77501b1.Date
+
+relationship 851c2d81-f006-4038-a439-7e6fae1fe0d0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes_Grupos.Grp_Dt_Lib_Criticidade_LC
+	toColumn: LocalDateTable_3990f19b-6d0a-49c9-ae2d-9b8e363eb5bb.Date
+
+relationship 55bd1b8e-d8eb-47c8-adc2-431d4fb237f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes_Grupos.Grp_Dt_Lib_Nao_Aplicar_Minimo_LC
+	toColumn: LocalDateTable_285c3baf-cedd-4965-9d83-7c414a6226b6.Date
+
+relationship d7a1c564-7bba-8709-7574-bcfecdec1871
+	fromColumn: F_View_ServiceOps_Contrato_Atividade_Apontamentos.CodigoContrato
+	toColumn: D_Contratos.con_Codigo_Contrato
+
+relationship 02ebeb99-b51f-2952-83b7-54bfd3f1fcd2
+	fromColumn: D_Contratos.con_Contratante
+	toColumn: D_Clientes.Cli_Codigo_Cliente
+
+relationship 1e845e67-8c96-62da-dd6e-3c7c69e60db0
+	fromColumn: D_Clientes.Cli_Codigo_Grupo
+	toColumn: D_Clientes_Grupos.Grp_Codigo_Grupo
+
+relationship a9fe1116-cd59-0870-0ce6-8d58dccb607e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: D_Contratos_Status.cos_codigo_contrato
+	toColumn: D_Contratos.con_Codigo_Contrato
+
+relationship cd77c783-5bbb-4cd5-9c30-e3798658a7a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Funcionarios.fun_DataNascimento
+	toColumn: LocalDateTable_6b8783de-a86f-4815-af31-ff9697601fdf.Date
+
+relationship 8df54a38-4208-454d-8cc8-09ab2b431255
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Projeto_Dedicado.Inicio
+	toColumn: LocalDateTable_fe1caf80-bd35-4c0a-a6cf-7a71e525fb44.Date
+
+relationship 9ceb0ebd-266b-4c3e-96d3-9041647a691d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Projeto_Dedicado.Fim
+	toColumn: LocalDateTable_8501ba04-e0f5-41c3-88d3-a0f9b5745ed8.Date
+
+relationship e88d7a62-c8e5-4fae-9465-60e547fdb03c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Projeto_Dedicado.DataInc
+	toColumn: LocalDateTable_8ee99ba7-a1e9-439e-b3ee-c2dde0dad240.Date
+
+relationship da1feeec-a2c9-c1fe-b022-13df5bdd78f4
+	fromColumn: F_Projeto_Dedicado_Car_House.CodigoContrato
+	toColumn: D_Contratos.con_Codigo_Contrato
+
+relationship 4260d94f-dfed-264b-c377-db9ca93612b6
+	fromColumn: F_Projeto_Dedicado_Car_House.CodigoProfissional
+	toColumn: D_Funcionarios.fun_Codigo
+
+relationship 3a685db6-7ed2-4099-9e1e-fca0a4b2277c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Projeto_Dedicado_Car_House.Inicio
+	toColumn: LocalDateTable_e1a5c108-8403-4e57-b318-4b3d2b5301e1.Date
+
+relationship 6732cc86-c19a-494d-aaaa-c0047d6575e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Projeto_Dedicado_Car_House.Fim
+	toColumn: LocalDateTable_d6d6b10d-6142-4b32-96da-d4bb97bc577a.Date
+
+relationship 601d3487-07a7-d6b8-ead0-8f030f2cdc6c
+	fromColumn: F_Projeto_Dedicado_Car_House.DataInc
+	toColumn: D_Calendario.Data
+
+relationship 6d50de20-f55d-906d-ac19-ba073c9dbc2e
+	fromColumn: F_Projeto_Dedicado_Gerdau.CodigoContrato
+	toColumn: D_Contratos.con_Codigo_Contrato
+
+relationship 745b7932-7295-41c9-b784-fd6bb86a3326
+	fromColumn: F_Projeto_Dedicado_Gerdau.CodigoProfissional
+	toColumn: D_Funcionarios.fun_Codigo
+
+relationship 98cb8050-8434-42ba-96db-f874dcf3cee4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Projeto_Dedicado_Gerdau.Inicio
+	toColumn: LocalDateTable_ba9892f8-04b5-4ed2-bc44-edb1de75920c.Date
+
+relationship 07b05d18-dfa8-4b49-94bd-7e1a0903c8c3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Projeto_Dedicado_Gerdau.Fim
+	toColumn: LocalDateTable_5a92d402-f049-447a-a1be-6dacbcdfddc5.Date
+
+relationship c68182d8-34c1-4f78-bee1-e35bf4866c9b
+	fromColumn: F_Projeto_Dedicado_Gerdau.DataInc
+	toColumn: D_Calendario.Data
+
+relationship d6cd5275-2d0b-4ea3-9ebe-5ef3092c2a67
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Clientes.Cli_AtualizacaoIntegracaoData
+	toColumn: LocalDateTable_e11b0bb7-41ef-4368-9426-9eaa3ccd2b7e.Date
+

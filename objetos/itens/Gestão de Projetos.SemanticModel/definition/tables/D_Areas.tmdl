@@ -1,0 +1,52 @@
+table D_Areas
+	lineageTag: 696effd9-1cca-4adf-ba8e-bc012b2ee259
+
+	column are_Codigo_Area
+		dataType: int64
+		formatString: 0
+		lineageTag: 17b68339-55eb-499f-8132-ce8dc7e5faa5
+		summarizeBy: none
+		sourceColumn: are_Codigo_Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column are_Descricao
+		dataType: string
+		lineageTag: f3696f5c-0c54-4576-a364-2d1a1e7e55c8
+		summarizeBy: none
+		sourceColumn: are_Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column are_Sigla
+		dataType: string
+		lineageTag: 4d326a08-35ab-4922-850f-5ee9501f1708
+		summarizeBy: none
+		sourceColumn: are_Sigla
+
+		annotation SummarizationSetBy = Automatic
+
+	column are_Inativo
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f9a226dd-7831-4ded-bbd8-0bfddfd9110d
+		summarizeBy: none
+		sourceColumn: are_Inativo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Areas = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor"),
+				    dbo_Areas = Fonte{[Schema="dbo",Item="Areas"]}[Data],
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(dbo_Areas,{{"are_Descricao", Text.Proper, type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Colocar Cada Palavra Em Maiúscula",{"HFinanceiro"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,43 @@
+table Funcionarios
+	lineageTag: a93414c9-2468-4639-be57-4994986c4178
+
+	column 'ID Usuario'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1afda06f-6e90-464f-8359-29687acd3176
+		summarizeBy: none
+		sourceColumn: ID Usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Matricula
+		dataType: int64
+		formatString: 0
+		lineageTag: e23d816f-b89f-47f4-9eec-291db7f33cdd
+		summarizeBy: sum
+		sourceColumn: Matricula
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Completo'
+		dataType: string
+		lineageTag: 8d28bbe4-1926-4e5e-91a8-f2e70e114491
+		summarizeBy: none
+		sourceColumn: Nome Completo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Funcionarios = m
+		mode: import
+		queryGroup: Dimensoes
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "processor", [Query="SELECT fun_Codigo,Fun_Matricula,fun_Nome#(lf)FROM #(lf)Funcionarios#(lf)Where#(lf)fun_Ativo = 1", CommandTimeout=#duration(0, 4, 0, 0)]),
+				    #"Colunas Renomeadas" = Table.RenameColumns(Fonte,{{"fun_Codigo", "ID Usuario"}, {"Fun_Matricula", "Matricula"}, {"fun_Nome", "Nome Completo"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

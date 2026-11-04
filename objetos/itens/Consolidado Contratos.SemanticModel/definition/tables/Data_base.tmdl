@@ -1,0 +1,74 @@
+table Data_base
+	lineageTag: fc6112b8-3e58-4940-adca-fef1e70f5150
+
+	column data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f355057f-6b5f-42a2-a456-4397d2c8ebb9
+		summarizeBy: none
+		sourceColumn: data
+
+		variation Variation
+			isDefault
+			relationship: a83aa8cc-04cf-446b-b820-eaf7cc3f0b18
+			defaultHierarchy: LocalDateTable_9d2efd88-83a8-448b-bd36-8c97fa241932.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column chave = CONCATENATE(year(Data_base[data]),MONTH(Data_base[data]))
+		lineageTag: a3d2ea98-62a5-400c-914c-0a9cedb98d64
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column mês = MONTH(Data_base[data])
+		formatString: 0
+		lineageTag: a0333946-0057-40da-a939-f2df7a48be32
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano = year(Data_base[data])
+		formatString: 0
+		lineageTag: 43c743b7-7e70-4176-bd62-4cc3dad7edbe
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre = if(or(or(Data_base[mês] = 1, Data_base[mês] = 2),Data_base[mês] = 3) , 1 , if(or(or(Data_base[mês] = 4, Data_base[mês] = 5),Data_base[mês] = 6), 2, if(or(or(Data_base[mês] = 7, Data_base[mês] = 8),Data_base[mês] = 9),3 ,if (or(or(Data_base[mês] = 10, Data_base[mês] = 11),Data_base[mês] = 12),4,0))))
+		formatString: 0
+		lineageTag: 70a19766-5bec-4518-84c7-c6f14f55b905
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data_base-7aacc46b-389a-4514-a62c-830c6868c147 = m
+		mode: import
+		queryGroup: Dimensoes
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("XdW5jUBVEEXBXLCRmN7fjwWRfxpsDoXUzlU7x6vff//lJ3776+L7fn7549d/ZzrL2c5xrvOcz/kx48dpVfyv6p9v2Bw2h81hc9gcNofNYXPYHDaHzWFz2pw2p81pc9qcNqfNaXPanDanzWlz2Vw2l81lc9lcNpfNZXPZXDaXzWVz29w2t81tc9vcNrfNbXPb3Da3zW3z2Dw2j81j89g8No/NY/PYPDaPzWPz2rw2r81r89q8Nq/Na/PavDavzWvz2Xw2n81n89l8Np/NZ/PZfDafzWfzs/nZ/Gx+Nj+bn83P5mfzs/nZ/Gx+Nn82fzZ/Nn82fzZ/Nn82fzZ/Nn82fzZ//2nOn5//OsgsZzvHuc5zPufH/KuZaVX8r+qfb9gcNofNYXPYHDaHzWFz2Bw2h81hc9qcNqfNaXPanDanzWlz2pw2p81pc9lcNpfNZXPZXDaXzWVz2Vw2l81lc9vcNrfNbXPb3Da3zW1z29w2t81t89g8No/NY/PYPDaPzWPz2Dw2j81j89q8Nq/Na/PavDavzWvz2rw2r81r89l8Np/NZ/PZfDafzWfz2Xw2n81n87P52fxsfjY/m5/Nz+Zn87P52fxsfjZ/Nn82fzZ/Nn82fzZ/Nn82fzZ/Nn8262DoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDoYOhg6GDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDpYOlg6WDrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg62DrYOtg6+Do4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODo4Ojg6ODq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDq4Org6uDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDp4Ong6eDTwaeDTwefDj4dfDr4dPDp4NPBp4NPB58OPh18Ovh08Ong08Gng08Hnw4+HXw6+HTw6eDTwaeDTwefDj4dfDr4dPDp4NPBp4NPB58OPh18Ovh08Ong08Gng08Hnw4+HXw6+HTw6eDTwaeDTwefDj4dfDr4dPDp4NPBp4NPB58OPh18Ovh08Ong3/OPPwE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [data = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"data", type date}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Changed Type", {{"data", type date}}, "pt-BR"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type with Locale",{{"data", type date}}),
+				    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type1",100),
+				    #"Removed Bottom Rows1" = Table.RemoveLastN(#"Removed Bottom Rows",400),
+				    #"Removed Bottom Rows2" = Table.RemoveLastN(#"Removed Bottom Rows1",200),
+				    #"Removed Bottom Rows3" = Table.RemoveLastN(#"Removed Bottom Rows2",36)
+				in
+				    #"Removed Bottom Rows3"
+
+	annotation PBI_ResultType = Table
+

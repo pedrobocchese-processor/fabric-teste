@@ -1,0 +1,59 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Dimensoes
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
+
+annotation PBI_QueryOrder = ["Última Atualização","Contratos dia a dia","Pedidos","Data_base","Empresa","Grupos","Pilares","Fabricantes","Clientes","Contratos","Percepções","Ligações","Visitas","Score sentiment","Funcionarios","Extract key phrases","LiveCloud - GA4"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop"]
+
+ref table Empresa
+ref table DateTableTemplate_0786ea06-fe45-4416-b42c-32e9350975bc
+ref table Data_base
+ref table LocalDateTable_9d2efd88-83a8-448b-bd36-8c97fa241932
+ref table 'Última Atualização'
+ref table LocalDateTable_ca64dd92-9932-4f70-9f31-6fd803f7ba72
+ref table dCalendario
+ref table *Medidas
+ref table Contratos
+ref table 'Contratos dia a dia'
+ref table Pedidos
+ref table LocalDateTable_57457932-4e3a-40b4-8f7b-16e9d8bcf44f
+ref table LocalDateTable_b63c6a23-f347-46fb-8219-075459c1f39e
+ref table LocalDateTable_35875eed-f107-4039-a374-73241a9a9247
+ref table LocalDateTable_80abe335-5842-4b54-a935-07fd89838bf4
+ref table LocalDateTable_9e5b3c35-6739-43e5-a908-badbceb7ba67
+ref table LocalDateTable_d5f550aa-d31e-4748-9f45-f355e78ae559
+ref table LocalDateTable_00f57887-dbb7-4de9-9d06-7cfd7585ab59
+ref table LocalDateTable_479317b5-9e86-4b53-ac52-bb0b18adad77
+ref table Grupos
+ref table Pilares
+ref table Fabricantes
+ref table Clientes
+ref table LocalDateTable_9e6efa31-ce02-4551-9005-e899c2df9db6
+ref table LocalDateTable_22c12efd-7971-4135-be0d-ea8270b2f30c
+ref table LocalDateTable_e6ba35bf-8259-45c5-841f-5189fed18c9d
+ref table LocalDateTable_2e328b6d-7e9d-4265-be8e-c8e533a97eac
+ref table Percepções
+ref table Ligações
+ref table Visitas
+ref table Funcionarios
+ref table PrmLinhas
+ref table PrmColunas
+ref table PrmValores
+ref table 'LiveCloud - GA4'
+
+ref cultureInfo en-US
+

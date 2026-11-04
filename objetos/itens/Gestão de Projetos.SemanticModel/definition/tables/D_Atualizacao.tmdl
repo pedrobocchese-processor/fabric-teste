@@ -1,0 +1,68 @@
+table D_Atualizacao
+	lineageTag: 6a49286c-d066-4a98-a540-ba38b67b9a00
+
+	column DataHora
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 986f7e11-c81b-41c9-9730-02e80b25a14b
+		summarizeBy: none
+		sourceColumn: DataHora
+
+		variation Variation
+			isDefault
+			relationship: dbf14e8e-a9b5-4125-89bd-66548f54405d
+			defaultHierarchy: LocalDateTable_40b8d74f-7613-4eaa-af1a-f04248dba154.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: bb19eb80-11a3-4d94-8776-ddc6dc3ec3be
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: 903e0de6-fa01-412a-becd-3fc7e2622239
+			defaultHierarchy: LocalDateTable_cdc9b2f6-e165-453d-8400-3015a1c599df.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column DataHoraCerta
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0565c6e0-b75a-43e3-9b3e-7a4eb9c254ab
+		summarizeBy: none
+		sourceColumn: DataHoraCerta
+
+		variation Variation
+			isDefault
+			relationship: 7046991d-a167-417b-9bf9-3b72b60422e8
+			defaultHierarchy: LocalDateTable_e246224a-3302-47f2-a0e6-1aa98da5335e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Atualizacao = m
+		mode: import
+		source =
+				let
+				Fonte = DateTime.LocalNow (),
+				#"Convertido para Tabela" = #table(1, {{Fonte}}),
+				#"Primeiros Caracteres Inseridos" = Table.AddColumn(#"Convertido para Tabela", "Primeiros caracteres", each Text.Start(Text.From([Column1], "pt-BR"), 10), type text),
+				#"Tipo Alterado" = Table.TransformColumnTypes(#"Primeiros Caracteres Inseridos",{{"Column1", type datetime}, {"Primeiros caracteres", type date}}),
+				#"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"Column1", "DataHora"}, {"Primeiros caracteres", "Data"}}),
+				#"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"DataHora", type datetimezone}}),
+				#"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado1", "DataHoraCerta", each DateTimeZone.SwitchZone([DataHora],-3)),
+				#"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"DataHoraCerta", type datetimezone}})
+				in
+				#"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

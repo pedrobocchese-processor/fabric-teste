@@ -1,0 +1,214 @@
+table F_Projeto_Dedicado
+	lineageTag: 2978582d-abf6-4b1b-a47d-45df5c382d16
+
+	column Codigo
+		dataType: int64
+		formatString: 0
+		lineageTag: 23a46863-df7a-499e-a0ab-275aa81f6db8
+		summarizeBy: sum
+		sourceColumn: Codigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoContrato
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b873e1a-a0e0-4116-868d-5610b6b097a9
+		summarizeBy: sum
+		sourceColumn: CodigoContrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescricaoContrato
+		dataType: string
+		lineageTag: 9fe2ac10-4a65-42e0-8b28-834cc7241204
+		summarizeBy: none
+		sourceColumn: DescricaoContrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoGrupo
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ed3cefb-b197-4754-a748-349b978f0187
+		summarizeBy: sum
+		sourceColumn: CodigoGrupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoAtividade
+		dataType: string
+		lineageTag: 7cc00587-6e61-4265-9702-75215683acd2
+		summarizeBy: none
+		sourceColumn: CodigoAtividade
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoProfissional
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d71ee2e-5f25-4393-850b-c8f8c6e3617a
+		summarizeBy: sum
+		sourceColumn: CodigoProfissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 862dc016-61c1-494d-8204-50a18d5d8ca7
+		summarizeBy: none
+		sourceColumn: Inicio
+
+		variation Variation
+			isDefault
+			relationship: 8df54a38-4208-454d-8cc8-09ab2b431255
+			defaultHierarchy: LocalDateTable_fe1caf80-bd35-4c0a-a6cf-7a71e525fb44.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fim
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e741740b-fcbd-4cfd-9cc4-a6f85f1f0b3f
+		summarizeBy: none
+		sourceColumn: Fim
+
+		variation Variation
+			isDefault
+			relationship: 9ceb0ebd-266b-4c3e-96d3-9041647a691d
+			defaultHierarchy: LocalDateTable_8501ba04-e0f5-41c3-88d3-a0f9b5745ed8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tempo
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 6bfa8ec1-d77a-46f4-ba2b-3564f25da48d
+		summarizeBy: none
+		sourceColumn: Tempo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Horas
+		dataType: double
+		lineageTag: 2926ac31-76ab-4d0c-8e32-36c6719b3c6b
+		summarizeBy: sum
+		sourceColumn: Horas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DescricaoGrupo
+		dataType: string
+		lineageTag: 77be1ac7-44e1-4a4f-aaea-77607de5c6c4
+		summarizeBy: none
+		sourceColumn: DescricaoGrupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescricaoAtividade
+		dataType: string
+		lineageTag: a804b005-25e2-4564-ab9c-b12058930721
+		summarizeBy: none
+		sourceColumn: DescricaoAtividade
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeProfissional
+		dataType: string
+		lineageTag: 42ebc57d-b10b-4877-a761-c7b115f900fb
+		summarizeBy: none
+		sourceColumn: NomeProfissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 7712fc94-eb0e-472e-bfac-9d7a2e32ff77
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observacao
+		dataType: string
+		lineageTag: 56c5760b-0e2f-47fa-8754-7113d5563950
+		summarizeBy: none
+		sourceColumn: Observacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataInc
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3685b7a5-1fbd-48d0-8ed9-6fab3632f44d
+		summarizeBy: none
+		sourceColumn: DataInc
+
+		variation Variation
+			isDefault
+			relationship: e88d7a62-c8e5-4fae-9465-60e547fdb03c
+			defaultHierarchy: LocalDateTable_8ee99ba7-a1e9-439e-b3ee-c2dde0dad240.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Cliente
+		dataType: string
+		lineageTag: 54d8ac7a-4b48-44b4-94d2-d97584a45185
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo
+		dataType: string
+		lineageTag: 0eb773af-8f01-46e4-ac82-120ef117082c
+		summarizeBy: none
+		sourceColumn: Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column HoraDataInc
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: fc9d4a3b-48ac-4bac-8606-b105c9347435
+		summarizeBy: none
+		sourceColumn: HoraDataInc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Funcao
+		dataType: string
+		lineageTag: 4a23f50b-a683-4b64-bdb1-2bc7cf6bed24
+		summarizeBy: none
+		sourceColumn: Funcao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Projeto_Dedicado = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\giovani.mielniczuk\OneDrive - Processor\Área de Trabalho\BI\BI Delivery\Fonte de Dados\F_Projeto_Dedicado.xlsx"), null, true),
+				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Codigo", Int64.Type}, {"CodigoContrato", Int64.Type}, {"DescricaoContrato", type text}, {"CodigoGrupo", Int64.Type}, {"CodigoAtividade", type text}, {"CodigoProfissional", Int64.Type}, {"Inicio", type datetime}, {"Fim", type datetime}, {"Tempo", type time}, {"Horas", type number}, {"DescricaoGrupo", type text}, {"DescricaoAtividade", type text}, {"NomeProfissional", type text}, {"Email", type text}, {"Observacao", type text}, {"DataInc", type datetime}, {"Cliente", type text}, {"Grupo", type text}}),
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Tipo Alterado", "DataInc", "DataInc - Copiar"),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Coluna Duplicada",{{"DataInc - Copiar", "HoraDataInc"}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"HoraDataInc", type time}, {"DataInc", type date}}),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Tipo Alterado1",{"Codigo", "CodigoContrato", "DescricaoContrato", "CodigoGrupo", "CodigoAtividade", "CodigoProfissional", "Inicio", "Fim", "Tempo", "Horas", "DescricaoGrupo", "DescricaoAtividade", "NomeProfissional", "Email", "Observacao", "DataInc", "Funcao", "Cliente", "Grupo", "HoraDataInc"})
+				in
+				    #"Colunas Reordenadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

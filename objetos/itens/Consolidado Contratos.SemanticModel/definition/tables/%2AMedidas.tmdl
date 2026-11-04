@@ -1,0 +1,675 @@
+table *Medidas
+	lineageTag: f70024c3-8989-46b9-a826-89b4a31d2ed5
+
+	measure Qtd_ContrPerd =
+			
+			CALCULATE(COUNT(vw_BI_Contratos_Perdidos_Inativados[Contrato]),vw_BI_Contratos_Perdidos_Inativados[Perdido] = TRUE())
+		formatString: 0
+		lineageTag: 34c59cca-c725-40b8-8267-6b478b7ad01e
+
+	measure Qtd_ContrInat =
+			
+			CALCULATE(
+			    COUNT(vw_BI_Contratos_Perdidos_Inativados[Contrato]),
+			    AND(vw_BI_Contratos_Perdidos_Inativados[Perdido] = BLANK(),
+			    vw_BI_Contratos_Perdidos_Inativados[Registros a corrigir] = 0))
+		formatString: 0
+		lineageTag: 1ccf47b4-84e6-4148-8278-f9569729ac78
+
+	measure Tot_Parceria_Grupo = ```
+			
+			    CALCULATE(
+			    SUMX(
+			        SUMMARIZE(
+			            FILTER('Contratos dia a dia', 'Contratos dia a dia'[ID do contrato] > 0),
+			            'Contratos dia a dia'[ID do grupo],
+			            "Parceria",DISTINCTCOUNT('Contratos dia a dia'[Data])),
+			            [Parceria]))
+			```
+		formatString: 0
+		lineageTag: 33ea3fef-42bc-43f0-9de9-c5893e1ecebf
+
+	measure Tempo_P/Periodo =
+			
+			var Qtd_Blocos = MAX('Contratos dia a dia'[Bloco do grupo])
+			return
+			DIVIDE([Tot_Parceria_Grupo],Qtd_Blocos)
+		formatString: 0
+		lineageTag: afdade27-0d2b-4506-a8df-7019a66507d1
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Periodo_Parceria = MAX('Contratos dia a dia'[Bloco do grupo])
+		formatString: 0
+		lineageTag: f20e8320-1442-4b33-af57-0c777e294dad
+
+	measure Tempo_Medio_Parceria = ```
+			
+			DIVIDE([Tot_Parceria_Grupo], [Qtd_GrpCLi])
+			
+			```
+		lineageTag: 8eab34f7-2fdd-463c-82dd-c3766eb8f379
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tempo_Medio_P/Parceria =
+			
+			VAR Total = SUMX(
+			    DISTINCT('Contratos dia a dia'[ID do grupo]),[Tempo_P/Periodo])
+			Return
+			DIVIDE(Total,[Qtd_GrpCLi],0)
+		lineageTag: 9f6d2c87-908e-4877-9caf-3e20e85e22ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Qtd_GrpCLi = DISTINCTCOUNTNOBLANK('Contratos dia a dia'[ID do grupo])
+		formatString: 0
+		lineageTag: a776d15a-9a79-4d7d-b2c7-5f03d81d2129
+
+	measure Tot_Contratos =
+			
+			DISTINCTCOUNTNOBLANK('Contratos dia a dia'[ID do contrato])
+		formatString: 0
+		lineageTag: cc549520-2c44-442b-a9c4-8c437ae09af4
+
+	measure Tot_Contratos_Variacao = ```
+			
+			var QtdAnter = CALCULATE([Tot_Contratos],DATEADD(dCalendario[Date],-1,YEAR))  
+			var QtdAtual = [Tot_Contratos]
+			var Variacao = QtdAtual - QtdAnter
+			var QtdTotal = [Tot_Contratos]
+			
+			Return
+			    SWITCH(
+			        TRUE(),
+			        QtdAnter > QtdAtual,Variacao,
+			        QtdAtual)
+			```
+		formatString: 0
+		lineageTag: 99c7a697-250d-42b9-ab61-5349f51e8197
+
+	measure Tempo_P/Periodo_Emp =
+			
+			var Qtd_Blocos = MAX('Contratos dia a dia'[Bloco da empresa Processor])
+			return
+			DIVIDE([Tot_Parceria_Emp],Qtd_Blocos)
+		lineageTag: 8890e41a-c2ce-4b54-8dcb-8ff822b280cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Qtd_EmpProc = DISTINCTCOUNTNOBLANK('Contratos dia a dia'[ID da empresa Processor])
+		formatString: 0
+		lineageTag: 01d00b8c-63b7-47c1-8efd-a1105a285db9
+
+	measure Tempo_Medio_Parceria_Emp =
+			
+			DIVIDE([Tot_Parceria_Grupo], [Qtd_GrpCLi])
+		lineageTag: da86c8ff-1968-47ed-9008-49013b11a800
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tot_Parceria_Emp =
+			
+			SWITCH(
+			     TRUE(),
+			     ISINSCOPE('Contratos dia a dia'[ID do grupo]),[Tot_Parceria_Grupo],
+			     [Tempo_Medio_Parceria_Emp])
+		formatString: 0
+		lineageTag: 49517c97-b8bc-4394-bbc2-025ea5410c87
+
+	measure Tempo_Medio_P/Parceria_Emp =
+			
+			VAR Total = SUMX(
+			    DISTINCT('Contratos dia a dia'[ID do grupo]),[Tempo_P/Periodo_Emp])
+			Return
+			DIVIDE(Total,[Qtd_GrpCLi],0)
+		lineageTag: a120a1ae-8238-4d1e-9437-03bf8aa6e25b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Churn_Simple = ```
+			
+			var QtdAnter = [Qtd_Clientes_Anter]
+			var QtdAtual = [Qtd_Clientes]
+			var QtdNovo  = [Qtd Novos Clientes]
+			var QtdPerd  = [Qtd Perdidos Clientes]
+			var Divisor  = QtdNovo+QtdAnter
+			Return
+			DIVIDE(QtdPerd,Divisor)
+			
+			```
+		lineageTag: b7bb71ce-0259-4c94-a149-994c1e65d8b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cancelados_Simple = ```
+			
+			var QtdAnter = CALCULATE([Qtd_Clientes],DATEADD(dCalendario[Date],-1,MONTH))  
+			var QtdAtual = [Qtd_Clientes]
+			var Variacao =  QtdAtual - QtdAnter
+			var QtdCliPerd = IF(Variacao < 0 , Variacao * -1 , 0)
+			Return
+			QtdCliPerd
+			```
+		lineageTag: ccf41e82-8e2f-4c4d-8520-bee0bbc9a409
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Qtd_Clientes = ```
+			
+			var Calculo = 
+			CALCULATE(
+			  DISTINCTCOUNTNOBLANK(
+			        'Contratos dia a dia'[ID do grupo]), 
+			            AND('Contratos dia a dia'[ID do contrato] > 0,
+			            'Contratos dia a dia'[Flag_Retroceder] = 0
+			    )
+			)
+			return
+			IF(Calculo < 0 , 0 ,Calculo)
+			```
+		formatString: 0
+		lineageTag: a7a57597-c319-48ec-bfc6-6560b2542832
+
+	measure 'Total Clientes' = CALCULATE([Qtd_GrpCLi],ALL('Contratos dia a dia'))
+		formatString: 0
+		lineageTag: 786f46b6-16ae-477f-9d6e-3df804860add
+
+	measure Churn_Multiple = ```
+			
+			var QtdAnter = [Qtd_Clientes_Anter]
+			var QtdAtual = [Qtd_Clientes]
+			var QtdNovo  = [Qtd Novos Clientes]
+			var QtdPerd  = [Qtd Acumulada Perdidos]
+			var Divisor  = QtdNovo+QtdAnter
+			Return
+			DIVIDE(QtdPerd,Divisor)
+			
+			```
+		lineageTag: 5670d417-35f2-4ec2-8d45-b2eaf069a14a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Churn_Final = ```
+			
+			var Selecao1 = SELECTEDVALUE(dCalendario[Mes Completo])
+			var Selecao2  = DATEDIFF(min(dCalendario[Date]),max(dCalendario[Date]),MONTH)+1
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    AND(ISBLANK(Selecao1),Selecao2 =12),[Churn_Multiple],
+			    [Churn_Simple]
+			) 
+			```
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: 88279eda-480e-47a8-b109-a1d0d59b3dc5
+
+	measure Cancelados_Final = ```
+			
+			
+			var Selecao = SELECTEDVALUE(dCalendario[Mes Completo])
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Selecao),[Cancelados_Multiple],
+			    [Cancelados_Simple]
+			)    
+			
+			```
+		formatString: 0
+		lineageTag: cb09c2aa-9cc2-4490-ae0d-7afec4dc6c95
+
+	measure Cancelados_Multiple = ```
+			
+			VAR Dif_Day     = DATEDIFF(MIN(dCalendario[Date]),MAX(dCalendario[Date]),DAY)
+			var DataFim     = MIN(dCalendario[Date]) - 1
+			var DataIni     = MIN(dCalendario[Date]) - (Dif_Day+1)
+			VAR QtdAnter    = 
+			    CALCULATE(
+			    [Qtd_Clientes],
+			    DATESBETWEEN(dCalendario[Date],DataIni,DataFim))
+			
+			var QtdAtual =  [Qtd_Clientes]
+			var Variacao =  QtdAtual - QtdAnter
+			var QtdCliPerd = IF(Variacao < 0 , Variacao * -1 ,0)
+			
+			return
+			QtdCliPerd 
+			
+			```
+		formatString: 0
+		lineageTag: 19463e8f-b778-4deb-8d1c-0f4dfb6e707f
+
+	measure 'Qtd Acumulada Clientes' = ```
+			
+			
+			var DataIni    = DATEADD(FIRSTDATE(dCalendario[Date]),-1,MONTH)
+			var DataFim    = DataIni+27
+			var Resultado  =
+			    CALCULATE(
+			            [Qtd_Clientes],
+			            filter(
+			                all(dCalendario),
+			                and(dCalendario[Date] >= DataIni , dCalendario[Date] <= DataFim))
+			            )
+			return
+			Resultado
+			
+			```
+		formatString: 0
+		lineageTag: 732a8fb1-1f90-47c7-b914-8ef5ca579b6a
+
+	measure Qtd_Clientes_Anter = ```
+			
+			CALCULATE( 
+			    [Qtd_Clientes], 
+			    'Contratos dia a dia'[Razão do status] IN { "Ativo", "Ativo vencido" },
+			    REMOVEFILTERS('Contratos dia a dia'[Fab_Nome_Fabricante]),
+			    DATEADD(FIRSTDATE(dCalendario[Date]),-1,MONTH)
+			)
+			```
+		formatString: 0
+		lineageTag: cb626fea-b7b6-41fe-8bb4-9a505feba6d1
+
+	measure 'Qtd Novos Clientes' = ```
+			
+			VAR DistinctGroups = 
+			    DISTINCT('Contratos dia a dia'[ID do grupo])
+			
+			VAR NewClientsCount = 
+			    COUNTROWS(
+			        FILTER(
+			            DistinctGroups,
+			            ISBLANK(
+			                CALCULATE([Qtd_Clientes_Anter])
+			            )
+			        )
+			    )
+			
+			RETURN
+			    COALESCE(NewClientsCount, 0)
+			```
+		formatString: 0
+		lineageTag: 261a3f66-03fd-4b66-bc75-3c37ec7bceb5
+
+	measure 'Qtd Perdidos Clientes' = ```
+			
+			var Resultado = 
+			COUNTROWS(
+			    FILTER(
+			      ALL('Contratos dia a dia'[ID do grupo]),
+			        IF(
+			        [Qtd_Clientes] = 0 &&
+			        [Qtd_Clientes_Anter] > 0 &&
+			        [ClienteAtivo] <> "1" ,
+			        1,0) 
+			    = 1  )
+			)
+			return
+			Resultado
+			```
+		formatString: 0
+		lineageTag: 55ec26a5-5a5a-4e70-92e8-beb7cb48c7ae
+
+	measure Medida = ```
+			
+			SUMX(
+			ADDCOLUMNS(
+			  VALUES('Contratos dia a dia'[Data]),
+			  "Tot",[Qtd Novos Clientes]), [Tot])
+			
+			```
+		formatString: 0
+		lineageTag: 329e165f-08ab-4900-86e5-d7b5eb618446
+
+	measure 'Qtd Acumulada Perdidos' =
+			
+			var DataIni    = DATEADD(FIRSTDATE(dCalendario[Date]),-1,MONTH)
+			var DataFim    = DataIni+27
+			var Resultado  =
+			sumx(
+			    ALL(dCalendario[Mes Completo]),
+			    ([Qtd_Clientes_Anter]+[Qtd Novos Clientes])-[Qtd_Clientes] )
+			return
+			Resultado
+		formatString: 0
+		lineageTag: 4597fe06-8ef6-46f8-ba8b-7172967b4c55
+
+	measure 'Qtd Perdidos Final' = ```
+			
+			var Selecao1 = SELECTEDVALUE(dCalendario[Mes Completo])
+			var Selecao2  = DATEDIFF(min(dCalendario[Date]),max(dCalendario[Date]),MONTH)+1
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    AND(ISBLANK(Selecao1),Selecao2 =12),[Qtd Acumulada Perdidos],
+			    [Qtd Perdidos Clientes]
+			) 
+			```
+		formatString: 0
+		lineageTag: acb13be8-39ce-47cd-bad8-c9917c03b759
+
+	measure Qtd_ContrError =
+			
+			CALCULATE(
+			    COUNT(vw_BI_Contratos_Perdidos_Inativados[Contrato]),
+			    vw_BI_Contratos_Perdidos_Inativados[Registros a corrigir] = 1)
+		formatString: 0
+		lineageTag: eeca3e50-6610-4bc9-bc14-37c3cf9a6cfd
+
+	measure Insc_GrpCli = ```
+			
+			    SWITCH(
+			        TRUE(),
+			        ISINSCOPE(vw_BI_Contratos_Novos[Contrato]),SELECTEDVALUE(vw_BI_Contratos_Novos[Grupo do Cliente]),
+			        BLANK())
+			```
+		lineageTag: c87840b2-8806-43bf-8191-f2c57d4fa399
+
+	measure Insc_Recorr = ```
+			
+			    SWITCH(
+			        TRUE(),
+			        ISINSCOPE(vw_BI_Contratos_Novos[Contrato]),SELECTEDVALUE(vw_BI_Contratos_Novos[TipoFat]),
+			        BLANK())
+			```
+		lineageTag: 183d3e6a-4e6a-4ddb-970d-547f5dfdf41d
+
+	measure Tot_Perd/Inat =
+			
+			[Qtd_ContrInat] + [Qtd_ContrPerd]
+		formatString: 0
+		lineageTag: de2b9aaa-c999-41bd-9ac6-c954ee1f99fd
+
+	measure ClienteAtivo = MAX('Contratos dia a dia'[Status do contrato])
+		lineageTag: fad611c6-6b82-4cea-b7ac-62c7b7f205f7
+
+	measure 'Vlr Parcela' =
+			
+			var vlrpedi = SUM(Pedidos[Valor do pedido])
+			var numparc = COUNT(Pedidos[ID do pedido])
+			return
+			DIVIDE(vlrpedi,numparc,0)
+		lineageTag: 687b0d29-1b8a-4c61-8ff8-9701c0b322f2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Formato Pt-BR' = "#,##0"
+		lineageTag: 0ab23f73-c873-4f4e-ba74-60f793e35525
+
+	measure 'Grupos Perdidos Novo' =
+			
+			CALCULATE(
+			        DIVIDE([Qtd_Clientes_Anter] + [Qtd_Clientes_Anter - Perdidos] + [Qtd_Clientes_Anter +],3,0))
+		lineageTag: 711f6d55-e67f-4c0f-a376-9c0a01cefc35
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Qtd_Clientes_Anter_Card = ```
+			
+			CALCULATE( 
+			    [Qtd_Clientes], 
+			    'Contratos dia a dia'[Razão do status] IN { "Ativo", "Ativo vencido" },
+			    DATEADD(FIRSTDATE(dCalendario[Date]),-1,MONTH)
+			)
+			```
+		formatString: 0
+		lineageTag: 80288bf9-cd1e-475c-a882-e452d4a9a750
+
+	measure Tot_Ligacoes = sum('Ligações'[Ligacoes])
+		formatString: 0
+		lineageTag: 66975bac-a8ca-4971-9b80-b025c3d3da36
+
+	measure Tot_Visitas =
+			
+			sum(Visitas[Visitas])
+		formatString: 0
+		lineageTag: 7d7f028b-03ed-45ac-b1f2-a97c5f655878
+
+	measure 'Media Sentiment Score' =
+			
+			CALCULATE(
+			    AVERAGE('Percepções'[New Score]),
+			    'Percepções'[Tipo] = "Sentimento"
+			)
+		formatString: 0.00
+		lineageTag: 6dcffb77-c6dc-4a06-b361-b470e431e6ec
+
+	measure 'Grupos Contatados' = ```
+			
+			--DISTINCTCOUNT('Ligações'[ID Grupo])
+			var Resultado = 
+			COUNTROWS(
+			    FILTER(
+			      ALL(Grupos[ID do grupo]),
+			        IF(
+			        [Total de Contatos] > 0,
+			        1,0) 
+			    = 1  )
+			)
+			return
+			Resultado
+			```
+		formatString: 0
+		lineageTag: 47404403-7267-4039-a352-85ff4c2f78c2
+
+	measure PercepxContrato =
+			
+			CALCULATE(
+			    [Tot_Contratos],
+			    USERELATIONSHIP('Percepções'[Id Grupo],'Contratos dia a dia'[ID do grupo])
+			)
+		formatString: 0
+		lineageTag: 69af491b-01c9-4648-ba25-6f23a96a140c
+
+	measure PercepxLig =
+			
+			CALCULATE(
+			    [Tot_Ligacoes],
+			    USERELATIONSHIP('Percepções'[Id Grupo],'Ligações'[ID Grupo])
+			)
+		formatString: 0
+		lineageTag: ab6f9e48-53ee-49f7-9f6c-583ed3468bab
+
+	measure PercepxVisit =
+			
+			CALCULATE(
+			    [Tot_Visitas],
+			    USERELATIONSHIP('Percepções'[Id Grupo],Visitas[ID Grupo])
+			)
+		formatString: 0
+		lineageTag: 97fa15e1-22f3-4c73-a3a9-6cc9ab0145f4
+
+	measure PercepxClientesContat =
+			
+			CALCULATE(
+			    [Grupos Contatados],
+			    USERELATIONSHIP('Percepções'[Id Grupo],'Ligações'[ID Grupo])
+			)
+		formatString: 0
+		lineageTag: f0602637-36c8-4e62-9a82-a0753d7875b7
+
+	measure '% PercepxContrato' =
+			
+			DIVIDE(
+			    [PercepxContrato],[Tot_Contratos]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c148acfe-77be-402c-b053-4be40a9b302f
+
+	measure '% PercxContra x Geral' = ```
+			
+			var vTotalMes =
+			    CALCULATE(
+			    [Tot_Contratos],
+			    ALL('Contratos dia a dia'[Fab_Nome_Fabricante])
+			    )
+			var vPercxContr = 
+			    [PercepxClientesContat]
+			return
+			DIVIDE(vPercxContr,vTotalMes)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7397dd57-c83e-4b2a-a083-090ce30462f1
+
+	measure '% Contatados x Geral' = ```
+			
+			 DIVIDE(
+			        [Grupos Contatados],
+			        [Total Grupo Cliente Ativo]
+			 )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a8e961c3-2e03-4a8e-a1cd-ed91283dae48
+
+	measure 'Total PercepxContatos' = [PercepxVisit]+[PercepxLig]
+		formatString: 0
+		lineageTag: 170a60b4-2dfa-45c8-86c3-fcb0d1a668aa
+
+	measure 'Total Percepcoes' = COUNTROWS('Percepções')
+		formatString: 0
+		lineageTag: f6b82d43-c2e6-4663-a6be-afc8587fb184
+
+	measure '% Contato por vendor' = ```
+			
+			 DIVIDE([Total de Contatos],[Tot_Contratos])
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 89f9a72d-f01e-46a3-aace-c0cb831f5a75
+
+	measure 'Total de Contatos' = [Tot_Ligacoes]+[Tot_Visitas]
+		formatString: 0
+		lineageTag: a15d248c-669b-4db5-9984-f586e790b40a
+
+	measure 'Total de Oportunidades/CX' =
+			
+			CALCULATE(
+			    [Total Percepcoes],
+			    'Percepções'[Tipo] = "Oportunidade de melhoria/CX"
+			)
+		formatString: 0
+		lineageTag: 2896ab87-92de-4f79-95ad-9c4bbc1adf36
+
+	measure 'Total de Oportunidade venda' =
+			
+			CALCULATE(
+			    [Total Percepcoes],
+			    'Percepções'[Tipo] = "Oportunidade de venda"
+			)
+		formatString: 0
+		lineageTag: 50c95d45-e4a2-47fd-87dc-e8cd1f1f2904
+
+	measure 'Total de OPP e Sug' = ```
+			
+			CALCULATE(
+			    [Total Percepcoes],
+			    LEFT('Percepções'[Tipo],12) = "Oportunidade" || LEFT('Percepções'[Tipo],8) = "Sugestão inova" 
+			)
+			```
+		formatString: 0
+		lineageTag: 42c6b52f-9528-4ad8-9ac8-82f9e27c853f
+
+	measure 'Total de Riscos' =
+			
+			CALCULATE(
+			    [Total Percepcoes],
+			    LEFT('Percepções'[Tipo],5) = "Risco"
+			)
+		formatString: 0
+		lineageTag: d85e95c8-67db-45df-be32-9fab538b853a
+
+	measure 'Total de Sugestoes' = ```
+			
+			CALCULATE(
+			    [Total Percepcoes],
+			    LEFT('Percepções'[Tipo],8) = "Sugestão" 
+			)
+			```
+		formatString: 0
+		lineageTag: 94ede59b-efc0-4e11-b126-91fac8c20394
+
+	measure 'Total Acessos LiveCloud' =
+			
+			var vAcessos =
+			    CALCULATE(
+			        COUNTROWS('LiveCloud - GA4'),
+			        'LiveCloud - GA4'[Usuário Externo] = "1",
+			        USERELATIONSHIP('Contratos dia a dia'[ID do grupo],'LiveCloud - GA4'[Grupo Economico SIP ID])
+			    )
+			var vContrato = [Qtd. Contratos Ativos]
+			RETURN
+			IF( vContrato >= 1, COALESCE(vAcessos,0),BLANK())
+		formatString: 0
+		lineageTag: 48883ff5-e1f9-439a-8691-485a1d8e0321
+
+	measure 'Total Usuarios Ativos LiveCloud' =
+			
+			var vAtivos = CALCULATE(
+			    DISTINCTCOUNT('LiveCloud - GA4'[Email]),
+			    'LiveCloud - GA4'[Usuário Externo] = "1",
+			    USERELATIONSHIP('Contratos dia a dia'[ID do grupo],'LiveCloud - GA4'[Grupo Economico SIP ID])
+			)
+			var vContrato = [Qtd. Contratos Ativos]
+			RETURN
+			IF( vContrato >= 1, COALESCE(vAtivos,0),BLANK())
+		formatString: 0
+		lineageTag: 18060219-d560-43f6-a941-91fbfeb3e142
+
+	measure 'Total Page Views LiveCloud' =
+			
+			var vPage = CALCULATE(
+			    SUM('LiveCloud - GA4'[Page Views]),
+			    'LiveCloud - GA4'[Usuário Externo] = "1",
+			    USERELATIONSHIP('Contratos dia a dia'[ID do grupo],'LiveCloud - GA4'[Grupo Economico SIP ID])
+			)
+			
+			var vContrato = [Qtd. Contratos Ativos]
+			RETURN
+			IF( vContrato >= 1, COALESCE(vPage,0),BLANK())
+		formatString: 0
+		lineageTag: 906ecda7-03d9-4c4b-a75a-56ab847bc58c
+
+	measure 'Medida 2'
+		lineageTag: 12f1f804-aec9-4050-95a6-0058d3eee66c
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Classificacao Score' =
+			
+			SWITCH(
+			        TRUE(),
+			        ISBLANK([Media Sentiment Score]), BLANK(),
+			        [Media Sentiment Score] < 7 ,"Negativo",
+			        [Media Sentiment Score] < 9 ,"Neutro",
+			        "Positivo"
+			)
+		lineageTag: cefcfd29-f37f-4ba5-9504-719549f61b5a
+
+	measure 'Total Grupos LiveCloud' =
+			
+			var vPage = CALCULATE(
+			    DISTINCTCOUNT('LiveCloud - GA4'[Grupo Economico SIP ID]),
+			    'LiveCloud - GA4'[Usuário Externo] = "1",
+			    USERELATIONSHIP('Contratos dia a dia'[ID do grupo],'LiveCloud - GA4'[Grupo Economico SIP ID])
+			)
+			
+			var vContrato = [Qtd. Contratos Ativos]
+			RETURN
+			IF( vContrato >= 1, COALESCE(vPage,0),BLANK())
+		formatString: 0
+		lineageTag: e341f0ce-7901-479f-9511-d0edc795e69a
+
+	column -
+		lineageTag: d1999a0a-8651-4e0c-b243-d4b7e26080f1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [-]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition *Medidas-7e40e8b7-2c6d-4379-83e3-54106f7f3364 = calculated
+		mode: import
+		source = SELECTCOLUMNS(dCalendario,"-","")
+
+	annotation PBI_Id = e899b0b1825d46daa2364dc7d9387513
+

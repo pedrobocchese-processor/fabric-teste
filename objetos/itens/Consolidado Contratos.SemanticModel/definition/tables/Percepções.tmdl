@@ -1,0 +1,146 @@
+table Percepções
+	lineageTag: e93bd4cd-e6ad-48e2-9355-410c00b04b9e
+
+	column Tipo
+		dataType: string
+		lineageTag: 3db240f5-6bff-4c42-b06c-8ec2acf13cf3
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observação
+		dataType: string
+		lineageTag: 2abcb4ab-b0ef-4412-9e98-73a89346fe83
+		summarizeBy: none
+		sourceColumn: Observação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5b5c92bf-14c7-4a64-94cc-0ad619090556
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Id Grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 76eda519-5c80-4635-afed-421e826dbcb0
+		summarizeBy: none
+		sourceColumn: Id Grupo
+
+		annotation SummarizationSetBy = User
+
+	column 'Id Cliente'
+		dataType: int64
+		formatString: 0
+		lineageTag: d5a6bd9f-6ced-4577-b73b-f9c173d149e6
+		summarizeBy: none
+		sourceColumn: Id Cliente
+
+		annotation SummarizationSetBy = User
+
+	column Avaliador
+		dataType: string
+		lineageTag: f165ff8f-a184-4701-8b42-2daff0145fbd
+		summarizeBy: none
+		sourceColumn: Avaliador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Observação Completa'
+		dataType: string
+		lineageTag: ec634c62-f923-4e3f-81ec-133c05436f59
+		summarizeBy: none
+		sourceColumn: Observação Completa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Score sentiment'
+		dataType: double
+		lineageTag: 054d494a-3f16-4575-877c-10eb4c2c8ccc
+		summarizeBy: sum
+		sourceColumn: Score sentiment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ID Usuario'
+		dataType: int64
+		formatString: 0
+		lineageTag: a0b4bc83-362b-4095-a257-8011989d8f50
+		summarizeBy: none
+		sourceColumn: ID Usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Classificação =
+			
+			SWITCH(
+			        TRUE(),
+			        [New Score] < 7 ,"Negativo",
+			        [New Score] < 9 ,"Neutro",
+			        "Positivo"
+			)
+		lineageTag: 45a81264-7415-4334-8849-14822edbd7ef
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Id Fabricante'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a243f39-7791-4b03-b481-c0e39200b478
+		summarizeBy: none
+		sourceColumn: Id Fabricante
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor = RELATED(Fabricantes[Nome])
+		lineageTag: 6818197a-7ebc-4215-ae16-d707b5bc6987
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Score' =
+			
+			ROUND(
+			    IF(
+			            LEFT('Percepções'[Observação],8) = "Resposta",
+			            VALUE(MID('Percepções'[Observação], 16,3)),
+			            'Percepções'[Score sentiment] * 10
+			        ),
+			0)
+		lineageTag: 5a83a4a1-eea7-4ffd-86d1-8112433aacf1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Percepções = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "Processor", [Query="#(lf)SELECT  #(lf)#(tab) ppt.Perc_Tipo_Descricao, #(lf)#(tab) pp.Perc_Observacao,  #(lf)#(tab) pp.Perc_DateTime_Inc, #(lf)#(tab) pp.Perc_Codigo_Grupo, #(lf)#(tab) pp.Perc_Codigo_Cliente,#(lf)     pp.Perc_Codigo_Fabricante,#(lf)#(tab) f.fun_Nome ,#(lf)#(tab) fun_Codigo as CodigoUser #(lf)FROM #(lf)#(tab)Perfil_Percepcao pp#(lf)JOIN #(lf)#(tab)Perfil_Percepcao_Tipo ppt ON pp.Perc_Tipo = ppt.Perc_Tipo_Codigo#(lf)JOIN #(lf)#(tab)Funcionarios f ON f.fun_Codigo = pp.Perc_Usuario_Inc#(lf)#(tab)WHERE #(tab)pp.Perc_Tipo <> '4'#(lf)#(lf)UNION#(lf)#(lf)SELECT  #(lf)#(tab)#(tab)'Oportunidade de venda' as Perc_Tipo_Descricao, #(lf)#(tab)#(tab) cast(opo_Problema_Negocio as varchar) as Perc_Observacao,  #(lf)#(tab)#(tab) opo_DateTime_Inc  as Perc_DateTime_Inc, #(lf)#(tab)#(tab) opo_Grupo as Perc_Codigo_Grupo, #(lf)#(tab)#(tab) opo_Cliente as Perc_Codigo_Cliente,#(lf)#(tab)#(tab) '' as Perc_Codigo_Fabricante,#(lf)#(tab)#(tab) fun_Nome ,#(lf)#(tab)#(tab) fun_Codigo as CodigoUser #(lf)#(lf)FROM#(lf)Oportunidade#(lf)LEFT JOIN Oportunidade_Papeis pap ON opo_Codigo =  opa_cod_opp AND opa_cod_papel = '10'#(lf)LEFT JOIN Funcionarios ON fun_codigo = opa_cod_funcionario"]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Perc_DateTime_Inc", type date}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"Perc_Tipo_Descricao", "Tipo"}, {"Perc_Observacao", "Observação"}, {"Perc_DateTime_Inc", "Data"}, {"Perc_Codigo_Grupo", "Id Grupo"}, {"Perc_Codigo_Cliente", "Id Cliente"}, {"fun_Nome", "Avaliador"}, {"CodigoUser", "ID Usuario"}, {"Perc_Codigo_Fabricante", "Id Fabricante"}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Colunas Renomeadas", "Observação Completa", each [Tipo]&": "&[Observação]),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"Observação Completa", type text}}),
+				    #"Score sentiment aplicado" = AIFunctions.PostProcess(Table.AddColumn(#"Tipo Alterado1", "Score sentiment", each #"Score sentiment"([Observação Completa], "pt-BR")), "Score sentiment", "CognitiveServices.ScoreSentimenttexttext") meta [FunctionBrowser="TextAnalytics"],
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Score sentiment aplicado",{{"Score sentiment", type number}}),
+				    #"Texto Aparado" = Table.TransformColumns(#"Tipo Alterado2",{{"Observação", Text.Trim, type text}})
+				in
+				    #"Texto Aparado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

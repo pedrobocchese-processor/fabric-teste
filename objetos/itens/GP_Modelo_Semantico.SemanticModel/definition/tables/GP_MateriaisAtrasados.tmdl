@@ -1,0 +1,286 @@
+table GP_MateriaisAtrasados
+	lineageTag: a5c9aa6f-268e-42a6-94b5-b47a1fb0041b
+
+	column Título
+		dataType: string
+		lineageTag: b3ea7b66-30d4-4965-b223-91134e8f2a0a
+		summarizeBy: none
+		sourceColumn: Título
+
+		annotation SummarizationSetBy = Automatic
+
+	column RelatorioID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d5181ca-d61b-40f2-b736-0d72b36acd81
+		summarizeBy: none
+		sourceColumn: RelatorioID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: 0ac47173-c7a7-4efe-8cae-709efdccf11a
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: fce2ee06-5f7e-43ec-847c-3088bc085d5c
+		summarizeBy: sum
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situacao
+		dataType: string
+		lineageTag: 9b27d954-9810-4a8e-ae72-64b86b8ef929
+		summarizeBy: none
+		sourceColumn: Situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocalInstalacao
+		dataType: string
+		lineageTag: bd010039-dd46-48e4-ad25-003d37f9a6c0
+		summarizeBy: none
+		sourceColumn: LocalInstalacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdemServico
+		dataType: string
+		lineageTag: 4dbb7e03-aadd-40f6-9220-95c836548e47
+		summarizeBy: none
+		sourceColumn: OrdemServico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 5379f311-89f7-4643-a0fa-a876cb066b1b
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProcessoAquisicao
+		dataType: string
+		lineageTag: 5d353571-906e-40df-be8c-0fb9fddb85dc
+		summarizeBy: none
+		sourceColumn: ProcessoAquisicao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Acao
+		dataType: string
+		lineageTag: 0a5049cb-12bc-4359-af41-f24ea903e950
+		summarizeBy: none
+		sourceColumn: Acao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Responsavel
+		dataType: string
+		lineageTag: 548b447b-1197-4ed1-9c2a-73c4b4060865
+		summarizeBy: none
+		sourceColumn: Responsavel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pressione Delete para excluir o ícone.'
+		dataType: string
+		lineageTag: 87f93c71-7db5-433a-87aa-3cb2a68b7c59
+		summarizeBy: none
+		sourceColumn: Pressione Delete para excluir o ícone.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID de Ativo de Conformidade'
+		dataType: string
+		lineageTag: 095fedea-a0b4-47a7-beb1-e40dd44eac6b
+		summarizeBy: none
+		sourceColumn: ID de Ativo de Conformidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: eab798f2-e511-4f26-b7cb-bdada3a81ba4
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Conteúdo'
+		dataType: string
+		lineageTag: b1b18835-1dc9-404b-bd4e-8d732e25dd8a
+		summarizeBy: none
+		sourceColumn: Tipo de Conteúdo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modificado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6cf206c1-63ed-4317-9ecf-c80cb239f9c8
+		summarizeBy: none
+		sourceColumn: Modificado
+
+		variation Variação
+			isDefault
+			relationship: 0b68c3f7-1d3d-4c48-87d0-5c82440c24dc
+			defaultHierarchy: LocalDateTable_529406f8-dc6b-42da-ab30-43086d1b2517.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d85bde83-818c-49a0-adad-ddf41576b83e
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variação
+			isDefault
+			relationship: 423a9cdf-7369-477c-bc4f-6d8a013aec3e
+			defaultHierarchy: LocalDateTable_6b70c8ed-070d-42ef-b125-3265b1d59ab2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Criado por'
+		dataType: string
+		lineageTag: da35621b-f84a-498f-babd-7e6467177a50
+		summarizeBy: none
+		sourceColumn: Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modificado por'
+		dataType: string
+		lineageTag: c1881934-a7f1-467f-b466-18cba5dc27e8
+		summarizeBy: none
+		sourceColumn: Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versão
+		dataType: string
+		lineageTag: a36f31db-5f91-4d2c-bc41-4ba37f54b2fa
+		summarizeBy: none
+		sourceColumn: Versão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anexos
+		dataType: string
+		lineageTag: bb1c872d-fdc5-4e54-afe2-d6c0c5eeb1b1
+		summarizeBy: none
+		sourceColumn: Anexos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Editar
+		dataType: string
+		lineageTag: 69a4e024-bb73-4f04-b1bb-90ac07ccd6c7
+		summarizeBy: none
+		sourceColumn: Editar
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 239e53b3-7846-4c53-8acd-cd6f11eb1b34
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Itens Filhos'
+		dataType: string
+		lineageTag: 71e852bc-b856-42eb-90b5-a4a0412d39cd
+		summarizeBy: none
+		sourceColumn: Contagem de Itens Filhos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Elementos Filho da Pasta'
+		dataType: string
+		lineageTag: b9cbda8d-51c9-40f7-82d5-9caaa03a7a98
+		summarizeBy: none
+		sourceColumn: Contagem de Elementos Filho da Pasta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Configuração do rótulo'
+		dataType: string
+		lineageTag: 2cfaabb2-f593-4d26-94ee-7598e8f303a7
+		summarizeBy: none
+		sourceColumn: Configuração do rótulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção'
+		dataType: string
+		lineageTag: b83b6400-0628-4671-bb1e-23e373e14750
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção Aplicado'
+		dataType: string
+		lineageTag: f7669c3e-c5f4-44ce-bc31-8e4247d81457
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção Aplicado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo aplicado por'
+		dataType: string
+		lineageTag: 98d5d7db-0de8-42c8-a2db-25534cf3a76d
+		summarizeBy: none
+		sourceColumn: Rótulo aplicado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'O item é um Registro'
+		dataType: string
+		lineageTag: 7b300393-36f8-4b39-9f5a-efef4263e664
+		summarizeBy: none
+		sourceColumn: O item é um Registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Criado por'
+		dataType: string
+		lineageTag: dd2ad300-8f8f-42d2-82eb-ed6f6d7453fb
+		summarizeBy: none
+		sourceColumn: Aplicativo Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Modificado por'
+		dataType: string
+		lineageTag: ca551f7d-59cd-417b-a899-4261e4a1989c
+		summarizeBy: none
+		sourceColumn: Aplicativo Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GP_MateriaisAtrasados = m
+		mode: import
+		source =
+				let
+				  Origem = SharePoint.Tables("https://processor1.sharepoint.com/sites/msteams_9a0616_085088", [Implementation = "2.0", ViewMode = "All"]),
+				  #"Navegação 1" = Origem{[Id = "03854f85-920e-4b30-8d8e-b12f6893c54f"]}[Items],
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Navegação 1", {{"RelatorioID", Int64.Type}, {"Ordem", Int64.Type}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,41 @@
+table Pilares
+	lineageTag: 4264949c-5b3e-4cf6-80e2-10cc5e75f4e7
+
+	column 'ID do pilar'
+		dataType: int64
+		formatString: 0
+		lineageTag: eef2a327-dd88-4a28-84ea-ddb2543e8fd3
+		summarizeBy: none
+		sourceColumn: ID do pilar
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pilar
+		dataType: string
+		lineageTag: 026997f4-b7fc-422a-ba6d-de4d52ea714f
+		summarizeBy: none
+		sourceColumn: Pilar
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status do pilar'
+		dataType: string
+		lineageTag: bdab3556-7012-40ef-9d67-d1d5a4905444
+		summarizeBy: none
+		sourceColumn: Status do pilar
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Pilares-c7d3a226-5e2a-4bad-be4b-5830f969078c = m
+		mode: import
+		queryGroup: Dimensoes
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "processor", [Query="SELECT * from sipm.vw_BI_Pilar_v1", CommandTimeout=#duration(0, 4, 0, 0)])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

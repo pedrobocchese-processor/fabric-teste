@@ -1,0 +1,84 @@
+table D_Contratos_Status
+	lineageTag: 92a4ae82-f6ae-4026-b6d3-755f5d8a388b
+
+	column cos_codigo
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f3db9a0-ce8e-486d-b2af-6572b4263cf5
+		summarizeBy: sum
+		sourceColumn: cos_codigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column cos_codigo_contrato
+		dataType: int64
+		formatString: 0
+		lineageTag: ccf5be8f-e708-4ebe-80f6-4f1fc3908cc3
+		summarizeBy: none
+		sourceColumn: cos_codigo_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column cos_data_inicio
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 027f26a6-3f23-4f2f-b0d7-a4d52b90ea0b
+		summarizeBy: none
+		sourceColumn: cos_data_inicio
+
+		variation Variation
+			isDefault
+			relationship: cef4a917-0061-40d0-a23a-e5e4d668d4e9
+			defaultHierarchy: LocalDateTable_89d1d6d1-644d-4129-8512-cabd2153d9d0.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column cos_data_fim
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e08529a5-03d1-4959-aa35-66fdd720c1a9
+		summarizeBy: none
+		sourceColumn: cos_data_fim
+
+		variation Variation
+			isDefault
+			relationship: ba0fe56c-2772-4104-8a84-9203c2418b47
+			defaultHierarchy: LocalDateTable_453a8d0d-2d3b-4dc6-aa1f-e39fff7d4cf6.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column cos_data_modificacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3f6ea7ba-5559-47fc-a6eb-c1f37f2ee683
+		summarizeBy: none
+		sourceColumn: cos_data_modificacao
+
+		variation Variation
+			isDefault
+			relationship: dbd5c8ea-596c-46df-b408-8d7c31bd8b06
+			defaultHierarchy: LocalDateTable_32ee2baa-b8b5-413b-9294-fff93adc1000.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column cos_status
+		dataType: string
+		lineageTag: a28bc809-f75e-4c58-8f7a-c63fa5bb675d
+		summarizeBy: none
+		sourceColumn: cos_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Contratos_Status = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor"),
+				    dbo_Contratos_Status = Fonte{[Schema="dbo",Item="Contratos_Status"]}[Data]
+				in
+				    dbo_Contratos_Status
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

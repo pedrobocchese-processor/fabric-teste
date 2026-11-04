@@ -1,0 +1,53 @@
+table PrmLinhas
+	lineageTag: 9344129f-aaf8-41fa-9279-66e0652f7442
+
+	column Parâmetro
+		lineageTag: 812bc0f1-542a-45bc-9855-ff21ec56a7da
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Campos'
+		isHidden
+		lineageTag: 8026a44a-e3e5-4b95-8b3b-bd59e10df969
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: db59883a-1a8b-4729-b2ae-06a1583d0718
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PrmLinhas = calculated
+		mode: import
+		source = ```
+				{
+				    ("Porte", NAMEOF('Grupos'[Classificação do grupo]), 0),
+				    ("Grupo", NAMEOF('Grupos'[Grupo]), 1),
+				    ("Ramo", NAMEOF('Clientes'[Ramo]), 2),
+				    ("Estado", NAMEOF('Clientes'[Estado]), 3),
+				    ("Cliente", NAMEOF('Clientes'[Cliente]), 4),
+				    ("Vendor", NAMEOF(Fabricantes[Nome]), 5) 
+				}
+				```
+
+	annotation PBI_Id = f9c0d3264a9c4b3da4b8363d30fbc9f1
+

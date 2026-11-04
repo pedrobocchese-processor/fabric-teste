@@ -1,0 +1,538 @@
+table D_Clientes
+	lineageTag: 5ba184a1-0824-461c-9719-0efff79f848e
+
+	column Cli_Codigo_Cliente
+		dataType: int64
+		formatString: 0
+		lineageTag: 47856b48-6d43-4404-a5c0-feaef22c9058
+		summarizeBy: none
+		sourceColumn: Cli_Codigo_Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_CGC
+		dataType: string
+		lineageTag: 58936135-6817-429a-bc30-a35822f471fa
+		summarizeBy: none
+		sourceColumn: Cli_CGC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Razao_Social
+		dataType: string
+		lineageTag: 1421910e-9e6e-4a89-bfe2-a6e7ed2fd5d3
+		summarizeBy: none
+		sourceColumn: Cli_Razao_Social
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Endereco
+		dataType: string
+		lineageTag: df719961-189e-4e78-a132-76fe23837896
+		summarizeBy: none
+		sourceColumn: Cli_Endereco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Cidade
+		dataType: string
+		lineageTag: 0c0da1ea-6acf-445e-b6df-8f45cfb71c5f
+		summarizeBy: none
+		sourceColumn: Cli_Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Estado
+		dataType: string
+		lineageTag: ec7d8efb-52a4-448b-9019-d19751ef384f
+		summarizeBy: none
+		sourceColumn: Cli_Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Cep
+		dataType: string
+		lineageTag: 825c4c71-9130-4941-8f40-78ecf3ab2eb8
+		summarizeBy: none
+		sourceColumn: Cli_Cep
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Fone1
+		dataType: string
+		lineageTag: 92f735da-d801-4290-9866-16cc1f9e04ec
+		summarizeBy: none
+		sourceColumn: Cli_Fone1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Fone2
+		dataType: string
+		lineageTag: 3048a5ba-3381-4045-b66b-03d698699a20
+		summarizeBy: none
+		sourceColumn: Cli_Fone2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Fax
+		dataType: string
+		lineageTag: 62161912-8d40-42bb-a69e-caa55e530a5a
+		summarizeBy: none
+		sourceColumn: Cli_Fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Inscricao
+		dataType: string
+		lineageTag: fec63560-5465-43ab-a500-0706aaa9ec9c
+		summarizeBy: none
+		sourceColumn: Cli_Inscricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Codigo_Classificacao
+		dataType: string
+		lineageTag: db7d4e74-7fa7-4a2a-98c4-052278f87551
+		summarizeBy: none
+		sourceColumn: Cli_Codigo_Classificacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Desc_Classificacao
+		dataType: string
+		lineageTag: 3b6e4070-cd22-496a-b675-7902ad305d38
+		summarizeBy: none
+		sourceColumn: Cli_Desc_Classificacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Codigo_Grupo
+		dataType: int64
+		formatString: 0
+		lineageTag: f3f88bbd-dd76-4e14-9622-ca2851f5d61d
+		summarizeBy: none
+		sourceColumn: Cli_Codigo_Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Endereco_Internet
+		dataType: string
+		lineageTag: ab852de3-e56b-4c05-93e5-cf1f8a321b40
+		summarizeBy: none
+		sourceColumn: Cli_Endereco_Internet
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Bairro
+		dataType: string
+		lineageTag: 5b2a8638-683f-4b4c-9023-c8f4187e4fa7
+		summarizeBy: none
+		sourceColumn: Cli_Bairro
+
+		annotation SummarizationSetBy = Automatic
+
+	column HCli_em_Debito
+		dataType: int64
+		formatString: 0
+		lineageTag: 6eee79d1-9b1e-476d-88a7-1de66cf55c14
+		summarizeBy: sum
+		sourceColumn: HCli_em_Debito
+
+		annotation SummarizationSetBy = Automatic
+
+	column HCli_Lim_Credito
+		dataType: int64
+		formatString: 0
+		lineageTag: d8d16ddf-c586-449f-bbb0-fe769df2526d
+		summarizeBy: sum
+		sourceColumn: HCli_Lim_Credito
+
+		annotation SummarizationSetBy = Automatic
+
+	column msrepl_synctran_ts
+		dataType: string
+		lineageTag: d521be13-6082-43dd-a924-b32def5714b6
+		summarizeBy: none
+		sourceColumn: msrepl_synctran_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Inativo
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c95f2c0-af5b-4f95-bdd3-6dfb770bbbf7
+		summarizeBy: sum
+		sourceColumn: Cli_Inativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_PJur
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e5d4a8f-65da-4919-96f9-6c5be004a6b6
+		summarizeBy: sum
+		sourceColumn: Cli_PJur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_PFis
+		dataType: int64
+		formatString: 0
+		lineageTag: cdd0fb9a-3af5-45ba-908f-7db54e57eb3e
+		summarizeBy: sum
+		sourceColumn: Cli_PFis
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_KM
+		dataType: int64
+		formatString: 0
+		lineageTag: 53283b1f-437a-4145-b481-de494e3f994a
+		summarizeBy: sum
+		sourceColumn: Cli_KM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_HoraInicio
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: abfb5bba-fba1-480a-95b2-ad7d49baa1f8
+		summarizeBy: none
+		sourceColumn: Cli_HoraInicio
+
+		variation Variation
+			isDefault
+			relationship: 8c9abe42-de25-4256-84ea-f8b9196d6e37
+			defaultHierarchy: LocalDateTable_d19dc248-3090-4abe-b096-b0812348c6aa.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_HoraFim
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5121cc09-c685-4227-9648-8a7c9cbe5d72
+		summarizeBy: none
+		sourceColumn: Cli_HoraFim
+
+		variation Variation
+			isDefault
+			relationship: 0fb13c53-4af9-47a6-ab15-c1a9c81b9dfd
+			defaultHierarchy: LocalDateTable_92f1a48a-3360-4753-8bb4-822e55b15049.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_IntervaloInicio
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c2fe45fa-45c8-4df9-a3b4-821def12b772
+		summarizeBy: none
+		sourceColumn: Cli_IntervaloInicio
+
+		variation Variation
+			isDefault
+			relationship: d755df27-dc10-45a3-aedc-1e98ff23bb1b
+			defaultHierarchy: LocalDateTable_7f7bb7ac-ce71-44a4-a0f3-37f43e71bc95.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_IntervaloFim
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4b796ac1-0aad-44a3-8ef9-d7434eb828d7
+		summarizeBy: none
+		sourceColumn: Cli_IntervaloFim
+
+		variation Variation
+			isDefault
+			relationship: b25043fa-159c-40fb-b657-556f94cc27ff
+			defaultHierarchy: LocalDateTable_aeca72f1-9688-4314-acbb-faaa0fe0f9a1.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Codigo_Cidade
+		dataType: string
+		lineageTag: 56c2811a-1e3a-4ef9-a6e6-319d44341c10
+		summarizeBy: none
+		sourceColumn: Cli_Codigo_Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Simples
+		dataType: int64
+		formatString: 0
+		lineageTag: a0d8d8d1-e7eb-429d-95c3-7a6d4b40d6cc
+		summarizeBy: sum
+		sourceColumn: Cli_Simples
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Usuario
+		dataType: string
+		lineageTag: 987efd82-333a-4ac9-9161-f17ac0a70ba5
+		summarizeBy: none
+		sourceColumn: Cli_Usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Unidade
+		dataType: string
+		lineageTag: 71945401-95ca-42e8-9354-91315cd1c714
+		summarizeBy: none
+		sourceColumn: Cli_Unidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Email_Nfe
+		dataType: string
+		lineageTag: 2e3ed93b-d2f7-448b-afb5-f08b57afe83b
+		summarizeBy: none
+		sourceColumn: Cli_Email_Nfe
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Endereco_Nro
+		dataType: string
+		lineageTag: a9f2f99b-d601-42d5-a28a-9000c4fd6ac0
+		summarizeBy: none
+		sourceColumn: Cli_Endereco_Nro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_EnviaNfeContatoPedido
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d23c23a-7fb0-4101-922c-74a25b105885
+		summarizeBy: sum
+		sourceColumn: Cli_EnviaNfeContatoPedido
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_LogRevisaoFiscal
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e3ee8993-ed17-49af-b2f0-f52aaa9c0d53
+		summarizeBy: none
+		sourceColumn: Cli_LogRevisaoFiscal
+
+		variation Variation
+			isDefault
+			relationship: 2113f6d3-8497-483a-8686-d40233692aee
+			defaultHierarchy: LocalDateTable_30f89654-5f48-453b-9195-bd7868717238.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Endereco_Complemento
+		dataType: string
+		lineageTag: 198b46ab-f6bd-44a3-9e11-8d4a4ff5e9c3
+		summarizeBy: none
+		sourceColumn: Cli_Endereco_Complemento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Cidade_Descricao
+		dataType: string
+		lineageTag: 959529e9-342e-46b6-bb9c-14b19dc22a84
+		summarizeBy: none
+		sourceColumn: Cli_Cidade_Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Estado_Sigla
+		dataType: string
+		lineageTag: 270ae2a0-b31f-457a-af76-bb91bfa2bdea
+		summarizeBy: none
+		sourceColumn: Cli_Estado_Sigla
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Pais
+		dataType: string
+		lineageTag: 270bb6e4-adbf-44cc-b920-d6726e78e607
+		summarizeBy: none
+		sourceColumn: Cli_Pais
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Estado_Descricao
+		dataType: string
+		lineageTag: e6256016-6d86-48a7-8f46-be3239380faf
+		summarizeBy: none
+		sourceColumn: Cli_Estado_Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_Endereco
+		dataType: string
+		lineageTag: c145c897-03b9-4846-a9ae-12b964e77588
+		summarizeBy: none
+		sourceColumn: ID_Endereco
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_Cli_Endereco
+		dataType: string
+		lineageTag: 1c0a4250-b3a3-488f-ab21-24fc3ca8ca00
+		summarizeBy: none
+		sourceColumn: ID_Cli_Endereco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_CodVertical
+		dataType: string
+		lineageTag: 939e92ea-88eb-428d-81a1-26ff0c2c5ee2
+		summarizeBy: none
+		sourceColumn: Cli_CodVertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column datamodificacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7bf1d52d-f429-4040-a5d8-99e4b2d6badb
+		summarizeBy: none
+		sourceColumn: datamodificacao
+
+		variation Variation
+			isDefault
+			relationship: 47a45579-eb43-492a-99d3-2a668ecd7d97
+			defaultHierarchy: LocalDateTable_ce69572b-bd7d-4953-b65c-014662f65d4e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column datacriacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 34c66e5c-450c-4468-9c53-880d6c1a183c
+		summarizeBy: none
+		sourceColumn: datacriacao
+
+		variation Variation
+			isDefault
+			relationship: f6810fbc-d0b5-417e-994e-ae6385b9d05c
+			defaultHierarchy: LocalDateTable_12ef87a6-72fc-4aee-81ae-b45b436d4ab4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_IM
+		dataType: string
+		lineageTag: 84d53c76-e123-40c1-81e3-015e616f076c
+		summarizeBy: none
+		sourceColumn: Cli_IM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Codigo_Endereco
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ee5bb9a-c059-4308-aed7-bc1fd7f1000b
+		summarizeBy: sum
+		sourceColumn: Cli_Codigo_Endereco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_ReterISSQN
+		dataType: int64
+		formatString: 0
+		lineageTag: 06edd372-3ba9-4112-8a44-f125aae9c48f
+		summarizeBy: sum
+		sourceColumn: Cli_ReterISSQN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_Idioma_Padrao
+		dataType: int64
+		formatString: 0
+		lineageTag: aaa6aeb7-bca7-49ea-bcad-921643b7e73d
+		summarizeBy: sum
+		sourceColumn: Cli_Idioma_Padrao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_LogRevisaoFiscalUsuario
+		dataType: string
+		lineageTag: c40f7abb-9720-4d05-956a-6e534646fd3b
+		summarizeBy: none
+		sourceColumn: Cli_LogRevisaoFiscalUsuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column MigradoNFE
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2d7f5136-6199-4024-83a5-b9bc1c6a4902
+		summarizeBy: none
+		sourceColumn: MigradoNFE
+
+		annotation SummarizationSetBy = Automatic
+
+	column AjustadoRotina
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: eb4ddb51-87b7-4794-9561-2f6c02eb374f
+		summarizeBy: none
+		sourceColumn: AjustadoRotina
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_AtualizacaoIntegracaoTipo
+		dataType: int64
+		formatString: 0
+		lineageTag: 56520656-3d5b-44ad-9bae-cff68870bd64
+		summarizeBy: sum
+		sourceColumn: Cli_AtualizacaoIntegracaoTipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_AtualizacaoIntegracaoData
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b1625ffc-d194-4706-a395-4861ca0c2d97
+		summarizeBy: none
+		sourceColumn: Cli_AtualizacaoIntegracaoData
+
+		variation Variation
+			isDefault
+			relationship: d6cd5275-2d0b-4ea3-9ebe-5ef3092c2a67
+			defaultHierarchy: LocalDateTable_e11b0bb7-41ef-4368-9426-9eaa3ccd2b7e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_AtualizacaoIntegracaoUsuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 5eaac274-676c-4d47-ac9c-20d5778271f5
+		summarizeBy: sum
+		sourceColumn: Cli_AtualizacaoIntegracaoUsuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_AtualizacaoIntegracaoBkp
+		dataType: string
+		lineageTag: f029f96b-9fef-41b6-8afc-b938feab29ed
+		summarizeBy: none
+		sourceColumn: Cli_AtualizacaoIntegracaoBkp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cli_AtualizacaoIntegracaoStatus
+		dataType: string
+		lineageTag: 89192e72-4b63-4003-b395-a53e10d37c43
+		summarizeBy: none
+		sourceColumn: Cli_AtualizacaoIntegracaoStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Clientes = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor"),
+				    dbo_Clientes = Fonte{[Schema="dbo",Item="Clientes"]}[Data],
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(dbo_Clientes,{{"Cli_Razao_Social", Text.Proper, type text}, {"Cli_Endereco", Text.Proper, type text}, {"Cli_Desc_Classificacao", Text.Proper, type text}, {"Cli_Bairro", Text.Proper, type text}})
+				in
+				    #"Colocar Cada Palavra Em Maiúscula"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,23 @@
+table F_LancamentoHora
+	lineageTag: 4b6a0907-3a3e-471c-93c0-8e7dea4e178b
+
+	column F_LancamentoHora
+		dataType: string
+		lineageTag: 2abbca52-c476-4753-9dd4-1307cee66506
+		summarizeBy: none
+		sourceColumn: F_LancamentoHora
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_LancamentoHora = m
+		mode: import
+		source =
+				let
+				    Fonte = ""
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+

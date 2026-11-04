@@ -1,0 +1,80 @@
+table Empresa
+	lineageTag: 4429d98e-3e14-4f8e-bd56-24ebcb167bcb
+
+	column 'Id Empresa'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: tinyint
+		lineageTag: 3d2d5e53-ea6f-47c8-a5fa-45724b76f0d3
+		summarizeBy: none
+		sourceColumn: Id Empresa
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(50)
+		lineageTag: a6ec6381-83dd-4faa-84b9-09dfc1d65a2c
+		summarizeBy: none
+		sourceColumn: Empresa
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Empresa Status'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: bc8e74c2-bcab-49d7-8f1d-bd4ae2759b8b
+		summarizeBy: none
+		sourceColumn: Empresa Status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Id Grupo Empresa'
+		dataType: string
+		lineageTag: 10ead079-6419-4fbd-86d8-c82552ff8ff0
+		summarizeBy: none
+		sourceColumn: Id Grupo Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo Empresa'
+		dataType: string
+		lineageTag: 26399601-01ea-4ef0-905b-8c9555087641
+		summarizeBy: none
+		sourceColumn: Grupo Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Empresa-692a18e1-a898-45cc-a4bd-41b9e349e270 = m
+		mode: import
+		queryGroup: Dimensoes
+		source =
+				let
+				    Source = Sql.Database("gage.processor.com.br\mssqlsip", "processor", [CommandTimeout=#duration(0, 4, 0, 0)]),
+				    dbo_Empresa = Source{[Schema="dbo",Item="Empresa"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(dbo_Empresa,{{"Emp_Nome", "Empresa"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"Emp_Codigo_Matriz", "Emp_CodGestorCom1", "Emp_CodGestorCom2", "Emp_EmailQualidade", "Emp_FoneDDG", "Emp_Fone", "Emp_Fax", "Emp_web", "Emp_Empowerment", "Emp_CodGestorEmp", "Emp_OrdemCPAG", "Emp_Inscricao_Municipal", "Emp_CNAE_Fiscal", "Emp_CodCadFornecPadrao", "Emp_Diretorio"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each [Emp_Codigo_Empresa] <> 2 and [Emp_Codigo_Empresa] <> 3 and [Emp_Codigo_Empresa] <> 5 and [Emp_Codigo_Empresa] <> 7 and [Emp_Codigo_Empresa] <> 11 and [Emp_Codigo_Empresa] <> 16 and [Emp_Codigo_Empresa] <> 18 and [Emp_Codigo_Empresa] <> 19 and [Emp_Codigo_Empresa] <> 20 and [Emp_Codigo_Empresa] <> 21),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Filtered Rows",{"CMS_Empresas", "HFinanceiro", "Impostos_Percentuais", "PermissaoEmpresa", "PlanejamentoAnualGrupoCliente", "RcPeriodica", "Reembolsos"}),
+				    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Colunas Removidas", "Cod_Agrup_Empresa", each if [Emp_Codigo_Empresa] = 1 then 1 else if [Emp_Codigo_Empresa] = 4 then 1 else if [Emp_Codigo_Empresa] = 9 then 1 else if [Emp_Codigo_Empresa] = 13 then 1 else if [Emp_Codigo_Empresa] = 15 then 1 else if [Emp_Codigo_Empresa] = 27 then 1 else if [Emp_Codigo_Empresa] = 22 then 2 else if [Emp_Codigo_Empresa] = 23 then 2 else if [Emp_Codigo_Empresa] = 24 then 2 else if [Emp_Codigo_Empresa] = 25 then 2 else if [Emp_Codigo_Empresa] = 26 then 2 else if [Emp_Codigo_Empresa] = 29 then 2 else if [Emp_Codigo_Empresa] = 30 then 2 else if [Emp_Codigo_Empresa] = 31 then 2 else if [Emp_Codigo_Empresa] = 17 then 3 else if [Emp_Codigo_Empresa] = 28 then 4 else 5),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Coluna Condicional Adicionada",{"Emp_Codigo_Empresa", "Cod_Agrup_Empresa", "Empresa", "Emp_Codigo_Filial", "Emp_CNPJ", "Emp_Inscricao_Estadual", "Emp_Endereco", "Emp_CEP", "Emp_Codigo_Cidade", "Emp_Logo", "Emp_Status", "Emp_CodPais", "Emp_CodMoedaPadrao", "Emp_PercentualImpostos", "Emp_CodCadCliente", "Emp_Abreviatura", "Emp_Razao_Social", "Emp_Codigo_Regiao", "Emp_Endereco_Bairro", "Emp_Endereco_Numero", "Emp_Agrupa_Quit_Cpag", "Cargos_Empresas", "Empresa_Faturamento_Cidades"}),
+				    #"Coluna Condicional Adicionada1" = Table.AddColumn(#"Colunas Reordenadas", "Agrup_Empresa", each if [Cod_Agrup_Empresa] = 1 then "Processor Soluções" else if [Cod_Agrup_Empresa] = 2 then "ITS/Gotobiz" else if [Cod_Agrup_Empresa] = 3 then "Processor Corp" else if [Cod_Agrup_Empresa] = 4 then "Proc Holding" else if [Cod_Agrup_Empresa] = 5 then "Outros" else null),
+				    #"Colunas Reordenadas1" = Table.ReorderColumns(#"Coluna Condicional Adicionada1",{"Emp_Codigo_Empresa", "Cod_Agrup_Empresa", "Empresa", "Agrup_Empresa", "Emp_Codigo_Filial", "Emp_CNPJ", "Emp_Inscricao_Estadual", "Emp_Endereco", "Emp_CEP", "Emp_Codigo_Cidade", "Emp_Logo", "Emp_Status", "Emp_CodPais", "Emp_CodMoedaPadrao", "Emp_PercentualImpostos", "Emp_CodCadCliente", "Emp_Abreviatura", "Emp_Razao_Social", "Emp_Codigo_Regiao", "Emp_Endereco_Bairro", "Emp_Endereco_Numero", "Emp_Agrupa_Quit_Cpag", "Cargos_Empresas", "Empresa_Faturamento_Cidades"}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Colunas Reordenadas1",{"Emp_Codigo_Empresa", "Cod_Agrup_Empresa", "Empresa", "Agrup_Empresa", "Emp_Status"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Outras Colunas Removidas",{{"Emp_Codigo_Empresa", "Id Empresa"}, {"Cod_Agrup_Empresa", "Id Grupo Empresa"}, {"Agrup_Empresa", "Grupo Empresa"}, {"Emp_Status", "Empresa Status"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,48 @@
+table Tabela
+	lineageTag: e13dcf94-b4d8-45fd-8b4a-6c11c486b00f
+
+	measure 'Medida 2' = sum(Tabela[Value])
+		formatString: 0
+		lineageTag: 186d71d8-d9ec-463c-b5c0-fbe539592f17
+
+	column Coluna2
+		lineageTag: 8502abf5-1deb-45bd-ba1f-e1d8567cc98d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Coluna2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		formatString: 0
+		lineageTag: 6ef2753e-389e-4db8-86e3-56ee294c2f9b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Usina
+		lineageTag: e76e5384-7793-40d8-be20-ba46dbe91f41
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Usina]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tabela = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Value", INTEGER,
+				    "Coluna2", STRING,
+				    "Usina",STRING,
+				    {
+				        {14, "1","OB"},
+				        {10, "2","CG"}
+				    }
+				)
+
+	annotation PBI_Id = efe9a05e7c55462eafe3fe4da324178a
+

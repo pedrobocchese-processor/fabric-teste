@@ -1,0 +1,315 @@
+table Medidas
+	lineageTag: 59cf5874-efa1-489d-a768-9079e722242e
+
+	measure Horas_MesAnterior = ```
+			
+			    VAR MesAnterior = 
+			        EOMONTH(TODAY(), -1)
+			    RETURN
+			    CALCULATE(
+			        SUM(F_View_ServiceOps_Contrato_Atividade_Apontamentos[Horas]),
+			        FILTER(
+			            ALL(D_Calendario),
+			            MONTH(D_Calendario[Data]) = MONTH(MesAnterior) &&
+			            YEAR(D_Calendario[Data]) = YEAR(MesAnterior)
+			        )
+			    )
+			
+			```
+		displayFolder: Horas Projeto
+		lineageTag: 468dae39-6f68-4746-9921-95e2c772e182
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Horas_MesAtual = ```
+			
+			    CALCULATE(
+			        SUM(F_View_ServiceOps_Contrato_Atividade_Apontamentos[Horas]),
+			        FILTER(
+			            ALL(D_Calendario),
+			            MONTH(D_Calendario[Data]) = MONTH(TODAY()) &&
+			            YEAR(D_Calendario[Data]) = YEAR(TODAY())
+			        )
+			    )
+			
+			```
+		displayFolder: Horas Projeto
+		lineageTag: 329138bd-0302-429c-8a7f-07e37b633fcc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DadosConsultor = ```
+			
+			    VAR Nome = 
+			        SELECTEDVALUE(D_Funcionarios[fun_Nome])
+			    VAR Cargo = 
+			        SELECTEDVALUE(D_Funcionarios[car_Cargo])
+			    VAR Empresa = 
+			        SELECTEDVALUE(D_Funcionarios[Emp_Nome])
+			
+			    RETURN
+			    "
+			    <div style='width:350px; height:350px; background:#1e1e1e; padding:40px; font-family:sans-serif; color:white; box-sizing:border-box; display:flex; gap:20px;'>
+			
+			    <div style='width: 300px; padding: 24px; background: #121212; border-radius: 20px; color: white;'>
+			        <h3 style='margin: 0 0 10px 0; font-size: 24px; color: white; font-weight: bold; text-align: left;'>Consultor</h3>
+			        <h2 style='margin: 0; font-size: 14px;'>" & Nome & "</h2>    
+			        <div style='margin-top: 20px;'>
+			        <ul style='padding: 0; list-style: none; font-size: 13px; line-height: 1.6;'>
+			            <li><span style='color: white; font-weight: bold;'>Cargo:</span> <span style='color: #aaa;'>" & Cargo & "</span></li>
+			            <li><span style='color: white; font-weight: bold;'>Empresa:</span> <span style='color: #aaa;'>" & Empresa & "</span></li>        
+			        </ul>
+			        </div>            
+			        
+			    "
+			
+			```
+		displayFolder: Consultor
+		lineageTag: b33cb8fc-203b-43d4-91b9-acf109a14f28
+
+	measure Funcionarios_Quantidade = ```
+			
+			    
+			        COUNTROWS ( D_Funcionarios )
+			```
+		formatString: 0
+		displayFolder: Consultor
+		lineageTag: 86bee7aa-1607-4309-9d72-4e54985cc87e
+
+	measure Projecao_Horas = ```
+			
+			    CALCULATE(
+			            160 * [Funcionarios_Quantidade])
+			```
+		formatString: 0.00
+		displayFolder: Horas Projeto
+		lineageTag: d4c28e03-c4b3-4440-b96a-18febeacb131
+
+	measure Horas_MesAtual_Formatado = ```
+			
+			    VAR TotalHoras = 
+			        [Horas_MesAtual] 
+			    VAR Horas = 
+			        INT(TotalHoras)       
+			    VAR Minutos = 
+			        (TotalHoras - Horas) * 60  
+			    RETURN
+			    FORMAT(Horas, "00") & ":" & FORMAT(Minutos, "00")
+			
+			```
+		displayFolder: Horas Projeto
+		lineageTag: f3726398-07cd-46cc-9b55-f7dd6b6899c5
+
+	measure Horas_Consumidas = ```
+			
+			CALCULATE(
+			    SUM(F_View_ServiceOps_Contrato_Atividade_Apontamentos[Horas]),
+			    FILTER(
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos,
+			        F_View_ServiceOps_Contrato_Atividade_Apontamentos[DataInc] <= TODAY()
+			    )
+			)
+			
+			```
+		displayFolder: Horas Projeto
+		lineageTag: 0055856e-a3c8-4802-b1d9-28630bf417ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Quantidade_Projetos = ```
+			
+			    DISTINCTCOUNT(F_View_ServiceOps_Contrato_Atividade_Apontamentos[DescricaoContrato])
+			```
+		formatString: 0
+		lineageTag: cbae9721-09cf-4d0f-b838-75fa73f8d745
+
+	measure Top1_Nome = ```
+			
+			VAR Ranking =
+			    TOPN (
+			        1,
+			        SUMMARIZE (
+			            F_View_ServiceOps_Contrato_Atividade_Apontamentos,
+			            F_View_ServiceOps_Contrato_Atividade_Apontamentos[DescricaoCliente], 
+			            "TotalHoras", [Horas_Consumidas]
+			        ),
+			        [TotalHoras],
+			        DESC
+			    )
+			RETURN
+			MAXX ( Ranking, F_View_ServiceOps_Contrato_Atividade_Apontamentos[DescricaoCliente] )
+			
+			```
+		lineageTag: 7af083e1-cc10-4817-9672-92fe5d41aee1
+
+	measure Top1_Horas_Consumidas = ```
+			
+			VAR Ranking =
+			    TOPN (
+			        1,
+			        SUMMARIZE (
+			            F_View_ServiceOps_Contrato_Atividade_Apontamentos,
+			            F_View_ServiceOps_Contrato_Atividade_Apontamentos[DescricaoCliente], 
+			            "TotalHoras", [Horas_Consumidas]
+			        ),
+			        [TotalHoras],
+			        DESC
+			    )
+			RETURN
+			MAXX ( Ranking, [TotalHoras] )
+			
+			```
+		displayFolder: Horas Projeto
+		lineageTag: c8b999c8-ea29-43e1-acd7-3c3987ec81bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Top1_Consultor = ```
+			
+			VAR Ranking =
+			    TOPN (
+			        1,
+			        SUMMARIZE (
+			            F_View_ServiceOps_Contrato_Atividade_Apontamentos,
+			            F_View_ServiceOps_Contrato_Atividade_Apontamentos[NomeProfissional],
+			            "TotalHoras", [Horas_Consumidas]
+			        ),
+			        [TotalHoras],
+			        DESC
+			    )
+			RETURN
+			MAXX ( Ranking, F_View_ServiceOps_Contrato_Atividade_Apontamentos[NomeProfissional] )
+			
+			```
+		lineageTag: b52ab83f-cfa1-4464-bcb8-69461f94b13e
+
+	measure Hora_Valor = ```
+			
+			    Var HorasConsultor =
+			        SUM(D_Funcionarios[fun_ValorHora])
+			    RETURN
+			        [Horas_Consumidas] * HorasConsultor
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: ea9edec0-550c-40e4-a551-c5eed5c2b946
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Icon = ```
+			
+			    "https://www.flaticon.com/br/icone-animado-gratis/gerenciamento-de-projetos_19028633?term=proje%C3%A7%C3%A3o&page=1&position=3&origin=search&related_id=19028633"
+			```
+		lineageTag: 7f4f1530-0c7d-40ad-9ca4-4ff6c86172b0
+
+	measure DiasUteis = ```
+			
+			CALCULATE (
+			    COUNTROWS ( 
+			        FILTER ( D_Calendario, D_Calendario[Dia Útil] = "Sim" ) ),
+			    ALLEXCEPT ( D_Calendario, D_Calendario[Ano], D_Calendario[Mes] )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: ea21513a-6609-4c8f-b948-a7cfb6027e9f
+
+	measure Horas_Consumidas_CarHouse = ```
+			
+			CALCULATE(
+			    SUM(F_Projeto_Dedicado_Car_House[Horas]),
+			    USERELATIONSHIP(F_Projeto_Dedicado_Car_House[DataInc], d_calendario[Data])
+			)
+			
+			```
+		displayFolder: Horas Projeto
+		lineageTag: f64ca288-3649-4abd-8bbf-c1d5783fc735
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Horas_Consumidas_Gerdau = ```
+			
+			    SUM(F_Projeto_Dedicado_Gerdau[Horas])
+			```
+		formatString: 0.00
+		displayFolder: Horas Projeto
+		lineageTag: 3a9f22a1-92ef-4fed-ab2e-c8f9a5505139
+
+	measure Idade_Media_Equipe = ```
+			
+			    AVERAGE(D_Funcionarios[fun_TempoEmpresa])
+			
+			```
+		displayFolder: Consultor
+		lineageTag: 44d97dd9-1be3-498d-a7e3-170e5d6f5ebf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Funcionario_Mais_Tempo_Cartao = ```
+			
+			VAR MaxTempo =
+			    MAXX (
+			        D_Funcionarios,
+			        DATEDIFF ( D_Funcionarios[fun_DataContratacao], TODAY(), YEAR )
+			    )
+			VAR Nome =
+			    CALCULATE (
+			        SELECTEDVALUE ( D_Funcionarios[fun_Nome] ),
+			        FILTER (
+			            D_Funcionarios,
+			            DATEDIFF ( D_Funcionarios[fun_DataContratacao], TODAY(), YEAR ) = MaxTempo
+			        )
+			    )
+			VAR Cargo =
+			    CALCULATE (
+			        SELECTEDVALUE ( D_Cargos[car_Cargo]),
+			        FILTER (
+			            D_Funcionarios,
+			            DATEDIFF ( D_Funcionarios[fun_DataContratacao], TODAY(), YEAR ) = MaxTempo
+			        )
+			    )
+			RETURN
+			    Nome & UNICHAR(10)
+			    & Cargo & UNICHAR(10)
+			    & MaxTempo & " anos de empresa"
+			
+			```
+		displayFolder: Consultor
+		lineageTag: 27123eb4-806c-491a-a350-c1c73c98eaab
+
+	measure Hora_Valor2 =
+			
+			SUMX(
+			    D_Funcionarios,
+			    D_Funcionarios[fun_ValorHora] * [Horas_Consumidas]
+			)
+		displayFolder: Consultor
+		lineageTag: 2fe2c036-7b88-4599-9c3c-107ba6886c06
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Top_1_Projeto_Valor_Gerado = ```
+			
+			    [Top1_Horas_Consumidas] * 150
+			```
+		displayFolder: Horas Projeto
+		lineageTag: b384a63c-98b4-4708-89fd-e5bc5e5538a8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 6fb2a131-1354-4d41-9ed1-3e52bc82910e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = c5d7177c70c04cfd8ec007acc0397faa
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

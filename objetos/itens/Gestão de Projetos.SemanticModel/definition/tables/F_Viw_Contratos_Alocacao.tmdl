@@ -1,0 +1,204 @@
+table F_Viw_Contratos_Alocacao
+	lineageTag: 3de9e9b0-b273-4b89-959e-0788b6f0eb06
+
+	column Cod_Registro
+		dataType: int64
+		formatString: 0
+		lineageTag: 24edd438-72c3-48be-a210-39c59f51b6c6
+		summarizeBy: sum
+		sourceColumn: Cod_Registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tec_Nome
+		dataType: string
+		lineageTag: b467c28f-0f79-46a5-a6ef-a6beaab25a38
+		summarizeBy: none
+		sourceColumn: Tec_Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Registro
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: a3928eed-c397-4ecb-ab7d-0cc4aa66293f
+		summarizeBy: none
+		sourceColumn: Data_Registro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Horas_Trabalhadas
+		dataType: double
+		lineageTag: dab7750a-0693-446d-8d82-78766678bbfe
+		summarizeBy: sum
+		sourceColumn: Horas_Trabalhadas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tipo_Registro
+		dataType: string
+		lineageTag: fdab681a-7097-44bc-84b1-800087d2e16b
+		summarizeBy: none
+		sourceColumn: Tipo_Registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tarefa
+		dataType: string
+		lineageTag: 990ef39b-6b51-49fd-b728-03513686cefb
+		summarizeBy: none
+		sourceColumn: Tarefa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observacao
+		dataType: string
+		lineageTag: 2478ccc0-fb6f-4652-8564-f4e8133b7b20
+		summarizeBy: none
+		sourceColumn: Observacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cod_Projeto
+		dataType: int64
+		formatString: 0
+		lineageTag: 1739c643-b07d-4d87-b1d5-9acf651119d1
+		summarizeBy: sum
+		sourceColumn: Cod_Projeto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fase
+		dataType: string
+		lineageTag: 6fb9a800-2a70-46c4-b93a-7935d41d7bef
+		summarizeBy: none
+		sourceColumn: Fase
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdemFase
+		dataType: int64
+		formatString: 0
+		lineageTag: 903c21f7-a7a2-4d28-819d-afc1ffcd267a
+		summarizeBy: sum
+		sourceColumn: OrdemFase
+
+		annotation SummarizationSetBy = Automatic
+
+	column Horas_Extras
+		dataType: double
+		lineageTag: 416b561f-fe38-421d-9d6d-dfe32d10ab06
+		summarizeBy: sum
+		sourceColumn: Horas_Extras
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Horas_Normais
+		dataType: double
+		lineageTag: dcf2dd0c-7019-41fa-8811-1ea3a46a064d
+		summarizeBy: sum
+		sourceColumn: Horas_Normais
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Area
+		dataType: string
+		lineageTag: aac8a547-82d2-4a57-85c1-be414a031c1c
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 290d5cc4-e60b-42ec-9f67-ac7fff2b130d
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cargo
+		dataType: string
+		lineageTag: 0ab8f4a7-30d9-4751-ae36-02292c2fb3b3
+		summarizeBy: none
+		sourceColumn: Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_fun
+		dataType: int64
+		formatString: 0
+		lineageTag: 04fd838b-50c2-41e9-9307-4fb062fffffd
+		summarizeBy: none
+		sourceColumn: cod_fun
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_fase
+		dataType: int64
+		formatString: 0
+		lineageTag: 2959d877-2c58-448a-9dd8-53ac952c4f23
+		summarizeBy: sum
+		sourceColumn: cod_fase
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_tarefa
+		dataType: int64
+		formatString: 0
+		lineageTag: f68b83e1-6650-468b-b6eb-261077cb692e
+		summarizeBy: sum
+		sourceColumn: cod_tarefa
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_superior_objetivos
+		dataType: int64
+		formatString: 0
+		lineageTag: 2707d83b-5607-46b1-820d-eaadd7b96dbf
+		summarizeBy: sum
+		sourceColumn: fun_superior_objetivos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area_Nova
+		dataType: string
+		lineageTag: 9658ba43-1c39-4e2f-956d-8bcfd2767a3b
+		summarizeBy: none
+		sourceColumn: Area_Nova
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 4a74c27a-16be-4e5d-8233-d43ea76ed450
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Viw_Contratos_Alocacao = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor", [Query="SELECT *#(lf)#(tab)FROM [viw_Contratos_Alocacao] CA#(lf)#(tab)WHERE CA.cod_fun IN ( 3484, 2680, 3474, 1080, 3175, 2680, 2998)#(lf)#(tab)  AND YEAR(CA.Data_Registro) IN (YEAR(GETDATE()), YEAR(GETDATE()) - 1)"]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Data_Registro", type date}}),
+				    #"Linhas Classificadas" = Table.Sort(#"Tipo Alterado",{{"Data_Registro", Order.Descending}})
+				in
+				    #"Linhas Classificadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

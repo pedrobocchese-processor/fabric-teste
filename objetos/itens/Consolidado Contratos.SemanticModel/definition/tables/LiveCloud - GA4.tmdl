@@ -1,0 +1,189 @@
+table 'LiveCloud - GA4'
+	lineageTag: 61dbf463-e73f-4388-9b47-e842cdf3e843
+
+	column 'Grupo Econômico'
+		dataType: string
+		lineageTag: 62bb8230-e1eb-4f08-bcf8-5e781449bab6
+		summarizeBy: none
+		sourceColumn: Grupo Econômico
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo Economico SIP ID'
+		dataType: string
+		lineageTag: 970f56a5-6fbe-4cb6-98bd-98c15940a04a
+		summarizeBy: none
+		sourceColumn: Grupo Economico SIP ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 64b35052-2b4a-4f7d-93c0-07d22d439412
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Page
+		dataType: string
+		lineageTag: 30e1b89e-cbbd-4697-8143-bc0f0e1ed0d7
+		summarizeBy: none
+		sourceColumn: Page
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a259399b-b2da-432a-8f60-13a66cecb490
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dayOfWeekName
+		dataType: string
+		lineageTag: c70838d0-e137-4d3c-ae94-1b5233c5d88b
+		summarizeBy: none
+		sourceColumn: dayOfWeekName
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 126aff3d-6e7d-4c72-b941-69e7efcb3b07
+		summarizeBy: sum
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Page Views'
+		dataType: int64
+		formatString: 0
+		lineageTag: 02019f6b-2f6d-4034-af6f-15e6730693d5
+		summarizeBy: sum
+		sourceColumn: Page Views
+
+		annotation SummarizationSetBy = Automatic
+
+	column bounceRate
+		dataType: double
+		lineageTag: 6cd50a4f-3800-4d26-9349-36a93503d5d9
+		summarizeBy: sum
+		sourceColumn: bounceRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column operatingSystem
+		dataType: string
+		lineageTag: 305a7afe-5d6c-43c4-8e40-6e32cc2dec56
+		summarizeBy: none
+		sourceColumn: operatingSystem
+
+		annotation SummarizationSetBy = Automatic
+
+	column screenResolution
+		dataType: string
+		lineageTag: e1ed695c-34f0-4687-8a1d-a1c22e6a6587
+		summarizeBy: none
+		sourceColumn: screenResolution
+
+		annotation SummarizationSetBy = Automatic
+
+	column dayOfWeek
+		dataType: string
+		lineageTag: 9249fea6-0622-44a0-9a75-b20a16887ac8
+		summarizeBy: none
+		sourceColumn: dayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column totalUsers
+		dataType: int64
+		formatString: 0
+		lineageTag: 5af32316-1774-4468-bb35-6a48ec9bc673
+		summarizeBy: sum
+		sourceColumn: totalUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Usuário Externo'
+		dataType: string
+		lineageTag: 3780ee9c-3322-487a-8484-39f54df007b2
+		summarizeBy: none
+		sourceColumn: Usuário Externo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Page Group'
+		dataType: string
+		lineageTag: 05d6b569-5e8b-47d1-b310-6572caf44b49
+		summarizeBy: none
+		sourceColumn: Page Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Page Group Verticais'
+		dataType: string
+		lineageTag: 50b02788-7c5f-4be1-a712-b53344a5f484
+		summarizeBy: none
+		sourceColumn: Page Group Verticais
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'LiveCloud - GA4' = m
+		mode: import
+		source =
+				let
+				    Fonte = GoogleAnalytics.Accounts([Implementation="2.0"]),
+				    #"accounts/55551235" = Fonte{[Id="accounts/55551235"]}[Data],
+				    #"properties/373613179" = #"accounts/55551235"{[Id="properties/373613179"]}[Data],
+				    #"properties/1" = #"properties/373613179"{[Id="properties/373613179"]}[Data],
+				    #"Itens Adicionados" = Cube.Transform(#"properties/1",
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "customUser:economic_group", {"customUser:economic_group"}, {"customUser:economic_group"}},
+				            {Cube.AddAndExpandDimensionColumn, "customUser:economic_group_id", {"customUser:economic_group_id"}, {"customUser:economic_group_id"}},
+				            {Cube.AddAndExpandDimensionColumn, "customUser:user_email", {"customUser:user_email"}, {"customUser:user_email"}},
+				            {Cube.AddAndExpandDimensionColumn, "date", {"date"}, {"date"}},
+				            {Cube.AddMeasureColumn, "screenPageViews", "screenPageViews"}
+				        }),
+				    #"Itens Adicionados1" = Cube.Transform(#"Itens Adicionados",
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "pagePath", {"pagePath"}, {"pagePath"}}
+				        }),
+				    #"Itens Adicionados2" = Cube.Transform(#"Itens Adicionados1",
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "operatingSystem", {"operatingSystem"}, {"operatingSystem"}},
+				            {Cube.AddAndExpandDimensionColumn, "screenResolution", {"screenResolution"}, {"screenResolution"}}
+				        }),
+				    #"Itens Adicionados3" = Cube.Transform(#"Itens Adicionados2",
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "dayOfWeekName", {"dayOfWeekName"}, {"dayOfWeekName"}},
+				            {Cube.AddMeasureColumn, "bounceRate", "bounceRate"}
+				        }),
+				    #"Itens Adicionados4" = Cube.Transform(#"Itens Adicionados3",
+				        {
+				            {Cube.AddMeasureColumn, "sessions", "sessions"},
+				            {Cube.AddAndExpandDimensionColumn, "dayOfWeek", {"dayOfWeek"}, {"dayOfWeek"}}
+				        }),
+				    #"Itens Adicionados5" = Cube.Transform(#"Itens Adicionados4",
+				        {
+				            {Cube.AddMeasureColumn, "totalUsers", "totalUsers"}
+				        }),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Itens Adicionados5",{"customUser:economic_group", "customUser:economic_group_id", "customUser:user_email", "pagePath", "date", "dayOfWeekName", "sessions", "screenPageViews", "bounceRate", "operatingSystem", "screenResolution"}),
+				    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Colunas Reordenadas", "Usuário Externo", each if Text.Contains([#"customUser:user_email"], "@processor") then 0 else if Text.Contains([#"customUser:user_email"], "@gotobiz") then 0 else if Text.Contains([#"customUser:user_email"], "@testesportal") then 0 else 1),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Coluna Condicional Adicionada",{{"customUser:user_email", "Email"}, {"customUser:economic_group_id", "Grupo Economico SIP ID"}, {"customUser:economic_group", "Grupo Econômico"}, {"date", "Data"}, {"pagePath", "Page"}}),
+				    #"Coluna Condicional Adicionada1" = Table.AddColumn(#"Colunas Renomeadas", "Page Group", each if Text.Contains([Page], "/admin/") then "LC CMS Enterprise" else if Text.Contains([Page], "/Agendamentos") then "Criar e Acompanhar Chamados" else if Text.Contains([Page], "/Backups") then "LC Backup Premium" else if Text.Contains([Page], "/BackupSaaS/") then "LC SaaS Backup" else if Text.Contains([Page], "/BackupSaaSV2/") then "LC SaaS Backup" else if Text.Contains([Page], "/csp/") then "SaaS Basic" else if Text.Contains([Page], "/CSP/") then "SaaS Basic" else if Text.Contains([Page], "/disasterrecovery/") then "LC Disaster Recovery" else if Text.Contains([Page], "/EA/") then "Softwares.com.br" else if Text.Contains([Page], "/eaBudgets") then "Softwares.com.br" else if Text.Contains([Page], "/eas/") then "Softwares.com.br" else if Text.Contains([Page], "/EndpointDetectionResponse/") then "LC Detection & Response" else if Text.Contains([Page], "/EndpointSecurity/") then "LC Detection & Response" else if Text.Contains([Page], "/FileRepository") then "Repositório de arquivos" else if Text.Contains([Page], "/FileSync/") then "LC File Sync" else if Text.Contains([Page], "/FinancialManagement") then "Notas Fiscais e Contratos" else if Text.Contains([Page], "/FinancialManagementInvoices/") then "Notas Fiscais e Contratos" else if Text.Contains([Page], "/FinOps/") then "LC FinOps" else if Text.Contains([Page], "/finops/") then "LC FinOps" else if Text.Contains([Page], "/hosting/") then "LC CMS Corporate" else if Text.Contains([Page], "/Hosting/") then "LC CMS Corporate" else if Text.Contains([Page], "/InsightsAdmin") then "LC CMS Enterprise" else if Text.Contains([Page], "/InsightsHosting/6") then "LC CMS Corporate" else if Text.Contains([Page], "/InsightsHosting/2") then "LC CMS Premier" else if Text.Contains([Page], "/livewatch/") then "LiveWatch" else if Text.Contains([Page], "/LiveWatch") then "LiveWatch" else if Text.Contains([Page], "/ManageOfficeStatus") then "SaaS Basic e Premium" else if Text.Contains([Page], "/MaxOutSource/") then "Max Outsource" else if Text.Contains([Page], "/MonitoringDashboard") then "LiveWatch" else if Text.Contains([Page], "/notasFiscais") then "Notas Fiscais e Contratos" else if Text.Contains([Page], "/retencao/") then "LC Retenção" else if Text.Contains([Page], "/BackupSaasV2") then "LC SaaS Backup" else if Text.Contains([Page], "/SaaS") then "SaaS Premium" else if Text.Contains([Page], "/webpresence/") then "LC CMS Premier" else if Text.Contains([Page], "/costcenterdashboard/17") then "LC CMS Enterprise" else if Text.Contains([Page], "/costcenterdashboard/2") then "LC CMS Premier" else if Text.Contains([Page], "/costcenterdashboard/6") then "LC CMS Corporate" else if Text.Contains([Page], "/costcenterdashboard/analitico/17") then "LC CMS Enterprise" else if Text.Contains([Page], "/costcenterdashboard/analitico/2") then "LC CMS Premier" else if Text.Contains([Page], "/costcenterdashboard/analitico/6") then "LC CMS Corporate" else if Text.Contains([Page], "/DisasterRecovery/") then "LC Disaster Recovery" else if Text.Contains([Page], "/backupsilver/") then "LC Backup Basic" else if Text.StartsWith([Page], "/saas/") then "SaaS Premium" else if Text.Contains([Page], "/VinSubscriptionToEA") then "Softwares.com.br" else if [Page] = "/" then "Página Inicial" else if Text.Contains([Page], "/Chamados") then "Criar e Acompanhar Chamados" else if [Page] = "/solucoes" then "Página Inicial" else if [Page] = "/Perfis" then "Configurações" else if Text.Contains([Page], "/Cms") then "LC CMS" else if Text.Contains([Page], "/cms") then "LC CMS" else if [Page] = "/Usuarios" then "Configurações" else if [Page] = "/WebSites" then "LC CMS Premier" else if [Page] = "/gtmconfiguration" then "Configurações" else if [Page] = "/administration/HealthCheckActiveService" then "HealthCheck" else if Text.Contains([Page], "/patchmanager") then "Patch Manager" else null),
+				    #"Coluna Condicional Adicionada2" = Table.AddColumn(#"Coluna Condicional Adicionada1", "Page Group Verticais", each if [Page Group] = "Pagina Inicial" then "Navegação geral" else if [Page Group] = "Criar e Acompanhar Chamados" then "Navegação geral" else if [Page Group] = "Notas Fiscais e Contratos" then "Navegação geral" else if [Page Group] = "Repositório de arquivos" then "Navegação geral" else if [Page Group] = "SaaS Basic" then "Subscrições de Softwares" else if [Page Group] = "SaaS Premium" then "Subscrições de Softwares" else if [Page Group] = "SaaS Basic e Premium" then "Subscrições de Softwares" else if [Page Group] = "Softwares.com.br" then "Subscrições de Softwares" else if [Page Group] = "LC Backup Basic" then "Proteção de dados" else if [Page Group] = "LC Backup Premium" then "Proteção de dados" else if [Page Group] = "LC Retenção" then "Proteção de dados" else if [Page Group] = "LC Disaster Recovery" then "Proteção de dados" else if [Page Group] = "LiveWatch" then "Segurança" else if [Page Group] = "LC Detection & Response" then "Segurança" else if [Page Group] = "LC SaaS Backup" then "Subscrições de Softwares" else if [Page Group] = "LC CMS Enterprise" then "Cloud Managed Services" else if [Page Group] = "LC CMS Corporate" then "Cloud Managed Services" else if [Page Group] = "LC CMS Premier" then "Cloud Managed Services" else if [Page Group] = "Max Outsource" then "Navegação geral" else if [Page Group] = "LC FinOps" then "Cloud Managed Services" else if [Page Group] = "LC CMS" then "Cloud Managed Services" else if [Page Group] = "LC CMS Corporate" then "Cloud Managed Services" else if [Page Group] = "LC CMS Enterprise" then "Cloud Managed Services" else if [Page Group] = "LC CMS Premier" then "Cloud Managed Services" else if [Page Group] = "Healthcheck" then "Navegação geral" else if [Page Group] = "Configurações" then "Navegação geral" else if [Page Group] = "Patch Manager" then "Segurança" else "Navegação geral"),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Coluna Condicional Adicionada2",{{"screenPageViews", "Page Views"}})
+				in
+				    #"Colunas Renomeadas1"
+
+	annotation PBI_ResultType = Table
+

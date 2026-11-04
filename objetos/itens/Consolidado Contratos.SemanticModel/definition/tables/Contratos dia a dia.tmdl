@@ -1,0 +1,535 @@
+table 'Contratos dia a dia'
+	lineageTag: 021128b0-569d-4eb8-b7f8-27ab7d86f9c0
+
+	measure 'Valor Contratos' = CALCULATE(SUM('Contratos dia a dia'[Valor do pedido]))
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: 39dbd952-72ff-4d08-bf3e-562d4f4f4c63
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Qtd. Novos Contratos' = ```
+			
+			    CALCULATE([Qtd. Contratos Ativos],
+			        USERELATIONSHIP(dCalendario[Date],'Contratos dia a dia'[Início da vigência]))
+			        
+			```
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: 4cc0049c-14ec-4da4-8f61-4a138fa66f3a
+
+	measure 'Qtd. Contratos Inativos' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Contratos dia a dia'[ID do contrato]),
+			        'Contratos dia a dia'[Razão do status] IN {"Inativo", "Inativo com data válida"}
+			)
+			
+			```
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: f665cd38-fd62-4849-b7d6-cbd099481613
+
+	measure '% Churn Contratos dia a dia' = ```
+			
+			VAR Contratos_Ativos_Mes_Anterior = CALCULATE([Qtd. Contratos Ativos], DATEADD('dCalendario'[Date], -1, MONTH))
+			
+			VAR Churn_Mes_Atual = [Qtd. Contratos Inativos]
+			
+			RETURN
+			DIVIDE(Churn_Mes_Atual, Contratos_Ativos_Mes_Anterior)
+			
+			```
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: _Medidas
+		lineageTag: 1d6c0253-3c5f-4f92-af72-3658a70ba256
+
+	measure '% Churn Grupo Clientes' = ```
+			
+			 ABS(CALCULATE(
+			    DIVIDE([Média Total Grupo Cliente Ativo] , [Qtd_Clientes_Anter] + [Qtd Novos Clientes],0)) -1)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: _Medidas
+		lineageTag: fe17a105-801c-4aa6-958f-65dd998abf15
+
+	measure 'Qtd. Contratos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Contratos dia a dia'[ID do contrato]))
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: 044e80df-49aa-4a6b-bdfe-74620a57ed20
+
+	measure 'Valor Novos Contratos' =
+			
+			CALCULATE(
+			    SUM('Contratos dia a dia'[Valor do pedido]),
+			    'Contratos dia a dia'[Razão do status] = "Ativo",
+			    USERELATIONSHIP(dCalendario[Date],'Contratos dia a dia'[Início da vigência])
+			    )
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: a4642690-4046-4423-bb9b-349ff2689584
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Grupo Cliente Ativo' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Contratos dia a dia'[ID do grupo]),
+			    'Contratos dia a dia'[Razão do status] IN { "Ativo", "Ativo vencido" } )
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: 70b9badf-e55c-419b-bacb-4e36f9caaadf
+
+	measure 'Valor Inativados' = ```
+			
+			CALCULATE (
+			    SUM('Contratos dia a dia'[Valor do pedido]), 
+			    FILTER (
+			        SUMMARIZE (
+			            ALLSELECTED('Contratos dia a dia'[ID do grupo], 'Contratos dia a dia'[Fab_Nome_Fabricante], 'Contratos dia a dia'[ID do contrato]), 
+			            'Contratos dia a dia'[ID do grupo],
+			            "@Count", COUNTROWS ( 'Contratos dia a dia' )
+			        ),
+			        [@Count]
+			            = CALCULATE (
+			                COUNTROWS ( 'Contratos dia a dia' ),
+			                ALL(Contratos[ID do contrato]),
+			                'Contratos dia a dia'[Data de inativação] < TODAY()
+			            )
+			    )
+			)
+			```
+		displayFolder: _Medidas
+		lineageTag: 590c8d04-df26-49d9-a7f5-e1220a8854f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Soluções' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Contratos dia a dia'[Fab_Nome_Fabricante]),
+			    NOT( ISBLANK('Contratos dia a dia'[Fab_Nome_Fabricante])),
+			    FILTER('Contratos dia a dia', [Total Grupo Cliente Ativo] > 0))
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: cedc4e08-6765-484d-8704-7f340ac79afa
+
+	measure 'Total Soluções Novas' = ```
+			
+			VAR _DataFim =
+			    CALCULATE ( MIN ( 'dCalendario'[Date] ), ALLSELECTED ( 'Contratos dia a dia' ) )
+			VAR __CURRENT_VALUES =
+			FILTER ( VALUES ( 'Contratos dia a dia'[Fab_Nome_Fabricante]), NOT ISBLANK ( 'Contratos dia a dia'[Fab_Nome_Fabricante] ) ) 
+			VAR __EXISTING_VALUES =
+			    FILTER (
+			        KEEPFILTERS ( __CURRENT_VALUES ),
+			        CALCULATE (
+			            [Total Soluções],
+			            ALL('Contratos dia a dia'[Nome Grupo]),
+			            FILTER (
+			                ALL ( 'dCalendario'), 'dCalendario'[Date] < _DataFim
+			            )
+			        )
+			    )
+			RETURN
+			    CALCULATE (
+			        [Total Soluções],
+			        EXCEPT ( __CURRENT_VALUES, __EXISTING_VALUES )
+			    )
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: 5bae66d1-4757-470a-8872-5256d2f41518
+
+	measure 'Total Soluções Inativadas / Perdidas' = ```
+			
+			CALCULATE (
+			    [Total Soluções], 
+			    FILTER ('Contratos dia a dia',
+			                [Clientes Perdidos] > 0))
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: a47cf630-2ba2-4daf-869d-22db450ca5d1
+
+	measure '% Churn Soluções' = DIVIDE([Total Soluções Inativadas / Perdidas],[Total Soluções])
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: _Medidas
+		lineageTag: ea1fa3b4-254c-40bb-893e-b150015ee1ad
+
+	measure 'Qtd. Contratos Ativos' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Contratos dia a dia'[ID do contrato] ),
+			    FILTER('Contratos dia a dia',
+			        'Contratos dia a dia'[Razão do status] IN { "Ativo", "Ativo vencido" }        
+			))
+			```
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: 8115f452-0895-4e46-8c21-76b6f5e344fd
+
+	measure 'Qtd. Contratos Ativos Vencidos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Contratos dia a dia'[ID do contrato]),
+			    'Contratos dia a dia'[Razão do status] IN {"Ativo vencido"})
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: df480ed1-bc0c-4770-a054-2d7d5b360bc9
+
+	measure 'Qtd. Contratos Perdidos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Contratos dia a dia'[ID do contrato]),
+			    'Contratos dia a dia'[Contrato perdido] IN {"Sim"})
+		formatString: #,0
+		displayFolder: _Medidas
+		lineageTag: c2932299-9213-4bd7-9ae4-6c03fca17dd9
+
+	measure 'Qtd. Contratos Inat. / Perd.' = [Qtd. Contratos Inativos] + [Qtd. Contratos Perdidos]
+		formatString: #,0
+		isHidden
+		displayFolder: _Medidas
+		lineageTag: 8ef87258-5438-4e87-a2a6-d583722d7f5d
+
+		changedProperty = IsHidden
+
+	measure 'Grupos Perdidos' = ```
+			
+			CALCULATE(
+			    [Qtd_Clientes_Anter],
+			    FILTER(
+			        SUMMARIZE(
+			            'Contratos dia a dia',
+			            'Contratos dia a dia'[ID do grupo],
+			            "Total Ativos", [Qtd. Contratos] = [Qtd. Contratos Inativos] 
+			        ),
+			        [Total Ativos]
+			    ))
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: ca50979f-35ae-4b13-ba21-9b22d87cc21c
+
+	measure 'Qtd. Novos Contratos LM' =
+			
+			CALCULATE([Qtd. Novos Contratos],PREVIOUSMONTH(dCalendario[Date]))
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: 97951f91-f237-40cd-ae56-ed7f99aab51b
+
+	measure 'Qtd. Contratos Ativos LM' = ```
+			
+			CALCULATE([Qtd. Contratos Ativos],PREVIOUSMONTH(dCalendario[Date]))
+			
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: edad13e0-b257-4c60-9ef3-4212e885482f
+
+	measure 'Qtd. Contratos LM' = CALCULATE([Qtd. Contratos],PREVIOUSMONTH(dCalendario[Date]))
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: b10be95e-dfc5-4a10-b0a2-a1964ae0e6d2
+
+	measure 'Média Total Grupo Cliente Ativo' = ```
+			
+			VAR AnoSelecionado = YEAR(MAX('dCalendario'[Date]))
+			VAR Qtdmeses = 
+			    COUNTROWS(VALUES('dCalendario'[Mes Completo]))
+			VAR mes1 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 1
+			)
+			VAR mes2 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 2
+			)
+			VAR mes3 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 3
+			)
+			VAR mes4 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 4
+			)
+			VAR mes5 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 5
+			)
+			VAR mes6 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 6
+			)
+			VAR mes7 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 7
+			)
+			VAR mes8 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 8
+			)
+			VAR mes9 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 9
+			)
+			VAR mes10 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 10
+			)
+			VAR mes11 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 11
+			)
+			VAR mes12 = CALCULATE(
+			    [Total Grupo Cliente Ativo],
+			    YEAR('Contratos dia a dia'[Data]) = AnoSelecionado && MONTH('Contratos dia a dia'[Data]) = 12
+			)
+			RETURN 
+			DIVIDE(mes1 + mes2 + mes3 + mes4 + mes5 + mes6 + mes7 + mes8 + mes9 + mes10 + mes11 + mes12, Qtdmeses, 0)
+			
+			```
+		formatString: 0.00
+		displayFolder: _Medidas
+		lineageTag: 75163e56-33d7-43e5-ae16-20caecd6c0eb
+
+	measure 'Churn Acumulado' = ```
+			
+			VAR Qtdmeses =
+			    COUNTROWS ( VALUES ( 'dCalendario'[Mes Completo] ) )
+			RETURN
+			    IF (
+			        Qtdmeses = 1,
+			        [% Churn Grupo Clientes],
+			        IF (
+			            Qtdmeses = 12,
+			            CALCULATE (
+			                DIVIDE (
+			                    [Média Total Grupo Cliente Ativo LY] - [Média Total Grupo Cliente Ativo],
+			                    [Média Total Grupo Cliente Ativo LY]
+			                )
+			            ),
+			            CALCULATE (
+			                DIVIDE (
+			                    [Média Total Grupo Cliente Ativo LQT] - [Média Total Grupo Cliente Ativo],
+			                    [Média Total Grupo Cliente Ativo LQT]
+			                )
+			            )
+			        )
+			    )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: _Medidas
+		lineageTag: 92328436-f200-476a-8c3c-8fb9d40392ad
+
+	measure 'Média Total Grupo Cliente Ativo LQT' = CALCULATE([Média Total Grupo Cliente Ativo],PREVIOUSQUARTER(dCalendario[Date]))
+		displayFolder: _Medidas
+		lineageTag: 80fd10ca-ebe9-4586-acb3-ea7d4e94ccbe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Média Total Grupo Cliente Ativo LY' = CALCULATE([Média Total Grupo Cliente Ativo],PREVIOUSYEAR(dCalendario[Date]))
+		displayFolder: _Medidas
+		lineageTag: 1d130af6-0609-49fa-9fb1-f9067629836c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ID do grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: f31ad5ba-c697-4ab1-b62b-5d72a456dbbd
+		summarizeBy: none
+		sourceColumn: ID do grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 354b4a90-2960-466b-9389-29700921d214
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'ID da empresa Processor'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bd22be5-fcca-4739-9996-ec95e27a2a95
+		summarizeBy: none
+		sourceColumn: ID da empresa Processor
+
+		annotation SummarizationSetBy = User
+
+	column 'ID do contrato'
+		dataType: int64
+		formatString: 0
+		lineageTag: cfaaf43f-1043-42e1-9dd6-34b3c43f3525
+		summarizeBy: none
+		sourceColumn: ID do contrato
+
+		annotation SummarizationSetBy = User
+
+	column 'Valor do pedido'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 4c25f030-34a4-4d38-8c3d-8612328799f9
+		summarizeBy: sum
+		sourceColumn: Valor do pedido
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do fabricante'
+		dataType: int64
+		formatString: 0
+		lineageTag: 31392c7d-a2ca-4a39-a2e1-5beace05ad00
+		summarizeBy: none
+		sourceColumn: ID do fabricante
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do cliente'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9be51bb7-d99f-4c79-a7be-d27d916eb6c5
+		summarizeBy: none
+		sourceColumn: ID do cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do pilar'
+		dataType: int64
+		formatString: 0
+		lineageTag: 59042321-bb7f-4e66-b801-72899c571bc2
+		summarizeBy: none
+		sourceColumn: ID do pilar
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Início da vigência'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5d27f4b9-e0be-4088-8613-6006b2053d6d
+		summarizeBy: none
+		sourceColumn: Início da vigência
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Tipo
+		dataType: string
+		lineageTag: 275da3e8-d88d-4061-895d-9174fdd04ea3
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fab_Nome_Fabricante
+		dataType: string
+		lineageTag: 71eef4ce-cda5-4654-8076-7a0042a78da1
+		summarizeBy: none
+		sourceColumn: Fab_Nome_Fabricante
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Razão do status'
+		dataType: string
+		lineageTag: 2f5f7454-bb98-411d-aed6-360720ee1667
+		summarizeBy: none
+		sourceColumn: Razão do status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data de renovação'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7908d8e2-84fc-4239-bcee-4dbfb69d457a
+		summarizeBy: none
+		sourceColumn: Data de renovação
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Status do contrato'
+		dataType: string
+		lineageTag: 3b292906-1043-4c68-886c-b3f4f917db14
+		summarizeBy: none
+		sourceColumn: Status do contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contrato perdido'
+		dataType: string
+		lineageTag: 3f4dad93-15b4-41de-b58c-49c537a5066e
+		summarizeBy: none
+		sourceColumn: Contrato perdido
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data de inativação'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2190ff6c-7808-4270-ac5b-5911d0ce071c
+		summarizeBy: none
+		sourceColumn: Data de inativação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data de revisão'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5601c281-e7b0-49eb-97a3-0710b57a14a4
+		summarizeBy: none
+		sourceColumn: Data de revisão
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Flag_Retroceder = ```
+			
+			SWITCH(
+			    TRUE(),
+			    AND([Data] = 'Contratos dia a dia'[Data de inativação], 'Contratos dia a dia'[ID do contrato] > 0),1,
+			    'Contratos dia a dia'[ID do contrato] > 0,0,
+			    BLANK()
+			)
+			
+			```
+		formatString: 0
+		displayFolder: _Col_Cal
+		lineageTag: 18dfad66-6998-4700-94a4-5c9eb5647aca
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Grupo'
+		dataType: string
+		lineageTag: a1490665-89c7-404e-b395-524761eb4c2c
+		summarizeBy: none
+		sourceColumn: Nome Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Contratos dia a dia-4f3d4aaf-9999-4d70-a011-1d5033e8d229' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "Processor", [Query="SELECT #(lf)       c_dia.[ID do grupo]#(lf)      ,c_dia.[Data]#(lf)      ,c_dia.[ID da empresa Processor]#(lf)      ,c_dia.[ID do contrato]#(lf)      ,c_dia.[Status do contrato]#(lf)      ,c_dia.[Razão do status]#(lf)      ,c_dia.[Valor do pedido]#(lf)      ,c_dia.[Data de inativação] #(lf)      ,c.[ID do fabricante]#(lf)      ,c.[ID do cliente]#(lf)      ,c.[ID do pilar]#(lf)      ,c.Tipo#(lf)      ,c.[Data de inicio] as 'Início da vigência'#(lf)      ,c.[Data de renovação] #(lf)      ,c.[Data de revisão] #(lf)      ,c.[Contrato perdido] #(lf)      ,f.[Fab_Nome_Fabricante]#(lf)      ,'' as 'Nome Grupo'#(lf)  FROM [Processor].[dbo].[BIAnalisePorContrato_V2] c_dia #(lf)       left join sipm.vw_BI_Contratos_v2 c on c_dia.[ID do contrato] = c.[ID do contrato]  #(lf)       left join Fabricantes f on f.[Fab_Codigo_Fabricante] = c.[ID do fabricante]#(lf)#(tab)WHERE c_dia.[ID do contrato] IS NOT NULL AND #(lf)   c.Tipo in ('SERV&SOL','BIZSOL&TECH') and year(c_dia.[Data]) >= 2021", CommandTimeout=#duration(0, 4, 0, 0)]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"ID do pilar", Int64.Type}, {"ID do fabricante", Int64.Type}, {"Início da vigência", type date}, {"Data", type date}, {"Data de renovação", type date}, {"Data de revisão", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

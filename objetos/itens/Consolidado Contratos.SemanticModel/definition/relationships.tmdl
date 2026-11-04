@@ -1,0 +1,243 @@
+relationship a83aa8cc-04cf-446b-b820-eaf7cc3f0b18
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Data_base.data
+	toColumn: LocalDateTable_9d2efd88-83a8-448b-bd36-8c97fa241932.Date
+
+relationship 3d5dce65-33c7-4697-8b8e-31d7d797c87a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Última Atualização'.'Última Atualização'
+	toColumn: LocalDateTable_ca64dd92-9932-4f70-9f31-6fd803f7ba72.Date
+
+relationship 7b8535f8-f3e1-4b56-bbc5-829fbb856fa5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Pedidos.'Data do pedido'
+	toColumn: LocalDateTable_57457932-4e3a-40b4-8f7b-16e9d8bcf44f.Date
+
+relationship 877ebc6c-809c-4e33-89aa-b2282465cf9d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Pedidos.Data
+	toColumn: LocalDateTable_b63c6a23-f347-46fb-8219-075459c1f39e.Date
+
+relationship 4c445cd5-b69d-4b7e-a5a0-fd6058876e50
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contratos.'Data de renovação'
+	toColumn: LocalDateTable_35875eed-f107-4039-a374-73241a9a9247.Date
+
+relationship 62f8994e-c2fd-4c2a-bcb6-2feb37ea6c0d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contratos.'Data de revisão'
+	toColumn: LocalDateTable_80abe335-5842-4b54-a935-07fd89838bf4.Date
+
+relationship e243be5d-5a83-4a00-9f2a-4b111dd5d096
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contratos.'Data do primeiro pedido'
+	toColumn: LocalDateTable_9e5b3c35-6739-43e5-a908-badbceb7ba67.Date
+
+relationship 3387a5b1-84d3-4960-bdbe-4b6ff949a157
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contratos.'Data do último pedido'
+	toColumn: LocalDateTable_d5f550aa-d31e-4748-9f45-f355e78ae559.Date
+
+relationship bc0a30a8-a050-48b6-a4a2-1be458311ad3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contratos.'Última data'
+	toColumn: LocalDateTable_00f57887-dbb7-4de9-9d06-7cfd7585ab59.Date
+
+relationship 3e9d34b8-9007-4e87-95d0-d02223110fa0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contratos.'Fim da vigência'
+	toColumn: LocalDateTable_479317b5-9e86-4b53-ac52-bb0b18adad77.Date
+
+relationship 1f503f55-5085-4bb9-bd6c-dc31af461b7e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Clientes.'Data da modificação do cliente'
+	toColumn: LocalDateTable_9e6efa31-ce02-4551-9005-e899c2df9db6.Date
+
+relationship 3b77231e-0400-4f6b-b839-8fadab63d2a5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Clientes.'Data da criação do cliente'
+	toColumn: LocalDateTable_22c12efd-7971-4135-be0d-ea8270b2f30c.Date
+
+relationship 108077bf-a563-46f9-b5f4-c7d2ad26a652
+	fromColumn: Contratos.'ID do cliente'
+	toColumn: Clientes.'ID do cliente'
+
+relationship b6e71c39-d4bb-4898-b5d8-1ba9f7d3ebda
+	fromColumn: Contratos.'ID do pilar'
+	toColumn: Pilares.'ID do pilar'
+
+relationship a1a62362-4789-4132-8943-54c806a85de9
+	fromColumn: Contratos.'ID da empresa Processor'
+	toColumn: Empresa.'Id Empresa'
+
+relationship 0c935a6e-b3f4-42cc-860f-6ca376efd473
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Contratos dia a dia'.'ID do grupo'
+	toColumn: Grupos.'ID do grupo'
+
+relationship e8234827-7617-4794-b127-75e8b9a9099d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contratos.'Data de início'
+	toColumn: LocalDateTable_e6ba35bf-8259-45c5-841f-5189fed18c9d.Date
+
+relationship 47bf8857-2403-4185-b6d8-e3e5ae71fc1c
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: Pedidos.'ID do contrato'
+	toColumn: Contratos.'ID do contrato'
+
+relationship dc7e897d-1bae-4c7b-a13d-8a2a6ca2e43c
+	fromColumn: Contratos.'ID do grupo'
+	toColumn: Grupos.'ID do grupo'
+
+relationship a5999063-25b6-41e7-b1e3-4111f9738b39
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Grupos.'Data da modificação do grupo'
+	toColumn: LocalDateTable_2e328b6d-7e9d-4265-be8e-c8e533a97eac.Date
+
+relationship 4313dd6a-3fd9-447f-8040-4c5bd03c167e
+	fromColumn: 'Contratos dia a dia'.'ID do cliente'
+	toColumn: Clientes.'ID do cliente'
+
+relationship b6ee0847-cd79-4aac-a86c-f07fd533395a
+	fromColumn: 'Contratos dia a dia'.'ID do pilar'
+	toColumn: Pilares.'ID do pilar'
+
+relationship 5a86c07c-df15-4938-869f-d647ccd29c99
+	fromColumn: 'Contratos dia a dia'.'ID da empresa Processor'
+	toColumn: Empresa.'Id Empresa'
+
+relationship 72197da8-aa41-4906-b513-536acd6dfa4f
+	isActive: false
+	fromColumn: 'Contratos dia a dia'.'ID do contrato'
+	toColumn: Contratos.'ID do contrato'
+
+relationship 1814158d-8ed6-4356-9891-708fb0d2dd89
+	fromColumn: Pedidos.'ID do cliente'
+	toColumn: Clientes.'ID do cliente'
+
+relationship f3b12e49-b569-4eba-a988-eb30392e53bc
+	fromColumn: 'Contratos dia a dia'.'ID do fabricante'
+	toColumn: Fabricantes.'Id Fabricante'
+
+relationship d7c401a9-8056-4376-8fbe-81000406773a
+	fromColumn: Contratos.'ID do fabricante'
+	toColumn: Fabricantes.'Id Fabricante'
+
+relationship 537fd3c0-6068-427d-bffc-46c30d287e92
+	fromColumn: Percepções.'Id Grupo'
+	toColumn: Grupos.'ID do grupo'
+
+relationship cae702ca-3583-4c79-8ca9-a1d4eee0e9c3
+	fromColumn: Ligações.'ID Empresa'
+	toColumn: Empresa.'Id Empresa'
+
+relationship 6a68b888-36b8-4124-8624-8c6ef4919f99
+	fromColumn: Ligações.'ID Grupo'
+	toColumn: Grupos.'ID do grupo'
+
+relationship 2380887d-2b4b-4a1b-b96a-2cb085820cc1
+	fromColumn: Visitas.'ID Grupo'
+	toColumn: Grupos.'ID do grupo'
+
+relationship 74e078ca-7ee5-4d83-8c19-5f1f7e9364ae
+	fromColumn: Percepções.'ID Usuario'
+	toColumn: Funcionarios.'ID Usuario'
+
+relationship ef3c46b0-adb3-4b12-a2a9-e98d392d0461
+	fromColumn: Ligações.'ID Usuario'
+	toColumn: Funcionarios.'ID Usuario'
+
+relationship 5b9ca070-5669-4657-a0f2-0f70a4cedbb9
+	fromColumn: Visitas.'ID Usuario'
+	toColumn: Funcionarios.'ID Usuario'
+
+relationship c345ef2d-f761-0a65-8054-c58d72b87755
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Contratos dia a dia'.'ID do grupo'
+	toColumn: Percepções.'Id Grupo'
+
+relationship 0db19025-5699-f611-f5f8-c9508e122d45
+	isActive: false
+	toCardinality: many
+	fromColumn: Ligações.'ID Grupo'
+	toColumn: Percepções.'Id Grupo'
+
+relationship e69634c3-ae2e-570c-49a0-5d38c642f27c
+	isActive: false
+	toCardinality: many
+	fromColumn: Visitas.'ID Grupo'
+	toColumn: Percepções.'Id Grupo'
+
+relationship aed14942-b9f7-81c5-f776-f650f41eeba3
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Contratos dia a dia'.'ID do grupo'
+	toColumn: Ligações.'ID Grupo'
+
+relationship AutoDetected_7565fe61-ac1d-4871-a438-40adedd4bbcd
+	fromColumn: Percepções.'Id Fabricante'
+	toColumn: Fabricantes.'Id Fabricante'
+
+relationship 921f8bce-4fb0-d0b1-82bf-aa5d231a780d
+	fromColumn: 'LiveCloud - GA4'.'Grupo Economico SIP ID'
+	toColumn: Grupos.'ID do grupo'
+
+relationship 5dc17c98-d7f9-f6ac-9fd6-8e83b11a449c
+	isActive: false
+	toCardinality: many
+	fromColumn: 'LiveCloud - GA4'.'Grupo Economico SIP ID'
+	toColumn: 'Contratos dia a dia'.'ID do grupo'
+
+relationship 15241701-3cf6-40d8-9d70-410a0a956390
+	fromColumn: 'Contratos dia a dia'.Data
+	toColumn: dCalendario.Date
+
+relationship fa93e774-0d5d-432b-80f7-8052d8e57985
+	fromColumn: Contratos.'Início da vigência'
+	toColumn: dCalendario.Date
+
+relationship a6fe9eb5-7806-4cdb-b85b-b16197745a5e
+	isActive: false
+	fromColumn: Contratos.'Data de inativação'
+	toColumn: dCalendario.Date
+
+relationship 113751d5-3993-45f7-9773-1b16fd32f154
+	isActive: false
+	fromColumn: 'Contratos dia a dia'.'Início da vigência'
+	toColumn: dCalendario.Date
+
+relationship 2a9e5a27-e0e0-417e-81ed-c29d425992a5
+	isActive: false
+	fromColumn: 'Contratos dia a dia'.'Data de inativação'
+	toColumn: dCalendario.Date
+
+relationship 82e85e3b-bac5-41ef-bb18-1459275334b1
+	isActive: false
+	fromColumn: 'Contratos dia a dia'.'Data de revisão'
+	toColumn: dCalendario.Date
+
+relationship fb36f991-c9e0-4735-aca2-6358e87c7de5
+	isActive: false
+	fromColumn: 'Contratos dia a dia'.'Data de renovação'
+	toColumn: dCalendario.Date
+
+relationship e456092d-f3d9-43a7-9cee-0d7b59680268
+	fromColumn: Percepções.Data
+	toColumn: dCalendario.Date
+
+relationship 3e335b1b-21b5-4436-9b6e-019e77b15eb5
+	fromColumn: Ligações.Data
+	toColumn: dCalendario.Date
+
+relationship 414b4fc5-1cd0-4d94-b381-1320cbc4c2ec
+	fromColumn: Visitas.Data
+	toColumn: dCalendario.Date
+
+relationship 62fc00eb-de7b-9569-4026-0b2d886c628c
+	fromColumn: 'LiveCloud - GA4'.Data
+	toColumn: dCalendario.Date
+

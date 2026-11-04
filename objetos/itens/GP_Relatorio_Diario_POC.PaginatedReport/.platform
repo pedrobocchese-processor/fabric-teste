@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "PaginatedReport",
+    "displayName": "GP_Relatorio_Diario_POC"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "987683eb-4dc4-a182-446d-769da2b5f68f"
+  }
+}

@@ -1,0 +1,282 @@
+table F_Projeto_Dedicado_Car_House
+	lineageTag: eedbc06f-dd22-4e62-9ca7-bc790a9d0bd0
+
+	column Codigo
+		formatString: 0
+		lineageTag: 7f9da787-51a1-4d27-a3ef-f2a917e4b8b8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Codigo]
+
+		annotation SummarizationSetBy = User
+
+	column CodigoContrato
+		formatString: 0
+		lineageTag: a1cee2ba-231a-419f-91d3-8fc01079b0c2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CodigoContrato]
+
+		annotation SummarizationSetBy = User
+
+	column DescricaoContrato
+		lineageTag: 7b27c305-328f-47d9-a43e-670c37982d1f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DescricaoContrato]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodigoGrupo
+		formatString: 0
+		lineageTag: 4eb61edc-09fd-4a70-b352-b4b24cf9e67a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CodigoGrupo]
+
+		annotation SummarizationSetBy = User
+
+	column CodigoAtividade
+		formatString: 0
+		lineageTag: 2a910238-c34a-48e3-bf54-428aa258cb24
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CodigoAtividade]
+
+		annotation SummarizationSetBy = User
+
+	column CodigoProfissional
+		formatString: 0
+		lineageTag: a6b7ddfc-4f0f-4841-a6fc-aba9f9381fee
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CodigoProfissional]
+
+		annotation SummarizationSetBy = User
+
+	column Inicio
+		formatString: General Date
+		lineageTag: 214bdbb5-af51-486d-9917-71958ee71ccd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Inicio]
+
+		variation Variation
+			isDefault
+			relationship: 3a685db6-7ed2-4099-9e1e-fca0a4b2277c
+			defaultHierarchy: LocalDateTable_e1a5c108-8403-4e57-b318-4b3d2b5301e1.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fim
+		formatString: General Date
+		lineageTag: 6be1d5ec-5851-4c69-90a6-8b2efa0042f6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Fim]
+
+		variation Variation
+			isDefault
+			relationship: 6732cc86-c19a-494d-aaaa-c0047d6575e4
+			defaultHierarchy: LocalDateTable_d6d6b10d-6142-4b32-96da-d4bb97bc577a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tempo
+		formatString: Long Time
+		lineageTag: e6ffe960-fab4-4547-ba3f-f3a38321f643
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Tempo]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Horas
+		formatString: 0
+		lineageTag: 5c3319da-e53f-4eb4-8174-9581fe4d9274
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Horas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column DescricaoGrupo
+		lineageTag: 8726e63c-0b30-4d7e-8c95-28f0ede296fd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DescricaoGrupo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescricaoAtividade
+		lineageTag: 1b217a62-d536-4708-81c6-d255c2d17d44
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DescricaoAtividade]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeProfissional
+		lineageTag: 4cb36c69-27c1-4024-9fdf-ab1011c21f82
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NomeProfissional]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		lineageTag: 05325c37-3655-4069-84a0-896b134fa29b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Email]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observacao
+		lineageTag: d2fe6f93-a751-436f-bcb8-cb06d26be8a5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Observacao]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataInc
+		formatString: dd/mm/yyyy
+		lineageTag: 2a0a1cee-192f-4fa2-91ca-eebc77a0f282
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DataInc]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Cliente
+		lineageTag: 33bbb543-ce2b-4054-925e-999a7a25e39a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Cliente]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo
+		lineageTag: 25329629-e5bc-44b4-ad88-83f16c402997
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Grupo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Funcao
+		lineageTag: 2fbc0cdb-173f-4329-9f69-70aa823da447
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Funcao]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Projeto_Dedicado_Car_House = calculated
+		mode: import
+		source = ```
+				
+				VAR DiasUteis =
+				    FILTER(
+				        ADDCOLUMNS(
+				            CALENDAR( DATE(2025,1,1), DATE(2025,12,31) ),
+				            "DiaSemana", WEEKDAY( [Date], 2 )
+				        ),
+				        [DiaSemana] <= 5
+				    )
+				
+				VAR DiasIndexados =
+				    ADDCOLUMNS(
+				        ADDCOLUMNS( DiasUteis, "Ano", YEAR( [Date] ), "Mes", MONTH( [Date] ) ),
+				        "IdxDiaMes",
+				            VAR _Ano = YEAR( [Date] )
+				            VAR _Mes = MONTH( [Date] )
+				            VAR _ThisDate = [Date]
+				            RETURN
+				                COUNTROWS(
+				                    FILTER(
+				                        DiasUteis,
+				                        YEAR( [Date] ) = _Ano
+				                            && MONTH( [Date] ) = _Mes
+				                            && [Date] <= _ThisDate
+				                    )
+				                )
+				    )
+				
+				VAR DiasLimitados =
+				    FILTER( DiasIndexados, [IdxDiaMes] <= 20 )
+				
+				VAR LinhasComTurnos =
+				    ADDCOLUMNS(
+				        GENERATE(
+				            DiasLimitados,
+				            DATATABLE( "Turno", STRING, { { "Manhã" }, { "Tarde" } } )
+				        ),
+				        "Codigo", 35000 + ( [IdxDiaMes] - 1 ) * 2 + IF( [Turno] = "Tarde", 1, 0 ),
+				        "CodigoContrato", 7399,
+				        "DescricaoContrato", "7399 - Contrato de Consultoria",
+				        "CodigoGrupo", 5396,
+				        "CodigoAtividade", BLANK(),
+				        "CodigoProfissional", 1080,
+				        "Funcao", "Arquiteto - Sr",
+				        "Inicio",
+				            IF(
+				                [Turno] = "Manhã",
+				                [Date] + TIME(8,0,0),
+				                [Date] + TIME(13,0,0)
+				            ),
+				        "Fim",
+				            IF(
+				                [Turno] = "Manhã",
+				                [Date] + TIME(12,0,0),
+				                [Date] + TIME(17,0,0)
+				            ),
+				        "Tempo", TIME(4,0,0),
+				        "Horas", 4,
+				        "DescricaoGrupo", "Projeto Dedicado",
+				        "DescricaoAtividade", "Atendimento Projeto Dedicado",
+				        "NomeProfissional", "Cesar Ricardo Balan",
+				        "Email", "cesar.balan@processor.com.br",
+				        "Observacao", "Atendimento projeto dedicado CarHouse",
+				        "DataInc", [Date] + TIME(8,0,0),
+				        "Cliente", "Car House",
+				        "Grupo", "Car House Veiculos"
+				    )
+				
+				RETURN
+				    SELECTCOLUMNS(
+				        LinhasComTurnos,
+				        "Codigo", [Codigo],
+				        "CodigoContrato", [CodigoContrato],
+				        "DescricaoContrato", [DescricaoContrato],
+				        "CodigoGrupo", [CodigoGrupo],
+				        "CodigoAtividade", [CodigoAtividade],
+				        "CodigoProfissional", [CodigoProfissional],        
+				        "Inicio", [Inicio],
+				        "Fim", [Fim],
+				        "Tempo", [Tempo],
+				        "Horas", [Horas],
+				        "DescricaoGrupo", [DescricaoGrupo],
+				        "DescricaoAtividade", [DescricaoAtividade],
+				        "NomeProfissional", [NomeProfissional],
+				        "Email", [Email],
+				        "Observacao", [Observacao],
+				        "DataInc", [DataInc],
+				        "Funcao", [Funcao],
+				        "Cliente", [Cliente],
+				        "Grupo", [Grupo]
+				    )
+				
+				```
+
+	annotation PBI_Id = 1b86d370675b450f9f2ee4600837cb3d
+

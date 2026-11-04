@@ -1,0 +1,126 @@
+table Clientes
+	lineageTag: a902c50e-658b-4e37-ad36-d455f3e4794e
+
+	column 'ID do cliente'
+		dataType: int64
+		formatString: 0
+		lineageTag: 25eb48f4-b358-46af-b5b9-4fa442c618f8
+		summarizeBy: none
+		sourceColumn: ID do cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CNPJ do cliente'
+		dataType: string
+		lineageTag: cbf1bc68-68fb-4e6f-9f0d-99f7909ab472
+		summarizeBy: none
+		sourceColumn: CNPJ do cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: b6583cd7-98ad-4f0f-aede-1cf009fedf8a
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID da classificação'
+		dataType: string
+		lineageTag: 5b2d580f-5471-40b5-8b58-b6860802c725
+		summarizeBy: none
+		sourceColumn: ID da classificação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID do grupo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e06e56f-0dcd-4de2-b5a2-7f37dac26203
+		summarizeBy: none
+		sourceColumn: ID do grupo
+
+		annotation SummarizationSetBy = User
+
+	column 'Status do cliente'
+		dataType: string
+		lineageTag: c649eb80-bcb8-44bb-99f5-ead71aa07f01
+		summarizeBy: none
+		sourceColumn: Status do cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID da vertical'
+		dataType: string
+		lineageTag: ba92ed66-6d34-4c76-8f19-0a67ba9eb1dd
+		summarizeBy: none
+		sourceColumn: ID da vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data da modificação do cliente'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7cabb4e4-8b7a-4bc3-ae18-586a5508f6ba
+		summarizeBy: none
+		sourceColumn: Data da modificação do cliente
+
+		variation Variation
+			isDefault
+			relationship: 1f503f55-5085-4bb9-bd6c-dc31af461b7e
+			defaultHierarchy: LocalDateTable_9e6efa31-ce02-4551-9005-e899c2df9db6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data da criação do cliente'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9147de5a-7a30-41f5-a9cf-c7fdffb32ecd
+		summarizeBy: none
+		sourceColumn: Data da criação do cliente
+
+		variation Variation
+			isDefault
+			relationship: 3b77231e-0400-4f6b-b839-8fadab63d2a5
+			defaultHierarchy: LocalDateTable_22c12efd-7971-4135-be0d-ea8270b2f30c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: 4bfec7f5-83c9-4fb3-88b3-e0f0e7d73e14
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: 1d5c1910-df5b-495e-a10b-576e90176fe5
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ramo
+		dataType: string
+		lineageTag: d3e4fb7d-be94-4dd1-9aaf-61fefb61d1fb
+		summarizeBy: none
+		sourceColumn: Ramo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Clientes-d34d378f-bcdb-4620-aacf-8a8967681059 = m
+		mode: import
+		queryGroup: Dimensoes
+		source =
+				let
+				    Fonte = Sql.Database("gage.processor.com.br\mssqlsip", "processor", [Query="SELECT * from sipm.vw_BI_Clientes_v1", CommandTimeout=#duration(0, 4, 0, 0)])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

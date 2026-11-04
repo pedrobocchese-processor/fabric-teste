@@ -1,0 +1,238 @@
+table D_Funcionarios
+	lineageTag: d7c70adc-d3d2-4975-b115-72e76070161e
+
+	column fun_Codigo
+		dataType: int64
+		formatString: 0
+		lineageTag: ac4c3764-f78a-47e5-8d84-6cae36623e6b
+		summarizeBy: none
+		sourceColumn: fun_Codigo
+
+		annotation SummarizationSetBy = User
+
+	column fun_Nome
+		dataType: string
+		lineageTag: 892b474b-a427-403c-8924-1dce8c894f89
+		summarizeBy: none
+		sourceColumn: fun_Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_NomeCompleto
+		dataType: string
+		lineageTag: e48b936d-aac2-435f-9053-631956bcc6ad
+		summarizeBy: none
+		sourceColumn: fun_NomeCompleto
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_Cargo
+		dataType: int64
+		formatString: 0
+		lineageTag: ad1a723f-d41b-4f0f-9196-a8115b3d23b7
+		summarizeBy: none
+		sourceColumn: fun_Cargo
+
+		annotation SummarizationSetBy = User
+
+	column car_Cargo
+		dataType: string
+		lineageTag: 1d08be8d-62c5-47b0-9bbd-1a48579759f6
+		summarizeBy: none
+		sourceColumn: car_Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_DataContratacao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: d62f8499-f7bc-48c2-b068-cbff9944c4bb
+		summarizeBy: none
+		sourceColumn: fun_DataContratacao
+
+		variation Variation
+			isDefault
+			relationship: c68b600a-6223-43c0-966a-6831d34d4d81
+			defaultHierarchy: LocalDateTable_480aadfe-1587-40ff-8e2b-765c6b53b42e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column fun_DataEfetivacao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 79e03f15-2df6-4211-9b6c-997d9b5b0fd3
+		summarizeBy: none
+		sourceColumn: fun_DataEfetivacao
+
+		variation Variation
+			isDefault
+			relationship: 9474b445-61e9-4579-9369-548196e7bcce
+			defaultHierarchy: LocalDateTable_f02ef4c6-ad81-435f-a8bf-e1320b24feba.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column fun_Empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: acb76cbe-34ed-431d-8b62-73d036ebc022
+		summarizeBy: none
+		sourceColumn: fun_Empresa
+
+		annotation SummarizationSetBy = User
+
+	column Emp_Nome
+		dataType: string
+		lineageTag: c49e7b87-f5b8-4aea-a4d5-005804a6f91c
+		summarizeBy: none
+		sourceColumn: Emp_Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_Ativo
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1bfdf2a7-94c2-4f4c-a5fe-57dd9970419b
+		summarizeBy: none
+		sourceColumn: fun_Ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_Area
+		dataType: int64
+		formatString: 0
+		lineageTag: c62ccae7-d08c-4244-8a16-22e2ca859955
+		summarizeBy: none
+		sourceColumn: fun_Area
+
+		annotation SummarizationSetBy = User
+
+	column are_Descricao
+		dataType: string
+		lineageTag: 3bdc7009-c33a-4a9c-8133-8682f6dd0b9f
+		summarizeBy: none
+		sourceColumn: are_Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_ValorHora = ```
+			
+			    "150,00"
+			```
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 8be7859c-8575-48f2-bfd0-7da8abde4b86
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_TempoEmpresa = ```
+			
+			    DATEDIFF (
+			        D_Funcionarios[fun_DataContratacao],
+			        TODAY(),
+			        YEAR
+			    )
+			```
+		formatString: 0
+		lineageTag: f5712fd5-c19e-4ec7-8ffe-e7a2f22ae2d8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_TempoEmpresaGrupo = ```
+			
+			    SWITCH (
+			        TRUE(),
+			        D_Funcionarios[fun_TempoEmpresa] < 1, "0 a 1 ano",
+			        D_Funcionarios[fun_TempoEmpresa] >= 1 && D_Funcionarios[fun_TempoEmpresa] < 3, "1 a 3 anos",
+			        D_Funcionarios[fun_TempoEmpresa] >= 3 && D_Funcionarios[fun_TempoEmpresa] < 5, "3 a 5 anos",
+			        D_Funcionarios[fun_TempoEmpresa] >= 5 && D_Funcionarios[fun_TempoEmpresa] < 10, "5 a 10 anos",
+			        D_Funcionarios[fun_TempoEmpresa] >= 10, "10+ anos",
+			        BLANK()
+			    )
+			
+			```
+		lineageTag: 663b517c-63a5-41cf-b683-082e480ff31d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_Superior
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ee22de3-99da-47f8-a50c-e527d1de8081
+		summarizeBy: sum
+		sourceColumn: fun_Superior
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_DataNascimento
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 1a02cf4e-235c-4eb7-a586-41dc16741962
+		summarizeBy: none
+		sourceColumn: fun_DataNascimento
+
+		variation Variation
+			isDefault
+			relationship: cd77c783-5bbb-4cd5-9c30-e3798658a7a7
+			defaultHierarchy: LocalDateTable_6b8783de-a86f-4815-af31-ff9697601fdf.'Hierarquia de datas'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column fun_Idade = ```
+			
+			    DATEDIFF(D_Funcionarios[fun_DataNascimento], TODAY(), YEAR)
+			
+			```
+		formatString: 0
+		lineageTag: 6eca609d-a140-4572-a36d-2a3ebde11063
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column fun_FaixaIdade = ```
+			
+			    SWITCH (
+			        TRUE(),
+			        D_Funcionarios[fun_Idade] > 19 && D_Funcionarios[fun_Idade] < 30, "20 - 30 anos",
+			        D_Funcionarios[fun_Idade] >= 30 && D_Funcionarios[fun_Idade] < 45, "30 - 45 anos",        
+			        BLANK()
+			    )
+			
+			```
+		lineageTag: e9c8efd2-81b9-4f36-a37c-ee662d5296c7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Funcionarios = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor", [Query="SELECT F.fun_Codigo#(lf)#(tab)  ,F.fun_Nome#(lf)#(tab)  ,F.fun_NomeCompleto#(lf)#(tab)  ,F.fun_Cargo#(lf)#(tab)  ,C.car_Cargo#(lf)#(tab)  ,CONVERT(DATE,F.fun_DataContratacao) AS fun_DataContratacao#(lf)#(tab)  ,CONVERT(DATE,F.fun_DataEfetivacao) AS fun_DataEfetivacao#(lf)#(tab)  ,F.fun_Empresa#(lf)#(tab)  ,E.Emp_Nome#(lf)#(tab)  ,F.fun_Ativo#(lf)#(tab)  ,F.fun_Area#(lf)#(tab)  ,A.are_Descricao#(lf)#(tab)  ,F.fun_Superior#(lf)#(tab)  ,CONVERT(DATE,F.fun_DataNascimento) AS fun_DataNascimento#(lf)#(tab)FROM Funcionarios F#(lf)#(tab)#(tab)JOIN Cargos C ON C.car_Codigo = F.fun_Cargo#(lf)#(tab)#(tab)JOIN Empresa E ON E.Emp_Codigo_Empresa = F.fun_Empresa#(lf)#(tab)#(tab)LEFT JOIN Areas A ON A.are_Codigo_Area = F.fun_Area#(lf)#(tab)WHERE F.fun_Ativo = 1#(lf)#(tab)#(tab)AND F.fun_Codigo IN ( 3484, 2680, 3474, 1080, 3175, 2680, 2998)"]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"fun_DataContratacao", type date}, {"fun_DataEfetivacao", type date}}),
+				    #"Linhas Classificadas" = Table.Sort(#"Tipo Alterado",{{"fun_Nome", Order.Ascending}})
+				in
+				    #"Linhas Classificadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,50 @@
+table D_Cargos
+	lineageTag: f908763c-fb74-4b3b-9eb7-e8d3342830e3
+
+	column car_Codigo
+		dataType: int64
+		formatString: 0
+		lineageTag: 781693c2-192a-4f9c-9f0b-120d12eb8b15
+		summarizeBy: none
+		sourceColumn: car_Codigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column car_Cargo
+		dataType: string
+		lineageTag: d72a2a09-685e-4434-9807-e5944c372359
+		summarizeBy: none
+		sourceColumn: car_Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column car_Ativo
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9752cdc5-c5d1-4b94-80c3-f93a6ec49ce1
+		summarizeBy: none
+		sourceColumn: car_Ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column carTipo
+		dataType: int64
+		formatString: 0
+		lineageTag: f421f7ac-763b-488d-8ce9-37fcd27eae63
+		summarizeBy: none
+		sourceColumn: carTipo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Cargos = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("10.15.0.20\mssqlsip", "Processor", [Query="SELECT C.car_Codigo#(lf)      ,C.car_Cargo#(lf)#(tab)  ,C.car_Ativo#(lf)#(tab)  ,C.carTipo#(lf)#(tab)FROM Cargos C"])
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
