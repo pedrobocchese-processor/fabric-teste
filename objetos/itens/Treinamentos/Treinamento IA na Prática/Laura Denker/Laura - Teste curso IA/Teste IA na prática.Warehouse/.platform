@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "Teste IA na prática"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1a4b437c-ea93-bf84-432d-38940fc90f23"
+  }
+}

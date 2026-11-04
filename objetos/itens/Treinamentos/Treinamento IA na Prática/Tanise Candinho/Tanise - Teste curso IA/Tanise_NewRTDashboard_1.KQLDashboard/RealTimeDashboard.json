@@ -1,0 +1,93 @@
+{
+  "schema_version": 67,
+  "tiles": [
+    {
+      "id": "12960697-5608-4099-917e-366fd9aa031a",
+      "title": "Novo bloco",
+      "visualType": "pie",
+      "pageId": "64deeb30-9c35-4fe6-8094-51a774ab3eb6",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 23,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "f0bd070b-4e02-4201-af74-66f76e71a50d"
+      },
+      "visualOptions": {
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "crossFilter": [],
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "labelDisabled": false,
+        "pie__label": [
+          "name",
+          "percentage"
+        ],
+        "tooltipDisabled": false,
+        "pie__tooltip": [
+          "name",
+          "percentage",
+          "value"
+        ],
+        "pie__orderBy": "size",
+        "pie__kind": "pie",
+        "pie__topNSlices": null,
+        "drillthrough": []
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "2824d6cd-4133-4cf4-82fb-c1857ef7f23f",
+      "displayName": "Período",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "kind": "kusto-trident",
+      "scopeId": "kusto-trident",
+      "clusterUri": "",
+      "database": "228ef20e-3cd8-a0e2-4d6f-721ae9949891",
+      "name": "Tanise_teste",
+      "id": "092fd244-5e9b-4734-9a31-e8a369c988ca",
+      "workspace": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Página 1",
+      "id": "64deeb30-9c35-4fe6-8094-51a774ab3eb6"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "092fd244-5e9b-4734-9a31-e8a369c988ca"
+      },
+      "text": "Bisi_table\n     | where ingestion_time() between (ago(30min) .. now())\n     | summarize latest_observation = arg_max(ingestion_time(), *) by Neighbourhood\n     | project Neighbourhood, latest_observation, No_Bikes, No_Empty_Docks\n     | order by Neighbourhood asc\n\n",
+      "id": "f0bd070b-4e02-4201-af74-66f76e71a50d",
+      "usedVariables": []
+    }
+  ]
+}

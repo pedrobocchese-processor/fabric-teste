@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventhouse",
+    "displayName": "Tanise_teste",
+    "description": "Tanise_teste"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "05324fb7-80ec-9ebf-4fb4-a6dd5e10831c"
+  }
+}

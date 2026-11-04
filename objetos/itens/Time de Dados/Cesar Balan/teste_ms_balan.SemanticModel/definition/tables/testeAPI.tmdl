@@ -1,0 +1,29 @@
+table testeAPI
+	lineageTag: a477f7a2-a1e6-4e01-8577-8c5c5fd2db61
+	sourceLineageTag: [dbo].[testeAPI]
+
+	column ID
+		dataType: string
+		lineageTag: 1177c6c4-7181-41bb-8620-308b64e8c12c
+		sourceLineageTag: ID
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME
+		dataType: string
+		lineageTag: 73a63a45-dd57-4f8d-8f91-a2d0eca3bd3e
+		sourceLineageTag: NOME
+		summarizeBy: none
+		sourceColumn: NOME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition testeAPI = entity
+		mode: directLake
+		source
+			entityName: testeAPI
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_cesarbalan_teste'
+

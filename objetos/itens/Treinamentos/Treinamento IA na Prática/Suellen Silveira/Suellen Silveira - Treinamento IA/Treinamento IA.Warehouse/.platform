@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "Treinamento IA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "be468f07-06d3-8057-4332-76aaf5c96aaf"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "Treinamento Rafael 290126"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5f23267f-ea71-86b0-4089-e36cac76d3a9"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "Tanise_NewRTDashboard_1",
+    "description": "Tanise_NewRTDashboard_1"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b71bd413-fa36-a13e-4860-a5834ebe0962"
+  }
+}
