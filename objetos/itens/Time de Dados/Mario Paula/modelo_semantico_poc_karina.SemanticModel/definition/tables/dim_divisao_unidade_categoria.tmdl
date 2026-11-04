@@ -1,0 +1,243 @@
+table dim_divisao_unidade_categoria
+	lineageTag: 09ccef4b-9b1a-431d-a1a1-4ea5ece0370d
+
+	column CATEGORY_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: e55bc038-c10a-4c48-9894-73523b0dfd71
+		summarizeBy: count
+		sourceColumn: CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column STRUCTURE_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c1b9562-2322-4cfd-b23d-c6ff46a5fced
+		summarizeBy: count
+		sourceColumn: STRUCTURE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUTO_DIVISAO
+		dataType: string
+		lineageTag: 061f1cd7-0285-4f72-ba5a-88d29bf8b8e7
+		summarizeBy: none
+		sourceColumn: PRODUTO_DIVISAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUTO_UNIDADE_NEGOCIO
+		dataType: string
+		lineageTag: 54713ceb-7559-4bfc-aaba-711befa15530
+		summarizeBy: none
+		sourceColumn: PRODUTO_UNIDADE_NEGOCIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUTO_CATEGORIA
+		dataType: string
+		lineageTag: 1f3b3997-4599-41cc-925c-ffc301d56adf
+		summarizeBy: none
+		sourceColumn: PRODUTO_CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENABLED_FLAG
+		dataType: string
+		lineageTag: 9efb8ad5-d236-4d03-ad3e-fe1a82a7312b
+		summarizeBy: none
+		sourceColumn: ENABLED_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column START_DATE_ACTIVE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 71ca24f3-acbb-4294-ae75-6305cc5c2a4e
+		summarizeBy: none
+		sourceColumn: START_DATE_ACTIVE
+
+		variation Variation
+			isDefault
+			relationship: e30ef0f0-da21-452a-b0c6-4e2897bb774e
+			defaultHierarchy: LocalDateTable_c298ebb1-f42d-4a50-b34f-fc133d69d3e0.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column END_DATE_ACTIVE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7020130a-bf63-4444-ad00-fd5a9651ef1f
+		summarizeBy: none
+		sourceColumn: END_DATE_ACTIVE
+
+		variation Variation
+			isDefault
+			relationship: 36d40b85-fd68-4475-9b63-a967fc4b7471
+			defaultHierarchy: LocalDateTable_8e2b600a-b909-4576-b2f6-c001418a4fd8.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_UPDATE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e42f734e-a946-43c6-b170-7e59eaf21d86
+		summarizeBy: none
+		sourceColumn: LAST_UPDATE_DATE
+
+		variation Variation
+			isDefault
+			relationship: b9a8ee49-4363-4bb0-b533-d8f47669561d
+			defaultHierarchy: LocalDateTable_595d699b-dc68-4787-8135-3c216ea29224.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_UPDATED_BY
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c0012af-8989-45a8-bb9a-d3974cd6e758
+		summarizeBy: sum
+		sourceColumn: LAST_UPDATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATION_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bbe96969-16c9-4792-b0c5-a57fc557c888
+		summarizeBy: none
+		sourceColumn: CREATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: 9ccab617-d58e-4826-9519-6026391c0ebf
+			defaultHierarchy: LocalDateTable_3a5e1b3f-244a-4ab8-92d9-72f1c523d923.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_BY
+		dataType: int64
+		formatString: 0
+		lineageTag: 07183986-9276-411c-97ff-4d4ec76b155f
+		summarizeBy: sum
+		sourceColumn: CREATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_UPDATE_LOGIN
+		dataType: int64
+		formatString: 0
+		lineageTag: da74b851-c15f-4041-ac81-3cf24ecc5b46
+		summarizeBy: sum
+		sourceColumn: LAST_UPDATE_LOGIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column REQUEST_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b96c32b3-0162-44f2-b671-41a36d841625
+		summarizeBy: count
+		sourceColumn: REQUEST_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROGRAM_APPLICATION_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 691c251c-05c6-4472-98b0-1c8a90f5b60f
+		summarizeBy: count
+		sourceColumn: PROGRAM_APPLICATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROGRAM_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 67c32fee-4e1d-434c-8379-0a3abbd511da
+		summarizeBy: count
+		sourceColumn: PROGRAM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROGRAM_UPDATE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 93fa91e0-da60-44e4-8e8e-42788c756791
+		summarizeBy: none
+		sourceColumn: PROGRAM_UPDATE_DATE
+
+		variation Variation
+			isDefault
+			relationship: 3675647c-295f-4fd8-8f9c-36b65d72bf2f
+			defaultHierarchy: LocalDateTable_dc8c4c0f-31b1-4b74-af01-5dec56fa4573.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCRIPTION
+		dataType: string
+		lineageTag: 4abec32d-504c-4ff9-ac6c-8e861d82f996
+		summarizeBy: none
+		sourceColumn: DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY_CONCAT_SEGS
+		dataType: string
+		lineageTag: 876bfd55-6236-4282-8609-cabfc960af95
+		summarizeBy: none
+		sourceColumn: CATEGORY_CONCAT_SEGS
+
+		annotation SummarizationSetBy = Automatic
+
+	column STRUCTURE_NAME
+		dataType: string
+		lineageTag: 3b72b8cb-e8f1-42ba-b233-59db4c7703a8
+		summarizeBy: none
+		sourceColumn: STRUCTURE_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column hash_registro
+		dataType: string
+		lineageTag: 44c0c584-4443-48af-8b2e-6ee2aff13eb7
+		summarizeBy: none
+		sourceColumn: hash_registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_carga
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0751c930-ad42-4021-b061-37346612e13f
+		summarizeBy: none
+		sourceColumn: data_carga
+
+		variation Variation
+			isDefault
+			relationship: 8aa17700-cd13-4c60-8d03-8eb22af6a1d3
+			defaultHierarchy: LocalDateTable_1237ee71-640c-4cee-9e8a-47973327a620.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_DIVISAO_UNIDADE
+		dataType: int64
+		formatString: 0
+		lineageTag: 3adf13b1-4cf3-4129-bb5f-ddfc1ff23327
+		summarizeBy: none
+		sourceColumn: SK_DIVISAO_UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_divisao_unidade_categoria = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("c2o2epu7boeudchldopmv3qfwi-wkyz4dsag6lerpncdr44nw5tti.datawarehouse.fabric.microsoft.com", "warehouse_gold"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "dim_divisao_unidade_categoria"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

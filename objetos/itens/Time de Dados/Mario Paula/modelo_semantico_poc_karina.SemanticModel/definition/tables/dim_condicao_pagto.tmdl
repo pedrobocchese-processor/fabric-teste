@@ -1,0 +1,71 @@
+table dim_condicao_pagto
+	lineageTag: 32578f62-4e79-4917-83b7-14959d4d8e1a
+
+	column CODIGOPG
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e8b8bcc-a4c8-488c-8c3a-e1897b841a98
+		summarizeBy: sum
+		sourceColumn: CODIGOPG
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRAZO
+		dataType: int64
+		formatString: 0
+		lineageTag: 984e8507-d5e0-42e5-acaf-1f62433dbab4
+		summarizeBy: sum
+		sourceColumn: PRAZO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCRICAO02
+		dataType: string
+		lineageTag: bc1d9fa9-da9e-4004-a5fa-9c783e5aa6a0
+		summarizeBy: none
+		sourceColumn: DESCRICAO02
+
+		annotation SummarizationSetBy = Automatic
+
+	column hash_registro
+		dataType: string
+		lineageTag: 85526e9d-6710-4941-a347-6390a0975403
+		summarizeBy: none
+		sourceColumn: hash_registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_carga
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d0589d13-3ab8-4e5f-8258-bd2d709c124d
+		summarizeBy: none
+		sourceColumn: data_carga
+
+		variation Variation
+			isDefault
+			relationship: 9fcfb589-39fc-4154-9bbd-c8720d614e08
+			defaultHierarchy: LocalDateTable_e7e5c5d9-984b-4ab8-a9a6-86fe6100c1fe.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_CONDICAO_PAGTO
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a3bb75a-175b-48da-8ad0-48dba839062c
+		summarizeBy: none
+		sourceColumn: SK_CONDICAO_PAGTO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_condicao_pagto = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("c2o2epu7boeudchldopmv3qfwi-wkyz4dsag6lerpncdr44nw5tti.datawarehouse.fabric.microsoft.com", "warehouse_gold"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "dim_condicao_pagto"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

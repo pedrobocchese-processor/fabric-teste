@@ -1,0 +1,42 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dim_condicao_pagto","dim_divisao_unidade_categoria","dim_operacao_saida","dim_organizacao","dim_organizacao_destino","dim_produtos","dim_tipo_frete","fact_faturamento"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["WebModelingEdit"]
+
+ref table dim_condicao_pagto
+ref table DateTableTemplate_b6f2f25d-5b7f-4b7d-947f-172363087984
+ref table LocalDateTable_e7e5c5d9-984b-4ab8-a9a6-86fe6100c1fe
+ref table dim_divisao_unidade_categoria
+ref table LocalDateTable_c298ebb1-f42d-4a50-b34f-fc133d69d3e0
+ref table LocalDateTable_8e2b600a-b909-4576-b2f6-c001418a4fd8
+ref table LocalDateTable_595d699b-dc68-4787-8135-3c216ea29224
+ref table LocalDateTable_3a5e1b3f-244a-4ab8-92d9-72f1c523d923
+ref table LocalDateTable_dc8c4c0f-31b1-4b74-af01-5dec56fa4573
+ref table LocalDateTable_1237ee71-640c-4cee-9e8a-47973327a620
+ref table dim_operacao_saida
+ref table LocalDateTable_4f488292-6d77-40ae-b805-15b02281d7b8
+ref table dim_organizacao
+ref table LocalDateTable_e5da84a2-d7ae-4e92-a3ab-e36c5880cb23
+ref table dim_organizacao_destino
+ref table LocalDateTable_bf0ca9ee-dfc0-440a-93d4-09c43a25a4c2
+ref table dim_produtos
+ref table LocalDateTable_c3a2854c-895f-4d9d-a22e-14606e234130
+ref table LocalDateTable_5f019188-90d4-4fcd-97e3-cb390181cea5
+ref table LocalDateTable_46a4c907-e586-4658-87b7-2e025940f148
+ref table LocalDateTable_dbe9c259-a0e5-4227-8c5a-e5a219407207
+ref table dim_tipo_frete
+ref table LocalDateTable_695043e0-a2e2-447c-bd9a-a4c251f35c8d
+ref table fact_faturamento
+ref table LocalDateTable_4d8c6ba6-5b80-4f45-bad9-4d8082cf9d80
+ref table LocalDateTable_23314663-9ede-4fa8-983d-d55add6af02b
+ref table LocalDateTable_e826ecac-00f7-49dd-a872-828af97d3d8f
+

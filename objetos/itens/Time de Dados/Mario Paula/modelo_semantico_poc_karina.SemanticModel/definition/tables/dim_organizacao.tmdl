@@ -1,0 +1,62 @@
+table dim_organizacao
+	lineageTag: d6de46d3-3b28-4c54-b243-dd04b737cc89
+
+	column ORGANIZATION_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7258ac1c-31ff-40a9-b4c1-dcc5a73a0c54
+		summarizeBy: count
+		sourceColumn: ORGANIZATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME_EMPRESA
+		dataType: string
+		lineageTag: 76943bfd-5b0e-4119-bcaa-e2aee27e8f13
+		summarizeBy: none
+		sourceColumn: NOME_EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column hash_registro
+		dataType: string
+		lineageTag: 074084be-3dc9-4942-b52a-6da4302f168a
+		summarizeBy: none
+		sourceColumn: hash_registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_carga
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9323f764-533a-4b39-9cd8-cc74d4c2e9c0
+		summarizeBy: none
+		sourceColumn: data_carga
+
+		variation Variation
+			isDefault
+			relationship: 51ae791e-c4d5-4aa1-b4df-6501923bff5a
+			defaultHierarchy: LocalDateTable_e5da84a2-d7ae-4e92-a3ab-e36c5880cb23.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_ORGANIZACAO
+		dataType: int64
+		formatString: 0
+		lineageTag: ca99c3f8-f6f1-47f1-8586-88750d36aa69
+		summarizeBy: none
+		sourceColumn: SK_ORGANIZACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_organizacao = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("c2o2epu7boeudchldopmv3qfwi-wkyz4dsag6lerpncdr44nw5tti.datawarehouse.fabric.microsoft.com", "warehouse_gold"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "dim_organizacao"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

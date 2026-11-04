@@ -1,0 +1,300 @@
+table dim_produtos
+	lineageTag: 4a06270c-6b71-4afb-a577-483de3e11855
+
+	column CATEGORY_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e6518a8-5622-4bb6-90cf-d05d1c62af16
+		summarizeBy: count
+		sourceColumn: CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COD_ESPECIALID
+		dataType: string
+		lineageTag: 1dabc487-bdf7-4854-ba48-f90e034138fc
+		summarizeBy: none
+		sourceColumn: COD_ESPECIALID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COD_NORMA
+		dataType: string
+		lineageTag: 6cc5491b-63cb-4b55-ada7-671fdd66fa98
+		summarizeBy: none
+		sourceColumn: COD_NORMA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODGRUPO
+		dataType: int64
+		formatString: 0
+		lineageTag: b039a997-752b-42a8-ab21-ec491e72afb3
+		summarizeBy: sum
+		sourceColumn: CODGRUPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_ALFA
+		dataType: string
+		lineageTag: bf4850b4-c2bf-4942-854a-1dc44f6c2b45
+		summarizeBy: none
+		sourceColumn: CODIGO_ALFA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_CATEGORIA
+		dataType: int64
+		formatString: 0
+		lineageTag: 23deba21-f6d5-4e26-b376-fbf21aadb59c
+		summarizeBy: sum
+		sourceColumn: CODIGO_CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_EAN
+		dataType: double
+		lineageTag: 497fa836-86fa-4d4c-b8d4-519b78587361
+		summarizeBy: sum
+		sourceColumn: CODIGO_EAN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CODIGO_ESPECIAL
+		dataType: string
+		lineageTag: cbedb139-d7be-4d5d-8ac9-c34160a92f38
+		summarizeBy: none
+		sourceColumn: CODIGO_ESPECIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_FCI
+		dataType: string
+		lineageTag: 10b63eb5-025d-4f45-b882-27417f49e41f
+		summarizeBy: none
+		sourceColumn: CODIGO_FCI
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_PORTIFOLIO
+		dataType: int64
+		formatString: 0
+		lineageTag: 42f5c0eb-94ad-49dc-a957-bd8e967c234a
+		summarizeBy: sum
+		sourceColumn: CODIGO_PORTIFOLIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_UTILIZACAO_FISCAL
+		dataType: string
+		lineageTag: 3e2344dd-36fc-4bb2-99ee-8840ce38c999
+		summarizeBy: none
+		sourceColumn: CODIGO_UTILIZACAO_FISCAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGOPR
+		dataType: int64
+		formatString: 0
+		lineageTag: 523990eb-568b-4627-a8b9-5952f175b50c
+		summarizeBy: sum
+		sourceColumn: CODIGOPR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_BY
+		dataType: int64
+		formatString: 0
+		lineageTag: 49d7724e-b2e6-49f4-a064-89e127710f6e
+		summarizeBy: sum
+		sourceColumn: CREATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATION_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a786d16-f2db-4640-bd81-ba72b0286b36
+		summarizeBy: none
+		sourceColumn: CREATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: e45e406c-4117-4637-a24d-314cb4292192
+			defaultHierarchy: LocalDateTable_c3a2854c-895f-4d9d-a22e-14606e234130.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 37528d13-1262-44b8-8ace-0ecb3acbb164
+		summarizeBy: none
+		sourceColumn: DATA
+
+		variation Variation
+			isDefault
+			relationship: 20e3f07b-ffdc-4e6e-b287-4c12f7b93ee4
+			defaultHierarchy: LocalDateTable_5f019188-90d4-4fcd-97e3-cb390181cea5.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_INATIVO
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 40861df7-f0f7-4a96-a67a-c4eb404c3289
+		summarizeBy: none
+		sourceColumn: DATA_INATIVO
+
+		variation Variation
+			isDefault
+			relationship: 28fc4b9a-fdd4-4963-ad67-8b5cbca08f32
+			defaultHierarchy: LocalDateTable_46a4c907-e586-4658-87b7-2e025940f148.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_APLICACAO
+		dataType: string
+		lineageTag: 38f49332-0e00-4a6b-8e57-f3aa630a1b44
+		summarizeBy: none
+		sourceColumn: DESC_APLICACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_CATEGORIA
+		dataType: string
+		lineageTag: d15c8017-5907-4d4c-82e5-523bad6e8528
+		summarizeBy: none
+		sourceColumn: DESC_CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_COMPLEMENTAR
+		dataType: string
+		lineageTag: 642b5edd-cd9f-48fe-a775-f072e70a9c85
+		summarizeBy: none
+		sourceColumn: DESC_COMPLEMENTAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_PORTIFOLIO
+		dataType: string
+		lineageTag: d57502e3-b011-4501-82ce-af36507e0564
+		summarizeBy: none
+		sourceColumn: DESC_PORTIFOLIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_TIPO_ESTOQUE
+		dataType: string
+		lineageTag: c312ca3e-63da-4094-a4c9-a20f9b095168
+		summarizeBy: none
+		sourceColumn: DESC_TIPO_ESTOQUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME
+		dataType: string
+		lineageTag: ea046817-bc31-414c-b6a2-a4436a84e0f1
+		summarizeBy: none
+		sourceColumn: NOME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORG_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ad35b1ad-729f-46fe-bc78-48cc8ef91718
+		summarizeBy: count
+		sourceColumn: ORG_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORGANIZATION_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 044213f0-0ffa-43a5-a6f1-83e8c4eca78c
+		summarizeBy: count
+		sourceColumn: ORGANIZATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b481030-1352-45b1-8f60-4754d6c41875
+		summarizeBy: sum
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS_TRANS
+		dataType: int64
+		formatString: 0
+		lineageTag: 22a8efa9-c3f5-4f56-a6ab-138d647e97e7
+		summarizeBy: sum
+		sourceColumn: STATUS_TRANS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHV_COMPOSTA
+		dataType: string
+		lineageTag: fec85321-e4c8-4886-a1bf-358e1d98d4b8
+		summarizeBy: none
+		sourceColumn: CHV_COMPOSTA
+
+		annotation SummarizationSetBy = Automatic
+
+	column hash_registro
+		dataType: string
+		lineageTag: db28c2f7-ace6-4a22-957e-733d13e325d1
+		summarizeBy: none
+		sourceColumn: hash_registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_carga
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e1ab3d0b-1c78-4a0d-a8c1-fc81550414c0
+		summarizeBy: none
+		sourceColumn: data_carga
+
+		variation Variation
+			isDefault
+			relationship: 7f965761-4366-486d-93a1-382ba928b4cf
+			defaultHierarchy: LocalDateTable_dbe9c259-a0e5-4227-8c5a-e5a219407207.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_PRODUTOS
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fa1898c-2e23-495b-b56a-b39cb2f62857
+		summarizeBy: none
+		sourceColumn: SK_PRODUTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_DIVISAO_UNIDADE
+		dataType: int64
+		formatString: 0
+		lineageTag: 4aa8aa27-6d4c-4dd9-97e3-702530cf3055
+		summarizeBy: sum
+		sourceColumn: SK_DIVISAO_UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_produtos = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("c2o2epu7boeudchldopmv3qfwi-wkyz4dsag6lerpncdr44nw5tti.datawarehouse.fabric.microsoft.com", "warehouse_gold"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "dim_produtos"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

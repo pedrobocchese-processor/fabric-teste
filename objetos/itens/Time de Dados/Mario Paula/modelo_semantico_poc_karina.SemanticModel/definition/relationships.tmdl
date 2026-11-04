@@ -1,0 +1,118 @@
+relationship 9fcfb589-39fc-4154-9bbd-c8720d614e08
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_condicao_pagto.data_carga
+	toColumn: LocalDateTable_e7e5c5d9-984b-4ab8-a9a6-86fe6100c1fe.Date
+
+relationship e30ef0f0-da21-452a-b0c6-4e2897bb774e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_divisao_unidade_categoria.START_DATE_ACTIVE
+	toColumn: LocalDateTable_c298ebb1-f42d-4a50-b34f-fc133d69d3e0.Date
+
+relationship 36d40b85-fd68-4475-9b63-a967fc4b7471
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_divisao_unidade_categoria.END_DATE_ACTIVE
+	toColumn: LocalDateTable_8e2b600a-b909-4576-b2f6-c001418a4fd8.Date
+
+relationship b9a8ee49-4363-4bb0-b533-d8f47669561d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_divisao_unidade_categoria.LAST_UPDATE_DATE
+	toColumn: LocalDateTable_595d699b-dc68-4787-8135-3c216ea29224.Date
+
+relationship 9ccab617-d58e-4826-9519-6026391c0ebf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_divisao_unidade_categoria.CREATION_DATE
+	toColumn: LocalDateTable_3a5e1b3f-244a-4ab8-92d9-72f1c523d923.Date
+
+relationship 3675647c-295f-4fd8-8f9c-36b65d72bf2f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_divisao_unidade_categoria.PROGRAM_UPDATE_DATE
+	toColumn: LocalDateTable_dc8c4c0f-31b1-4b74-af01-5dec56fa4573.Date
+
+relationship 8aa17700-cd13-4c60-8d03-8eb22af6a1d3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_divisao_unidade_categoria.data_carga
+	toColumn: LocalDateTable_1237ee71-640c-4cee-9e8a-47973327a620.Date
+
+relationship 829add61-ea17-46fb-b8ea-790054128234
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_operacao_saida.data_carga
+	toColumn: LocalDateTable_4f488292-6d77-40ae-b805-15b02281d7b8.Date
+
+relationship 51ae791e-c4d5-4aa1-b4df-6501923bff5a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_organizacao.data_carga
+	toColumn: LocalDateTable_e5da84a2-d7ae-4e92-a3ab-e36c5880cb23.Date
+
+relationship d2e83b88-ca0f-4a83-b992-74e8193b13e5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_organizacao_destino.data_carga
+	toColumn: LocalDateTable_bf0ca9ee-dfc0-440a-93d4-09c43a25a4c2.Date
+
+relationship e45e406c-4117-4637-a24d-314cb4292192
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_produtos.CREATION_DATE
+	toColumn: LocalDateTable_c3a2854c-895f-4d9d-a22e-14606e234130.Date
+
+relationship 20e3f07b-ffdc-4e6e-b287-4c12f7b93ee4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_produtos.DATA
+	toColumn: LocalDateTable_5f019188-90d4-4fcd-97e3-cb390181cea5.Date
+
+relationship 28fc4b9a-fdd4-4963-ad67-8b5cbca08f32
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_produtos.DATA_INATIVO
+	toColumn: LocalDateTable_46a4c907-e586-4658-87b7-2e025940f148.Date
+
+relationship 7f965761-4366-486d-93a1-382ba928b4cf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_produtos.data_carga
+	toColumn: LocalDateTable_dbe9c259-a0e5-4227-8c5a-e5a219407207.Date
+
+relationship d72ca150-127f-49a8-8a31-d1ee5f7f30fd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_tipo_frete.data_carga
+	toColumn: LocalDateTable_695043e0-a2e2-447c-bd9a-a4c251f35c8d.Date
+
+relationship dce95ca4-514b-435f-ae17-d31127cf0351
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_faturamento.DATA
+	toColumn: LocalDateTable_4d8c6ba6-5b80-4f45-bad9-4d8082cf9d80.Date
+
+relationship 4d0909cb-f2eb-4694-9951-d73020f32d16
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_faturamento.DATA_BASE
+	toColumn: LocalDateTable_23314663-9ede-4fa8-983d-d55add6af02b.Date
+
+relationship b0a3186a-5baa-46e9-ad11-f5652766c0a9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_faturamento.DATA_PEDIDO
+	toColumn: LocalDateTable_e826ecac-00f7-49dd-a872-828af97d3d8f.Date
+
+relationship AutoDetected_d68469a2-b787-461a-8880-5ba667b63d0b
+	fromColumn: fact_faturamento.SK_CONDICAO_PAGTO
+	toColumn: dim_condicao_pagto.SK_CONDICAO_PAGTO
+
+relationship AutoDetected_9105f6c0-3a46-4ba6-a3f5-99208ec63f91
+	fromColumn: fact_faturamento.SK_DIVISAO_UNIDADE
+	toColumn: dim_divisao_unidade_categoria.SK_DIVISAO_UNIDADE
+
+relationship AutoDetected_213f393f-ee6e-4a58-8402-845665fc9907
+	fromColumn: fact_faturamento.SK_OPERACAO
+	toColumn: dim_operacao_saida.SK_OPERACAO
+
+relationship AutoDetected_2416d6e4-c5bf-4685-941b-909f43d581b7
+	fromColumn: fact_faturamento.SK_ORGANIZACAO
+	toColumn: dim_organizacao.SK_ORGANIZACAO
+
+relationship AutoDetected_c918c075-03e7-409f-983b-77404a24481f
+	fromColumn: fact_faturamento.SK_ORGANIZACAO_DESTINO
+	toColumn: dim_organizacao_destino.SK_ORGANIZACAO_DESTINO
+
+relationship AutoDetected_0a4cdd9b-afbf-44ea-94db-2b506bd9b779
+	fromColumn: fact_faturamento.SK_PRODUTOS
+	toColumn: dim_produtos.SK_PRODUTOS
+
+relationship AutoDetected_e66b38a5-2dcc-4777-95e9-fe70db9adab8
+	fromColumn: fact_faturamento.SK_FRETE
+	toColumn: dim_tipo_frete.SK_FRETE
+

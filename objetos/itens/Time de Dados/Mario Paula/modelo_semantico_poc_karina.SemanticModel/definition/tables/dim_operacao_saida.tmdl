@@ -1,0 +1,78 @@
+table dim_operacao_saida
+	lineageTag: 4c87ed03-e2d8-43c4-8e3c-a7879cb8e79b
+
+	column OPERACAO
+		dataType: int64
+		formatString: 0
+		lineageTag: a89ad8c7-8802-4342-bba8-18fca72f2ef3
+		summarizeBy: sum
+		sourceColumn: OPERACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column GERA_FAT
+		dataType: string
+		lineageTag: d600b546-0777-4cb4-88a4-7204f1d1da28
+		summarizeBy: none
+		sourceColumn: GERA_FAT
+
+		annotation SummarizationSetBy = Automatic
+
+	column DUPLICATA
+		dataType: string
+		lineageTag: d41a726b-8a60-4bde-9399-9cb08a919d2e
+		summarizeBy: none
+		sourceColumn: DUPLICATA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTOQUE
+		dataType: string
+		lineageTag: 88de2fff-dbd1-4241-854e-639fec1a1d90
+		summarizeBy: none
+		sourceColumn: ESTOQUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column hash_registro
+		dataType: string
+		lineageTag: 52ee6c06-5eb8-4475-ac9c-5c2ddd8cb50c
+		summarizeBy: none
+		sourceColumn: hash_registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_carga
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: befd735e-c63e-4ac0-9fd4-d4087163a989
+		summarizeBy: none
+		sourceColumn: data_carga
+
+		variation Variation
+			isDefault
+			relationship: 829add61-ea17-46fb-b8ea-790054128234
+			defaultHierarchy: LocalDateTable_4f488292-6d77-40ae-b805-15b02281d7b8.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_OPERACAO
+		dataType: int64
+		formatString: 0
+		lineageTag: 03ce5856-9ccb-4b9d-9c17-a3c235220720
+		summarizeBy: none
+		sourceColumn: SK_OPERACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_operacao_saida = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("c2o2epu7boeudchldopmv3qfwi-wkyz4dsag6lerpncdr44nw5tti.datawarehouse.fabric.microsoft.com", "warehouse_gold"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "dim_operacao_saida"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

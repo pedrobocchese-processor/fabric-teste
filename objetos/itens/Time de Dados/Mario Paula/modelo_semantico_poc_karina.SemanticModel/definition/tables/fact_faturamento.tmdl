@@ -1,0 +1,248 @@
+table fact_faturamento
+	lineageTag: 821af31f-2f62-417c-8f48-9a7bd3049b9e
+
+	column ORIGEM
+		dataType: string
+		lineageTag: f1d58e01-5e3c-47b1-88a2-035a4d1014e3
+		summarizeBy: none
+		sourceColumn: ORIGEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_ORGANIZACAO
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f235d32-3f19-4e56-a7c6-382f142a2671
+		summarizeBy: none
+		sourceColumn: SK_ORGANIZACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOCUMENTO
+		dataType: int64
+		formatString: 0
+		lineageTag: 524a6024-08a1-4512-88cb-0a1e20921547
+		summarizeBy: sum
+		sourceColumn: DOCUMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOCUMENTO_ITEM
+		dataType: string
+		lineageTag: 88a037d0-1180-43da-86e7-f331b8b0836f
+		summarizeBy: none
+		sourceColumn: DOCUMENTO_ITEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: string
+		lineageTag: 492fe6b7-1d94-4d8c-be59-ebf20f533c12
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 899d880c-a6e6-46f1-a287-a5510f646a89
+		summarizeBy: none
+		sourceColumn: DATA
+
+		variation Variation
+			isDefault
+			relationship: dce95ca4-514b-435f-ae17-d31127cf0351
+			defaultHierarchy: LocalDateTable_4d8c6ba6-5b80-4f45-bad9-4d8082cf9d80.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b4fd05d-1cc8-4a72-9b43-4de9658781ae
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: 3759ce07-99f2-4d00-b026-29f6610c77c4
+		summarizeBy: sum
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_CONDICAO_PAGTO
+		dataType: int64
+		formatString: 0
+		lineageTag: e32de5c5-3763-477c-9192-9bbaf11a9429
+		summarizeBy: none
+		sourceColumn: SK_CONDICAO_PAGTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_OPERACAO
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b0f4ab0-3b00-494f-a4ef-013dbd4be6c7
+		summarizeBy: none
+		sourceColumn: SK_OPERACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_PRODUTOS
+		dataType: int64
+		formatString: 0
+		lineageTag: 48132124-d12b-4618-bc80-672afa1d2206
+		summarizeBy: none
+		sourceColumn: SK_PRODUTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column NCM
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ab2034b-3c4c-44e4-8f2e-c0bfea1d108e
+		summarizeBy: sum
+		sourceColumn: NCM
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDEDOR
+		dataType: string
+		lineageTag: ebb9ed88-9e56-445f-9e70-485579442e39
+		summarizeBy: none
+		sourceColumn: VENDEDOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_FRETE
+		dataType: int64
+		formatString: 0
+		lineageTag: a06f8091-38c6-43fe-ae73-373bb70dca1c
+		summarizeBy: none
+		sourceColumn: SK_FRETE
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTDE
+		dataType: double
+		lineageTag: c07f28a8-1c0d-4eec-8f3a-c03c3a7bee41
+		summarizeBy: sum
+		sourceColumn: QTDE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ROB
+		dataType: double
+		lineageTag: 355f3fe3-7a0b-4f74-9cab-16c965386eac
+		summarizeBy: sum
+		sourceColumn: ROB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DANFE
+		dataType: double
+		lineageTag: a01bac35-ec91-482f-bd07-8bd025c09dfe
+		summarizeBy: sum
+		sourceColumn: DANFE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DATA_BASE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 272f1a0a-1650-4f12-b8f1-371ca313f404
+		summarizeBy: none
+		sourceColumn: DATA_BASE
+
+		variation Variation
+			isDefault
+			relationship: 4d0909cb-f2eb-4694-9951-d73020f32d16
+			defaultHierarchy: LocalDateTable_23314663-9ede-4fa8-983d-d55add6af02b.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DATA_PEDIDO
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1eef6ae9-4128-40d4-9b13-71d48ceed155
+		summarizeBy: none
+		sourceColumn: DATA_PEDIDO
+
+		variation Variation
+			isDefault
+			relationship: b0a3186a-5baa-46e9-ad11-f5652766c0a9
+			defaultHierarchy: LocalDateTable_e826ecac-00f7-49dd-a872-828af97d3d8f.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITEM
+		dataType: int64
+		formatString: 0
+		lineageTag: da5d0d13-f396-43b3-8f26-a0c241b0742c
+		summarizeBy: sum
+		sourceColumn: ITEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_ORGANIZACAO_DESTINO
+		dataType: int64
+		formatString: 0
+		lineageTag: da28b9e2-8b58-454d-a44c-dc9ac2e26635
+		summarizeBy: none
+		sourceColumn: SK_ORGANIZACAO_DESTINO
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMBALAGEM
+		dataType: double
+		lineageTag: 22f54b9e-8b4e-4de5-a339-8e2ed4ca220f
+		summarizeBy: sum
+		sourceColumn: EMBALAGEM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PALLET
+		dataType: double
+		lineageTag: b2a07a42-0b10-489c-a58e-77c5cca7f46c
+		summarizeBy: sum
+		sourceColumn: PALLET
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SK_DIVISAO_UNIDADE
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f137b00-c2f4-44fe-ae18-1abc85bf3cc7
+		summarizeBy: none
+		sourceColumn: SK_DIVISAO_UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_faturamento = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("c2o2epu7boeudchldopmv3qfwi-wkyz4dsag6lerpncdr44nw5tti.datawarehouse.fabric.microsoft.com", "warehouse_gold"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "fact_faturamento"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

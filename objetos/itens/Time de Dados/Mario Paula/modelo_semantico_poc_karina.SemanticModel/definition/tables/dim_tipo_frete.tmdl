@@ -1,0 +1,62 @@
+table dim_tipo_frete
+	lineageTag: 3cdbc262-b32d-4665-89ba-98f62a8c9e49
+
+	column FRETE
+		dataType: int64
+		formatString: 0
+		lineageTag: f0e71cd3-a5a2-4214-ad06-f93b58e0e907
+		summarizeBy: sum
+		sourceColumn: FRETE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO_FRETE
+		dataType: string
+		lineageTag: cb05df3d-6c90-493d-a6b0-4166782231af
+		summarizeBy: none
+		sourceColumn: TIPO_FRETE
+
+		annotation SummarizationSetBy = Automatic
+
+	column hash_registro
+		dataType: string
+		lineageTag: f970427c-82a9-45e1-a09f-3db812fed550
+		summarizeBy: none
+		sourceColumn: hash_registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_carga
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c96c7f64-8258-49a4-9fb5-e2503fdfe4c0
+		summarizeBy: none
+		sourceColumn: data_carga
+
+		variation Variation
+			isDefault
+			relationship: d72ca150-127f-49a8-8a31-d1ee5f7f30fd
+			defaultHierarchy: LocalDateTable_695043e0-a2e2-447c-bd9a-a4c251f35c8d.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SK_FRETE
+		dataType: int64
+		formatString: 0
+		lineageTag: a47047a9-f343-401b-b79e-f859475127ac
+		summarizeBy: none
+		sourceColumn: SK_FRETE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_tipo_frete = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("c2o2epu7boeudchldopmv3qfwi-wkyz4dsag6lerpncdr44nw5tti.datawarehouse.fabric.microsoft.com", "warehouse_gold"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "dim_tipo_frete"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+
