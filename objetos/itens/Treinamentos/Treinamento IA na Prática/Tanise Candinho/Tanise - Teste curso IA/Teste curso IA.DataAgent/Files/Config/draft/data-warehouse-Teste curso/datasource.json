@@ -1,0 +1,318 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/dataSource/1.0.0/schema.json",
+  "artifactId": "b2bd7b15-42b5-a5cd-4b0b-c4f40969616a",
+  "workspaceId": "00000000-0000-0000-0000-000000000000",
+  "dataSourceInstructions": null,
+  "displayName": "Teste curso",
+  "type": "data_warehouse",
+  "userDescription": null,
+  "metadata": {},
+  "elements": [
+    {
+      "id": "11e04556-ebaf-4b2c-8b89-58250b8fbc78",
+      "is_selected": false,
+      "display_name": "dbo",
+      "type": "warehouse_tables.schema",
+      "description": null,
+      "children": [
+        {
+          "id": "0599ea3a-c791-4845-a48f-77633412c06d",
+          "is_selected": true,
+          "display_name": "DimCustomer",
+          "type": "warehouse_tables.table",
+          "description": null,
+          "children": [
+            {
+              "id": "2db3d1a5-6456-4b30-9147-c7a2ee506b8b",
+              "is_selected": true,
+              "display_name": "AddressLine1",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "2403d95f-1264-4f32-b88d-7c16e439d0b9",
+              "is_selected": true,
+              "display_name": "City",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "4120a9dc-55c4-44d5-acac-78c8844017ff",
+              "is_selected": true,
+              "display_name": "CountryRegion",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "bd99e56b-a3aa-436a-a1fc-0eaf20007aa3",
+              "is_selected": true,
+              "display_name": "CustomerAltKey",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "62d2ee87-71c0-4a13-a503-f150aea6c91c",
+              "is_selected": true,
+              "display_name": "CustomerKey",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "4acd45dc-1189-4850-9c44-e0519665d21d",
+              "is_selected": true,
+              "display_name": "FirstName",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "0523938d-072f-4e2c-80d7-08b34efb942b",
+              "is_selected": true,
+              "display_name": "LastName",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "e72f61e8-cf16-4911-8c5a-e97122ab0e31",
+              "is_selected": true,
+              "display_name": "PostalCode",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "3757ed59-8a5f-4f68-8266-36eccc13e8aa",
+              "is_selected": true,
+              "display_name": "StateProvince",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "0ee99dd5-4b0b-4b5d-8e60-0999147d6489",
+              "is_selected": true,
+              "display_name": "Title",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "fc2787e6-70e7-44dc-b0d7-0f43b670912d",
+          "is_selected": true,
+          "display_name": "DimDate",
+          "type": "warehouse_tables.table",
+          "description": null,
+          "children": [
+            {
+              "id": "676e7015-dbdd-43f0-8d24-a9d3342228f6",
+              "is_selected": true,
+              "display_name": "DateAltKey",
+              "type": "warehouse_tables.column",
+              "data_type": "date",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "59a812b7-22a2-4d9b-9975-0090f94f0f3b",
+              "is_selected": true,
+              "display_name": "DateKey",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "81746239-ff8b-42f8-84b6-3f463adc22e6",
+              "is_selected": true,
+              "display_name": "DayOfMonth",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "17c20d54-5c55-4b10-9363-7a8ed54d6016",
+              "is_selected": true,
+              "display_name": "DayOfWeek",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "7ea3e4c3-d5f3-4d01-a2fb-90b3540fc026",
+              "is_selected": true,
+              "display_name": "Month",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "0ea7aa38-bfae-4583-a64d-1a3cd2d8a6e8",
+              "is_selected": true,
+              "display_name": "MonthName",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "cff61477-994f-46f3-8cea-5736dab43efc",
+              "is_selected": true,
+              "display_name": "WeekDayName",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "41550486-bf87-434b-8401-1dd0fc902b04",
+              "is_selected": true,
+              "display_name": "Year",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "5bf4b3e8-f017-45e6-8009-8eaaf3b601b8",
+          "is_selected": true,
+          "display_name": "DimProduct",
+          "type": "warehouse_tables.table",
+          "description": null,
+          "children": [
+            {
+              "id": "d748e7c5-05e9-4072-a944-3f4ff32b3b87",
+              "is_selected": true,
+              "display_name": "Category",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "e0450820-e8a4-4130-baea-c424903c9d9b",
+              "is_selected": true,
+              "display_name": "ListPrice",
+              "type": "warehouse_tables.column",
+              "data_type": "decimal",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "c9c3f1f8-0b0a-4cd0-abd3-f585a1601e49",
+              "is_selected": true,
+              "display_name": "ProductAltKey",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "9629fe51-5f6a-4e6a-bada-50f4283beab9",
+              "is_selected": true,
+              "display_name": "ProductKey",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "57514c03-c183-4f73-a387-f2189a002b76",
+              "is_selected": true,
+              "display_name": "ProductName",
+              "type": "warehouse_tables.column",
+              "data_type": "varchar",
+              "description": null,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "a07d9a56-48c9-435c-9dac-898d7618eaea",
+          "is_selected": true,
+          "display_name": "FactSalesOrder",
+          "type": "warehouse_tables.table",
+          "description": null,
+          "children": [
+            {
+              "id": "cea70cdd-93e6-414d-a92b-5ca787e647e4",
+              "is_selected": true,
+              "display_name": "CustomerKey",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "11b70ec6-0caa-4658-89d8-b0e8be57eb1a",
+              "is_selected": true,
+              "display_name": "ProductKey",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "3eeeb373-7e1c-4357-b992-c43f60267831",
+              "is_selected": true,
+              "display_name": "Quantity",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "486772d9-f3e0-4d48-bc8b-edbf1d71c355",
+              "is_selected": true,
+              "display_name": "SalesOrderDateKey",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "3544cef4-a200-4ade-9d56-6ac93fe42437",
+              "is_selected": true,
+              "display_name": "SalesOrderKey",
+              "type": "warehouse_tables.column",
+              "data_type": "int",
+              "description": null,
+              "children": []
+            },
+            {
+              "id": "68e60094-e0ab-4e2a-868b-231dce1fa0df",
+              "is_selected": true,
+              "display_name": "SalesTotal",
+              "type": "warehouse_tables.column",
+              "data_type": "decimal",
+              "description": null,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

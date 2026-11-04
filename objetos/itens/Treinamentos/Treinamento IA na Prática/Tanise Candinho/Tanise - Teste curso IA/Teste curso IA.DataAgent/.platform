@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataAgent",
+    "displayName": "Teste curso IA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d4620b80-3a63-8669-4113-63b87b6936e4"
+  }
+}
