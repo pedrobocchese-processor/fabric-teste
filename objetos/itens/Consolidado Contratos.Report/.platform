@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Consolidado Contratos"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "97edc32e-101e-8801-4e3d-0a7da58ef3d2"
+  }
+}
